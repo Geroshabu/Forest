@@ -20,11 +20,10 @@
     \> ユーザー フォルダ  
     \> AppData フォルダ  
     \> Local フォルダ  
-    <span style="color:red">**※…これで良いのか？**</span>
+    \> forest フォルダ  
 
     * 使用するデータベースのフレームワーク  
-    .NET Framework  
-    <span style="color:red">**※…わからない**</span>
+    PostgreSQL  
 
 ---
 
