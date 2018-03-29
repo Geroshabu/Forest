@@ -2,8 +2,6 @@
 
 <a id="index"></a>
 * ## 目次
-    * [目次](#index)
-
     * [データベース](#database)
 
     * [クラス図](#class_diagram)
@@ -22,10 +20,10 @@
                 \> forest フォルダ
 
     * データベースのフレームワーク  
-    PostgreSQL  
+    SQLite(Version 3.22.0)  
 
     * データベースのドライバ  
-    EntityFramework  
+    EntityFrameworkCore(Version 2.0.2)  
 
 ---
 
@@ -38,5 +36,6 @@
 
 <a id="sequence_diagram"></a>
 * ## シーケンス図  
-![シーケンス図](images/シーケンス図_練習メンバーを選択する_練習メンバーを削除する.png)
-![シーケンス図](images/シーケンス図_練習試合をする.png)
+    * 起動する  ![シーケンス図](images/シーケンス図_起動する.png)
+    * 練習参加メンバーの選択・取りやめ  ![シーケンス図](images/シーケンス図_練習メンバーを選択する_練習メンバーを削除する.png)
+    * 練習試合を行う  ![シーケンス図](images/シーケンス図_練習試合をする.png)
