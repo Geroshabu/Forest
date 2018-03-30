@@ -10,7 +10,7 @@ namespace Forest
     /// <summary>
     /// Person型を定義するクラス
     /// </summary>
-    class Person
+    public class Person
     {
         [Required]
         public string ID { get; set; }

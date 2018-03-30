@@ -12,21 +12,13 @@ namespace Forest
     /// <summary>
     /// DbContext クラスを継承したクラス
     /// </summary>
-    class PersonDbRepository : DbContext , IPersonRepository
+    public class PersonDbRepository : IPersonRepository
     {
-        /// <summary>
-        /// ●DBのテーブルを定義している
-        /// </summary>
-        public DbSet<Person> Persons { get; set; }
+        private PersonContext _context;
 
-        /// <summary>
-        /// ●DB作成のために必要なメソッド
-        /// </summary>
-        /// <param name="optionsBuilder"></param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public PersonDbRepository(PersonContext context)
         {
-            var connectionString = new SqliteConnectionStringBuilder { DataSource = "forestDB.db" }.ToString();
-            optionsBuilder.UseSqlite(new SqliteConnection(connectionString));
+            _context = context;
         }
 
         /// <summary>
@@ -36,13 +28,11 @@ namespace Forest
         /// <returns>DB登録できたかどうか</returns>
         public bool AddPerson(Person new_person)
         {
-            var db = new PersonDbRepository();
-
             try
             {
                 //new_personを登録する
-                db.Persons.Add(new_person);
-                db.SaveChanges();
+                _context.Persons.Add(new_person);
+                _context.SaveChanges();
 
             }
             //DBにアクセスできなかったとき
@@ -62,8 +52,6 @@ namespace Forest
         /// <returns>削除フラグを立てた件数</returns>
         public int DeletePersons(List<Person> delete_persons)
         {
-            var db = new PersonDbRepository();
-
             //削除した件数
             int delete_num = 0;
 
@@ -72,13 +60,13 @@ namespace Forest
                 try
                 {
                     //削除したい人のIDと一致する人をDBから探す
-                    var target_person = db.Persons.Where(x => x.ID == person.ID).FirstOrDefault();
+                    var target_person = _context.Persons.Where(x => x.ID == person.ID).FirstOrDefault();
 
                     //対応メンバーのdelete_flagをfalseにして、削除件数に1を足す
                     if (target_person != null)
                     {
                         target_person.delete_flag = false;
-                        db.SaveChanges();
+                        _context.SaveChanges();
                         delete_num++;
                     }
                     //対応するIDの人がいなかったとき、何もしない
@@ -102,15 +90,13 @@ namespace Forest
         /// <returns>DBに登録されているメンバーのリスト</returns>
         public List<Person> GetPersons()
         {
-            var db = new PersonDbRepository();
-
             //取得したメンバー情報を入れるためのリスト
             var persons = new List<Person>();
 
             try
             {
                 //一行ずつ読んでpersonsリストに入れていく
-                foreach (var person in db.Persons)
+                foreach (var person in _context.Persons)
                 {
                     persons.Add(person);
                 }
@@ -132,19 +118,16 @@ namespace Forest
         /// <returns>変更できたかどうか</returns>
         public bool UpdatePerson(Person update_person)
         {
-            var db = new PersonDbRepository();
-
-
             try
             {
                 //nullが返ることがある
-                var target_person = db.Persons.Where(x => x.ID == update_person.ID).FirstOrDefault();
+                var target_person = _context.Persons.Where(x => x.ID == update_person.ID).FirstOrDefault();
 
                 //対応するIDのメンバーが存在したとき
                 if (target_person != null)
                 {
                     target_person = update_person;
-                    db.SaveChanges();
+                    _context.SaveChanges();
                     return true;
                 }
 

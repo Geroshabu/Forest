@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forest", "Forest\Forest.csproj", "{1EC97AE3-6F56-4B23-9E31-F166C3B88F16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForestTest", "ForestTest\ForestTest.csproj", "{898BAE7F-5CE7-41BA-A445-EF8926C2CC87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1EC97AE3-6F56-4B23-9E31-F166C3B88F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC97AE3-6F56-4B23-9E31-F166C3B88F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EC97AE3-6F56-4B23-9E31-F166C3B88F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{898BAE7F-5CE7-41BA-A445-EF8926C2CC87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{898BAE7F-5CE7-41BA-A445-EF8926C2CC87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{898BAE7F-5CE7-41BA-A445-EF8926C2CC87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{898BAE7F-5CE7-41BA-A445-EF8926C2CC87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,14 @@ namespace Forest
     /// Level型を定義するクラス
     /// ToString()をオーバーライドしている
     /// </summary>
-    class Level
+    public class Level
     {
         /// <summary>
         /// レベルを数字で表す
         /// 0：初級者　1：中級者　2：上級者
         /// </summary>
-        private int level_num;
+        [Key]
+        public int level_num { get; set; }
 
         /// <summary>
         /// オーバーライドしているメソッド

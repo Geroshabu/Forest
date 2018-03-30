@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,14 @@ namespace Forest
     /// Gender型を定義するクラス
     /// ToString()をオーバーライドしている
     /// </summary>
-    class Gender
+    public class Gender
     {
         /// <summary>
         /// 性別を数字で表す
         /// 0：男　1：女
         /// </summary>
-        private int gender_num;
+        [Key]
+        public int gender_num { get; set; }
 
         /// <summary>
         /// オーバーライドしているメソッド
