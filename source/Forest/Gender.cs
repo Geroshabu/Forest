@@ -18,7 +18,7 @@ namespace Forest
         /// 0：男　1：女
         /// </summary>
         [Key]
-        public int gender_num { get; set; }
+        public int GenderNum { get; set; }
 
         /// <summary>
         /// オーバーライドしているメソッド
@@ -27,17 +27,16 @@ namespace Forest
         /// <returns>性別（string型）</returns>
         public override string ToString()
         {
-            //●書き方はこれで良いのか…？
-            if(base.Equals(0))
+            if (GenderNum == 0)
             {
                 return "男";
-            }else if (base.Equals(1))
+            }
+            else if (GenderNum == 1)
             {
                 return "女";
             }
 
-            return "性別登録なし";
-
+            throw new InvalidOperationException("GenderNumが適切でないです。GenderNum：" + GenderNum);
         }
     }
 }

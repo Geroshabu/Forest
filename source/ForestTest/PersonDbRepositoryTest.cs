@@ -37,7 +37,7 @@ namespace ForestTest
                     var testPerson = new Person();
 
                     var men = new Gender();
-                    men.gender_num = 0;
+                    men.GenderNum = 0;
 
                     var pro = new Level();
                     pro.level_num = 2;
