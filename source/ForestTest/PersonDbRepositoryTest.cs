@@ -40,7 +40,7 @@ namespace ForestTest
                     men.GenderNum = 0;
 
                     var pro = new Level();
-                    pro.level_num = 2;
+                    pro.LevelNum = 2;
 
                     testPerson.ID = "test01";
                     testPerson.Name = "snoopy";

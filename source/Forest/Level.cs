@@ -18,7 +18,7 @@ namespace Forest
         /// 0：初級者　1：中級者　2：上級者
         /// </summary>
         [Key]
-        public int level_num { get; set; }
+        public int LevelNum { get; set; }
 
         /// <summary>
         /// オーバーライドしているメソッド
@@ -27,21 +27,20 @@ namespace Forest
         /// <returns>レベル（string型）</returns>
         public override string ToString()
         {
-            //●書き方はこれで良いのか…？
-            if (base.Equals(0))
+            if (LevelNum == 0)
             {
                 return "初級者";
             }
-            else if (base.Equals(1))
+            else if (LevelNum == 1)
             {
                 return "中級者";
             }
-            else if (base.Equals(2))
+            else if (LevelNum == 2)
             {
                 return "上級者";
             }
-
-            return "レベル登録なし";
+            
+            throw new InvalidOperationException("LevelNumが適切でないです。LevelNum：" + LevelNum);
         }
     }
 }
