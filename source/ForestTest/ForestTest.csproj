@@ -130,6 +130,7 @@
   <ItemGroup>
     <Compile Include="PersonDbRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GenderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
