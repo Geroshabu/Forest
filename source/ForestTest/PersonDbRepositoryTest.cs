@@ -44,10 +44,10 @@ namespace ForestTest
 
                     testPerson.ID = "test01";
                     testPerson.Name = "snoopy";
-                    testPerson.gender = men;
-                    testPerson.level = pro;
-                    testPerson.delete_flag = false;
-                    testPerson.attend_flag = false;
+                    testPerson.Gender = men;
+                    testPerson.Level = pro;
+                    testPerson.DeleteFlag = false;
+                    testPerson.AttendFlag = false;
 
                     personDbRepository.AddPerson(testPerson);
 

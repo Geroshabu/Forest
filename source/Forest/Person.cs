@@ -19,16 +19,16 @@ namespace Forest
         public string Name { get; set; }
 
         [Required]
-        public Gender gender { get; set; }
+        public Gender Gender { get; set; }
 
         [Required]
-        public Level level { get; set; }
+        public Level Level { get; set; }
 
         [Required]
-        public bool delete_flag { get; set; }
+        public bool DeleteFlag { get; set; }
 
         [Required]
-        public bool attend_flag { get; set; }
+        public bool AttendFlag { get; set; }
 
     }
 }

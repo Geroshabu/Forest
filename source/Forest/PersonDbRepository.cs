@@ -62,10 +62,10 @@ namespace Forest
                     //削除したい人のIDと一致する人をDBから探す
                     var target_person = _context.Persons.Where(x => x.ID == person.ID).FirstOrDefault();
 
-                    //対応メンバーのdelete_flagをfalseにして、削除件数に1を足す
+                    //対応メンバーのdelete_flagをtrueにして、削除件数に1を足す
                     if (target_person != null)
                     {
-                        target_person.delete_flag = false;
+                        target_person.DeleteFlag = true;
                         _context.SaveChanges();
                         delete_num++;
                     }
