@@ -1,33 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace Forest
 {
     public class PersonContext : DbContext
     {
+        /// <summary>
+        /// DBの設定を指定せずに初期化する
+        /// ForestTest.pdb という名前のファイルが作られる
+        /// </summary>
         public PersonContext()
         { }
 
+        /// <summary>
+        /// 呼び出し元からDBの設定を指定して初期化する
+        /// </summary>
+        /// <param name="options">DBの設定</param>
         public PersonContext(DbContextOptions<PersonContext> options) : base(options)
         { }
 
         /// <summary>
-        /// ●DBのテーブルを定義している
+        /// DBのデータ
         /// </summary>
         public DbSet<Person> Persons { get; set; }
 
         /// <summary>
-        /// ●DB作成のために必要なメソッド
+        /// DBの設定がされていなかったら設定をする
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured) {
+            if (!optionsBuilder.IsConfigured)
+            {
                 var connectionString = new SqliteConnectionStringBuilder { DataSource = "forest.db" }.ToString();
                 optionsBuilder.UseSqlite(new SqliteConnection(connectionString));
             }
