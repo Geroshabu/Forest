@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Forest
 {
@@ -11,13 +6,38 @@ namespace Forest
     /// Level型を定義するクラス
     /// ToString()をオーバーライドしている
     /// </summary>
-    public class Level
+    public class Level : IEquatable<Level>
     {
         /// <summary>
         /// レベルを数字で表す
         /// 0：初級者　1：中級者　2：上級者
         /// </summary>
         public int LevelNum { get; set; }
+
+        public bool Equals(Level level)
+        {
+            if ((object)level == null)
+            {
+                return false;
+            }
+            return LevelNum == level.LevelNum;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Level))
+            {
+                return false;
+            }
+
+            return Equals((Level)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
 
         /// <summary>
         /// オーバーライドしているメソッド
@@ -38,8 +58,42 @@ namespace Forest
             {
                 return "上級者";
             }
-            
+
             throw new InvalidOperationException("LevelNumが適切でないです。LevelNum：" + LevelNum);
         }
+
+        /// <summary>
+        /// 右辺と左辺が等しいかどうかを返す
+        /// </summary>
+        /// <param name="level1">左辺</param>
+        /// <param name="level2">右辺</param>
+        /// <returns>結果</returns>
+        public static bool operator ==(Level level1, Level level2)
+        {
+            if ((object)level1 == null)
+            {
+                //両方ともnullであればtrue
+                if ((object)level2 == null)
+                {
+                    return true;
+                }
+                //level1だけがnullであればfalse
+                return false;
+            }
+            //判断はEquals(Level型)に任せる
+            return level1.Equals(level2);
+        }
+
+        /// <summary>
+        /// == の逆の結果を返す
+        /// </summary>
+        /// <param name="level1"></param>
+        /// <param name="level2"></param>
+        /// <returns></returns>
+        public static bool operator !=(Level level1, Level level2)
+        {
+            return !(level1 == level2);
+        }
+
     }
 }
