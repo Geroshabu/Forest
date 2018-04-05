@@ -17,7 +17,6 @@ namespace Forest
         /// 性別を数字で表す
         /// 0：男　1：女
         /// </summary>
-        [Key]
         public int GenderNum { get; set; }
 
         /// <summary>

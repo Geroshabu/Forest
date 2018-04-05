@@ -17,7 +17,6 @@ namespace Forest
         /// レベルを数字で表す
         /// 0：初級者　1：中級者　2：上級者
         /// </summary>
-        [Key]
         public int LevelNum { get; set; }
 
         /// <summary>

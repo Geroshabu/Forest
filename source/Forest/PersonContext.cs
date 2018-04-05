@@ -37,5 +37,19 @@ namespace Forest
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Personテーブルへのマッピング
+            modelBuilder.Entity<Person>().ToTable(nameof(Person));
+
+            // PersonがGenderを所有する
+            modelBuilder.Entity<Person>().OwnsOne(
+                person => person.Gender);
+            // PersonがLevelを所有する
+            modelBuilder.Entity<Person>().OwnsOne(
+                person => person.Level);
+        }
+
+
     }
 }
