@@ -52,7 +52,7 @@ namespace Forest
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return GenderNum.GetHashCode();
         }
 
         /// <summary>
@@ -82,12 +82,7 @@ namespace Forest
             if ((object)gender1 == null)
             {
                 //両方ともnullであればtrue
-                if ((object)gender2 == null)
-                {
-                    return true;
-                }
-                //gender1だけがnullであればfalse
-                return false;
+                return (object)gender2 == null;
             }
             //判断はEquals(Gender型)に任せる
             return gender1.Equals(gender2);

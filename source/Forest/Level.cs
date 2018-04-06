@@ -35,7 +35,7 @@ namespace Forest
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return LevelNum.GetHashCode();
         }
 
 
@@ -73,12 +73,7 @@ namespace Forest
             if ((object)level1 == null)
             {
                 //両方ともnullであればtrue
-                if ((object)level2 == null)
-                {
-                    return true;
-                }
-                //level1だけがnullであればfalse
-                return false;
+                return (object)level2 == null;
             }
             //判断はEquals(Level型)に任せる
             return level1.Equals(level2);
