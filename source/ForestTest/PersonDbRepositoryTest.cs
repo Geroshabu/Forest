@@ -12,7 +12,7 @@ namespace ForestTest
     public class PersonDbRepositoryTest : IDisposable
     {
         //作成するフォルダの名前
-        string DirectoryName = "./forestTest";
+        string DirectoryName = "./forestTest02";
 
         PersonContext Context;
 

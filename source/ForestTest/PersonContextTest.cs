@@ -9,7 +9,7 @@ namespace ForestTest
 {
     public class PersonContextTest : IDisposable
     {
-        string DirectoryName = "./forestTest";
+        string DirectoryName = "./forestTest01";
 
         /// <summary>
         /// 前処理として、テスト用のフォルダを作成する
