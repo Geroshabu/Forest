@@ -39,6 +39,12 @@ namespace Forest
             catch (NullReferenceException)
             {
                 ShowDBError();
+                return false;
+            }
+            //SQLiteにおけるエラーが発生したとき
+            catch (InvalidOperationException)
+            {
+                return false;
             }
 
             return true;
@@ -55,7 +61,8 @@ namespace Forest
             //削除した件数
             int delete_num = 0;
 
-            foreach (var person in delete_persons) {
+            foreach (var person in delete_persons)
+            {
 
                 try
                 {
@@ -69,13 +76,17 @@ namespace Forest
                         _context.SaveChanges();
                         delete_num++;
                     }
-                    //対応するIDの人がいなかったとき、何もしない
-
+                    else
+                    {
+                        //対応するIDの人がいなかったとき
+                        return -1;
+                    }
                 }
                 //DBにアクセスできなかったとき
                 catch (NullReferenceException)
                 {
                     ShowDBError();
+                    return -1;
                 }
 
             }
@@ -106,6 +117,7 @@ namespace Forest
             catch (NullReferenceException)
             {
                 ShowDBError();
+                return null;
             }
 
             return persons;
@@ -126,9 +138,17 @@ namespace Forest
                 //対応するIDのメンバーが存在したとき
                 if (target_person != null)
                 {
-                    target_person = update_person;
+                    target_person.Name = update_person.Name;
+                    target_person.Gender.GenderNum = update_person.Gender.GenderNum;
+                    target_person.Level.LevelNum = update_person.Level.LevelNum;
+                    target_person.DeleteFlag = update_person.DeleteFlag;
+                    target_person.AttendFlag = update_person.AttendFlag;
                     _context.SaveChanges();
-                    return true;
+                }
+                //対応するIDのメンバーが存在しなかったとき
+                else
+                {
+                    return false;
                 }
 
             }
@@ -136,13 +156,13 @@ namespace Forest
             catch (NullReferenceException)
             {
                 ShowDBError();
+                return false;
             }
 
+            return true;
 
-            //対応するIDのメンバーが存在しなかったとき
-            return false;
-            
         }
+
 
         public void ShowDBError()
         {
