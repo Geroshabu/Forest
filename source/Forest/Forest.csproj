@@ -130,6 +130,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="PersonContext.cs" />
     <Compile Include="PersonDbRepository.cs" />
+    <Compile Include="PersonHolder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
