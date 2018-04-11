@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +22,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MainWindow_Load(object sender, EventArgs e)
+        public void MainWindow_Load(object sender, EventArgs e)
         {
             //DBに接続
             string dbName = "forest.db";
@@ -66,26 +60,7 @@ namespace Forest
                 this.list02.Rows.Add(row);
             }
 
-            //ボタンの状態
-            //→ボタン
-            button01.Enabled = false;
-            //←ボタン
-            button02.Enabled = false;
-            //追加ボタン
-            if (persons.Count <= 100)
-            {
-                button03.Enabled = true;
-            }
-            //削除ボタン
-            button04.Enabled = false;
-            //変更ボタン
-            button05.Enabled = false;
-            //試合開始ボタン
-            if (attendedPersons.Count == 0)
-            {
-                button06.Enabled = false;
-            }
-
+            ButtonManager();
 
         }
 
@@ -94,14 +69,14 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddAttendedPersons(object sender, EventArgs e)
+        public void AddAttendedPersons(object sender, EventArgs e)
         {
             //チェック状態を取得
             //IDを取得
             var id_list = new List<string>();
             for (int i = 0; i < PersonHolder.GetAllPersons().Count; i++)
             {
-                if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value) == true)
+                if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value))
                 {
                     string targetId = (string)list01.Rows[i].Cells[1].Value;
                     id_list.Add(targetId);
@@ -130,18 +105,6 @@ namespace Forest
                 this.list02.Rows.Add(row);
             }
 
-            //試合開始ボタン
-            if (attendedPersons.Count > 0)
-            {
-                button06.Enabled = true;
-            }
-            
-            //→ボタン
-            button01.Enabled = true;
-
-            //←ボタン
-            button02.Enabled = true;
-
             ButtonManager();
 
         }
@@ -151,14 +114,14 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeleteAttendedPersons(object sender, EventArgs e)
+        public void DeleteAttendedPersons(object sender, EventArgs e)
         {
             //チェック状態を取得
             //IDを取得
             var id_list = new List<string>();
             for (int i = 0; i < PersonHolder.GetAttendedPersons().Count; i++)
             {
-                if (Convert.ToBoolean(list02.Rows[i].Cells[0].Value) == true)
+                if (Convert.ToBoolean(list02.Rows[i].Cells[0].Value))
                 {
                     string targetId = (string)list02.Rows[i].Cells[1].Value;
                     id_list.Add(targetId);
@@ -200,18 +163,6 @@ namespace Forest
                 this.list02.Rows.Add(row);
             }
 
-            //試合開始ボタン
-            if (attendedPersons.Count == 0)
-            {
-                button06.Enabled = false;
-            }
-
-            //→ボタン
-            button01.Enabled = true;
-
-            //←ボタン
-            button02.Enabled = false;
-
             ButtonManager();
 
         }
@@ -240,9 +191,9 @@ namespace Forest
             }
             else
             {
-                list01.CurrentRow.Cells[0].Value = "true";
+                list01.CurrentRow.Cells[0].Value = true;
             }
-            
+
             ButtonManager();
         }
 
@@ -251,7 +202,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ManageAttendedPersonList(object sender, DataGridViewCellMouseEventArgs e)
+        public void ManageAttendedPersonList(object sender, DataGridViewCellMouseEventArgs e)
         {
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
             if (PersonHolder == null)
@@ -270,9 +221,10 @@ namespace Forest
             }
             else
             {
-                button02.Enabled = true;
                 list02.CurrentRow.Cells[0].Value = true;
             }
+
+            ButtonManager();
 
         }
 
@@ -281,33 +233,100 @@ namespace Forest
         /// </summary>
         public void ButtonManager()
         {
-            //チェックが入っている個数を数える
-            int count = 0;
-            string targetId = "";
+            //ボタンの状態（デフォルト）
+            //→ボタン
+            button01.Enabled = false;
+            //←ボタン
+            button02.Enabled = false;
+            //追加ボタン
+            if (PersonHolder.GetAllPersons().Count < 100)
+            {
+                button03.Enabled = true;
+            }
+            //削除ボタン
+            button04.Enabled = false;
+            //変更ボタン
+            button05.Enabled = false;
+            //試合開始ボタン
+            if (PersonHolder.GetAttendedPersons().Count <= 1)
+            {
+                button06.Enabled = false;
+            }
+
+            //List01のチェックが入っている個数を数える
+            int count1 = 0;
+            string targetId1 = "";
             for (int i = 0; i < PersonHolder.GetAllPersons().Count; i++)
             {
                 //trueの数を数える
-                if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value) == true)
+                if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value))
                 {
-                    count++;
+                    count1++;
                     //trueの時のIDを保管しておく
-                    targetId = (string)list01.Rows[i].Cells[1].Value;
+                    targetId1 = (string)list01.Rows[i].Cells[1].Value;
                 }
             }
 
             //trueがひとつだけであれば「変更」ボタンも押せるようになる
-            if (count == 1)
+            if (count1 == 1)
             {
                 button05.Enabled = true;
 
             }
 
             //trueが複数あれば「削除」「→」ボタンも押せるようになる
-            if (count >= 1)
+            if (count1 >= 1)
             {
                 button01.Enabled = true;
                 button04.Enabled = true;
             }
+
+            //List02のチェックが入っている個数を数える
+            int count2 = 0;
+            string targetId2 = "";
+            for (int i = 0; i < PersonHolder.GetAttendedPersons().Count; i++)
+            {
+                //trueの数を数える
+                if (Convert.ToBoolean(list02.Rows[i].Cells[0].Value))
+                {
+                    count2++;
+                    //trueの時のIDを保管しておく
+                    targetId2 = (string)list02.Rows[i].Cells[1].Value;
+                }
+            }
+            //trueが複数あれば「←」ボタンも押せるようになる
+            if (count2 >= 1)
+            {
+                button02.Enabled = true;
+            }
+
+        }
+
+        /// <summary>
+        /// ソートをするときに発生するイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void list01_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            object obj1 = e.CellValue1;
+            object obj2 = e.CellValue2;
+
+            switch (obj1)
+            {
+                case string name:
+                    e.SortResult  = name.CompareTo(obj2 as string);
+                    break;
+                case Gender gender:
+                    e.SortResult = gender.CompareTo(obj2 as Gender);
+                    break;
+                case Level level:
+                    e.SortResult = level.CompareTo(obj2 as Level);
+                    break;
+            }
+
+            //処理したことを知らせる
+            e.Handled = true;
 
         }
     }
