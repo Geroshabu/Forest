@@ -72,21 +72,25 @@ namespace Forest
         }
 
         /// <summary>
-        /// 【未実装】
+        /// CompareTo()をオーバーライドするクラス
+        /// GenderNumによってソート順を判断する
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">比較対象のオブジェクト</param>
+        /// <returns>ソート順を決める数字</returns>
         public int CompareTo(object obj)
         {
             if (obj == null)
             {
-                return 1;//1で良いのか？
+                return 1;
             }
 
+            //引数をGender型にキャスト
+            //キャストできないときはnullが入る
             Gender otherGender = obj as Gender;
 
             if (otherGender != null)
             {
+                //GenderNumでソート順を判断
                 return this.GenderNum.CompareTo(otherGender.GenderNum);
             }
             else

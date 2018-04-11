@@ -2,10 +2,6 @@
 
 namespace Forest
 {
-    /// <summary>
-    /// Level型を定義するクラス
-    /// ToString()をオーバーライドしている
-    /// </summary>
     public class Level : IEquatable<Level>, IComparable
     {
         /// <summary>
@@ -15,10 +11,11 @@ namespace Forest
         public int LevelNum { get; set; }
 
         /// <summary>
-        /// 
+        /// CompareTo()をオーバーライドするクラス
+        /// LevelNumによってソート順を判断する
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">比較対象のオブジェクト</param>
+        /// <returns>ソート順を決める数字</returns>
         public int CompareTo(object obj)
         {
             if (obj == null)
@@ -26,11 +23,13 @@ namespace Forest
                 return 1;
             }
 
+            //引数をLevel型にキャスト
+            //キャストできないときはnullが入る
             Level otherLevel = obj as Level;
 
             if(otherLevel != null)
             {
-                //Levelの数字でソート順を判断
+                //LevelNumでソート順を判断
                 return this.LevelNum.CompareTo(otherLevel.LevelNum);
             }
             else
@@ -39,6 +38,11 @@ namespace Forest
             }
         }
 
+        /// <summary>
+        /// 引数のLevel型のオブジェクトと同じかを判定する
+        /// </summary>
+        /// <param name="level">比較対象</param>
+        /// <returns>比較結果</returns>
         public bool Equals(Level level)
         {
             if ((object)level == null)
@@ -48,6 +52,12 @@ namespace Forest
             return LevelNum == level.LevelNum;
         }
 
+        /// <summary>
+        /// 引数のobject型のオブジェクトと同じかを判定する
+        /// 最終的な判定はEquals(Level型)に任せる
+        /// </summary>
+        /// <param name="obj">比較対象</param>
+        /// <returns>判定結果</returns>
         public override bool Equals(object obj)
         {
             if (!(obj is Level))
@@ -55,6 +65,7 @@ namespace Forest
                 return false;
             }
 
+            //判断はEquals(Level型)に任せる
             return Equals((Level)obj);
         }
 
@@ -89,6 +100,7 @@ namespace Forest
 
         /// <summary>
         /// 右辺と左辺が等しいかどうかを返す
+        /// 判定はEquals(Level型)に任せる
         /// </summary>
         /// <param name="level1">左辺</param>
         /// <param name="level2">右辺</param>
@@ -109,7 +121,7 @@ namespace Forest
         /// </summary>
         /// <param name="level1"></param>
         /// <param name="level2"></param>
-        /// <returns></returns>
+        /// <returns>結果</returns>
         public static bool operator !=(Level level1, Level level2)
         {
             return !(level1 == level2);
