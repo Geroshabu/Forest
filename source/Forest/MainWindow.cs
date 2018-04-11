@@ -51,7 +51,7 @@ namespace Forest
             var persons = PersonHolder.GetAllPersons();
             for (int i = 0; i < persons.Count; i++)
             {
-                string[] row = { "false", persons[i].ID, persons[i].Name, persons[i].Gender.ToString(), persons[i].Level.ToString() };
+                object[] row = { false, persons[i].ID, persons[i].Name, persons[i].Gender, persons[i].Level };
                 this.list01.Rows.Add(row);
             }
 
@@ -62,7 +62,7 @@ namespace Forest
             var attendedPersons = PersonHolder.GetAttendedPersons();
             for (int i = 0; i < attendedPersons.Count; i++)
             {
-                string[] row = { "false", attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender.ToString(), attendedPersons[i].Level.ToString() };
+                object[] row = { false, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender, attendedPersons[i].Level };
                 this.list02.Rows.Add(row);
             }
 
@@ -118,15 +118,15 @@ namespace Forest
             //表示。今参加した人は選択状態にする
             for (int i = 0; i < attendedPersons.Count; i++)
             {
-                string check = "false";
+                bool check = false;
                 foreach (string targetId in id_list)
                 {
                     if (attendedPersons[i].ID == targetId)
                     {
-                        check = "true";
+                        check = true;
                     }
                 }
-                string[] row = { check, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender.ToString(), attendedPersons[i].Level.ToString() };
+                object[] row = { check, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender, attendedPersons[i].Level };
                 this.list02.Rows.Add(row);
             }
 
@@ -175,15 +175,15 @@ namespace Forest
             //表示。今取り消した人は選択状態にする
             for (int i = 0; i < allPersons.Count; i++)
             {
-                string check = "false";
+                bool check = false;
                 foreach (string targetId in id_list)
                 {
                     if (allPersons[i].ID == targetId)
                     {
-                        check = "true";
+                        check = true;
                     }
                 }
-                string[] row = { check, allPersons[i].ID, allPersons[i].Name, allPersons[i].Gender.ToString(), allPersons[i].Level.ToString() };
+                object[] row = { check, allPersons[i].ID, allPersons[i].Name, allPersons[i].Gender, allPersons[i].Level };
                 this.list01.Rows.Add(row);
             }
 
@@ -195,8 +195,8 @@ namespace Forest
             //表示
             for (int i = 0; i < attendedPersons.Count; i++)
             {
-                string check = "false";
-                string[] row = { check, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender.ToString(), attendedPersons[i].Level.ToString() };
+                bool check = false;
+                object[] row = { check, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender, attendedPersons[i].Level };
                 this.list02.Rows.Add(row);
             }
 
@@ -221,15 +221,8 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ManageBelongedPersonList(object sender, DataGridViewCellMouseEventArgs e)
+        public void ManageBelongedPersonList(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //→ボタン
-            button01.Enabled = false;
-            //削除ボタン
-            button04.Enabled = false;
-            //変更ボタン
-            button05.Enabled = false;
-
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
             if (PersonHolder == null)
             {
@@ -241,9 +234,9 @@ namespace Forest
 
             //チェックされていた部分が選択されれば、チェック
             //チェックされていなかった部分が選択されればチェックを外す
-            if (list01.CurrentRow.Cells[0].Value.ToString() == "true")
+            if (Convert.ToBoolean(list01.CurrentRow.Cells[0].Value) == true)
             {
-                list01.CurrentRow.Cells[0].Value = "false";
+                list01.CurrentRow.Cells[0].Value = false;
             }
             else
             {
@@ -271,15 +264,14 @@ namespace Forest
 
             //チェックされていた部分が選択されれば、チェック
             //チェックされていなかった部分が選択されればチェックを外す
-            if (list01.CurrentRow.Cells[0].Value.ToString() == "true")
+            if (Convert.ToBoolean(list02.CurrentRow.Cells[0].Value) == true)
             {
-                list01.CurrentRow.Cells[0].Value = "false";
+                list02.CurrentRow.Cells[0].Value = false;
             }
             else
             {
-                list01.CurrentRow.Cells[0].Value = "true";
-                //ひとつでもtrueになれば「←」ボタンが押下できるようになる
                 button02.Enabled = true;
+                list02.CurrentRow.Cells[0].Value = true;
             }
 
         }

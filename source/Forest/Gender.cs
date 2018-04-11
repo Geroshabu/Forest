@@ -6,7 +6,7 @@ namespace Forest
     /// Gender型を定義するクラス
     /// ToString()をオーバーライドしている
     /// </summary>
-    public class Gender : IEquatable<Gender>
+    public class Gender : IEquatable<Gender> , IComparable
     {
         /// <summary>
         /// 性別を数字で表す
@@ -69,6 +69,30 @@ namespace Forest
                 return false;
             }
             return GenderNum == gender.GenderNum;
+        }
+
+        /// <summary>
+        /// 【未実装】
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 1;//1で良いのか？
+            }
+
+            Gender otherGender = obj as Gender;
+
+            if (otherGender != null)
+            {
+                return this.GenderNum.CompareTo(otherGender.GenderNum);
+            }
+            else
+            {
+                throw new ArgumentException("Gender型ではないものと比較しようとしています");
+            }
         }
 
         /// <summary>

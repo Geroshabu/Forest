@@ -108,6 +108,7 @@
             this.list01.Size = new System.Drawing.Size(353, 350);
             this.list01.TabIndex = 3;
             this.list01.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageBelongedPersonList);
+            this.list01.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.list01_SortCompare);
             // 
             // List01Check
             // 

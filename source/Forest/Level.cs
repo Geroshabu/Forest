@@ -6,13 +6,38 @@ namespace Forest
     /// Level型を定義するクラス
     /// ToString()をオーバーライドしている
     /// </summary>
-    public class Level : IEquatable<Level>
+    public class Level : IEquatable<Level>, IComparable
     {
         /// <summary>
         /// レベルを数字で表す
         /// 0：初級者　1：中級者　2：上級者
         /// </summary>
         public int LevelNum { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+
+            Level otherLevel = obj as Level;
+
+            if(otherLevel != null)
+            {
+                //Levelの数字でソート順を判断
+                return this.LevelNum.CompareTo(otherLevel.LevelNum);
+            }
+            else
+            {
+                throw new ArgumentException("Level型ではないものと比較しようとしています");
+            }
+        }
 
         public bool Equals(Level level)
         {
