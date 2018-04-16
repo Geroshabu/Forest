@@ -28,253 +28,254 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label01 = new System.Windows.Forms.Label();
-            this.label02 = new System.Windows.Forms.Label();
-            this.label03 = new System.Windows.Forms.Label();
-            this.list01 = new System.Windows.Forms.DataGridView();
-            this.List01Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.List01Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.List01Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.List01Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.List01Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.list02 = new System.Windows.Forms.DataGridView();
-            this.List02Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.List02Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.List02Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.List02Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.List02Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button01 = new System.Windows.Forms.Button();
-            this.button02 = new System.Windows.Forms.Button();
-            this.button03 = new System.Windows.Forms.Button();
-            this.button04 = new System.Windows.Forms.Button();
-            this.button05 = new System.Windows.Forms.Button();
-            this.button06 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.list01)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.list02)).BeginInit();
+            this.memberLabel = new System.Windows.Forms.Label();
+            this.attendMemberLabel = new System.Windows.Forms.Label();
+            this.memberCountLabel = new System.Windows.Forms.Label();
+            this.allMemberList = new System.Windows.Forms.DataGridView();
+            this.allMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.allMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberList = new System.Windows.Forms.DataGridView();
+            this.attendMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.attendMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendButton = new System.Windows.Forms.Button();
+            this.attendCancelButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).BeginInit();
             this.SuspendLayout();
             // 
-            // label01
+            // memberLabel
             // 
-            this.label01.AutoSize = true;
-            this.label01.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label01.Location = new System.Drawing.Point(12, 28);
-            this.label01.Name = "label01";
-            this.label01.Size = new System.Drawing.Size(80, 26);
-            this.label01.TabIndex = 0;
-            this.label01.Text = "メンバー";
-            this.label01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.memberLabel.AutoSize = true;
+            this.memberLabel.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.memberLabel.Location = new System.Drawing.Point(12, 28);
+            this.memberLabel.Name = "memberLabel";
+            this.memberLabel.Size = new System.Drawing.Size(80, 26);
+            this.memberLabel.TabIndex = 0;
+            this.memberLabel.Text = "メンバー";
+            this.memberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label02
+            // attendMemberLabel
             // 
-            this.label02.AutoSize = true;
-            this.label02.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label02.Location = new System.Drawing.Point(501, 28);
-            this.label02.Name = "label02";
-            this.label02.Size = new System.Drawing.Size(124, 26);
-            this.label02.TabIndex = 1;
-            this.label02.Text = "参加メンバー";
-            this.label02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.attendMemberLabel.AutoSize = true;
+            this.attendMemberLabel.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendMemberLabel.Location = new System.Drawing.Point(501, 28);
+            this.attendMemberLabel.Name = "attendMemberLabel";
+            this.attendMemberLabel.Size = new System.Drawing.Size(124, 26);
+            this.attendMemberLabel.TabIndex = 1;
+            this.attendMemberLabel.Text = "参加メンバー";
+            this.attendMemberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label03
+            // memberCountLabel
             // 
-            this.label03.AutoSize = true;
-            this.label03.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label03.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label03.Location = new System.Drawing.Point(201, 63);
-            this.label03.Name = "label03";
-            this.label03.Size = new System.Drawing.Size(164, 19);
-            this.label03.TabIndex = 2;
-            this.label03.Text = "登録人数を表示するところ";
-            this.label03.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.memberCountLabel.AutoSize = true;
+            this.memberCountLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.memberCountLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.memberCountLabel.Location = new System.Drawing.Point(201, 63);
+            this.memberCountLabel.Name = "memberCountLabel";
+            this.memberCountLabel.Size = new System.Drawing.Size(164, 19);
+            this.memberCountLabel.TabIndex = 2;
+            this.memberCountLabel.Text = "登録人数を表示するところ";
+            this.memberCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // list01
+            // allMemberList
             // 
-            this.list01.AllowUserToAddRows = false;
-            this.list01.AllowUserToDeleteRows = false;
-            this.list01.AllowUserToResizeColumns = false;
-            this.list01.AllowUserToResizeRows = false;
-            this.list01.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.list01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.list01.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.List01Check,
-            this.List01Id,
-            this.List01Name,
-            this.List01Gender,
-            this.List01Level});
-            this.list01.Location = new System.Drawing.Point(12, 85);
-            this.list01.Name = "list01";
-            this.list01.RowHeadersVisible = false;
-            this.list01.RowTemplate.Height = 21;
-            this.list01.Size = new System.Drawing.Size(353, 350);
-            this.list01.TabIndex = 3;
-            this.list01.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageBelongedPersonList);
-            this.list01.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.list01_SortCompare);
+            this.allMemberList.AllowUserToAddRows = false;
+            this.allMemberList.AllowUserToDeleteRows = false;
+            this.allMemberList.AllowUserToResizeColumns = false;
+            this.allMemberList.AllowUserToResizeRows = false;
+            this.allMemberList.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.allMemberList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.allMemberList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.allMemberListCheck,
+            this.allMemberListId,
+            this.allMemberListName,
+            this.allMemberListGender,
+            this.allMemberListLevel});
+            this.allMemberList.Location = new System.Drawing.Point(12, 85);
+            this.allMemberList.Name = "allMemberList";
+            this.allMemberList.RowHeadersVisible = false;
+            this.allMemberList.RowTemplate.Height = 21;
+            this.allMemberList.Size = new System.Drawing.Size(353, 350);
+            this.allMemberList.TabIndex = 3;
+            this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageBelongedPersonList);
+            this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.allMemberList_SortCompare);
             // 
-            // List01Check
+            // allMemberListCheck
             // 
-            this.List01Check.HeaderText = "選択";
-            this.List01Check.Name = "List01Check";
-            this.List01Check.Width = 50;
+            this.allMemberListCheck.HeaderText = "選択";
+            this.allMemberListCheck.Name = "allMemberListCheck";
+            this.allMemberListCheck.Width = 50;
             // 
-            // List01Id
+            // allMemberListId
             // 
-            this.List01Id.HeaderText = "ID";
-            this.List01Id.Name = "List01Id";
-            this.List01Id.Visible = false;
+            this.allMemberListId.HeaderText = "ID";
+            this.allMemberListId.Name = "allMemberListId";
+            this.allMemberListId.Visible = false;
             // 
-            // List01Name
+            // allMemberListName
             // 
-            this.List01Name.HeaderText = "名前";
-            this.List01Name.Name = "List01Name";
-            this.List01Name.ReadOnly = true;
+            this.allMemberListName.HeaderText = "名前";
+            this.allMemberListName.Name = "allMemberListName";
+            this.allMemberListName.ReadOnly = true;
             // 
-            // List01Gender
+            // allMemberListGender
             // 
-            this.List01Gender.HeaderText = "性別";
-            this.List01Gender.Name = "List01Gender";
-            this.List01Gender.ReadOnly = true;
+            this.allMemberListGender.HeaderText = "性別";
+            this.allMemberListGender.Name = "allMemberListGender";
+            this.allMemberListGender.ReadOnly = true;
             // 
-            // List01Level
+            // allMemberListLevel
             // 
-            this.List01Level.HeaderText = "レベル";
-            this.List01Level.Name = "List01Level";
-            this.List01Level.ReadOnly = true;
+            this.allMemberListLevel.HeaderText = "レベル";
+            this.allMemberListLevel.Name = "allMemberListLevel";
+            this.allMemberListLevel.ReadOnly = true;
             // 
-            // list02
+            // attendMemberList
             // 
-            this.list02.AllowUserToAddRows = false;
-            this.list02.AllowUserToDeleteRows = false;
-            this.list02.AllowUserToResizeColumns = false;
-            this.list02.AllowUserToResizeRows = false;
-            this.list02.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.list02.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.list02.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.List02Check,
-            this.List02Id,
-            this.List02Name,
-            this.List02Gender,
-            this.List02Level});
-            this.list02.Location = new System.Drawing.Point(501, 85);
-            this.list02.Name = "list02";
-            this.list02.RowHeadersVisible = false;
-            this.list02.RowTemplate.Height = 21;
-            this.list02.Size = new System.Drawing.Size(353, 350);
-            this.list02.TabIndex = 4;
-            this.list02.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAttendedPersonList);
+            this.attendMemberList.AllowUserToAddRows = false;
+            this.attendMemberList.AllowUserToDeleteRows = false;
+            this.attendMemberList.AllowUserToResizeColumns = false;
+            this.attendMemberList.AllowUserToResizeRows = false;
+            this.attendMemberList.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.attendMemberList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.attendMemberList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.attendMemberListCheck,
+            this.attendMemberListId,
+            this.attendMemberListName,
+            this.attendMemberListGender,
+            this.attendMemberListLevel});
+            this.attendMemberList.Location = new System.Drawing.Point(501, 85);
+            this.attendMemberList.Name = "attendMemberList";
+            this.attendMemberList.RowHeadersVisible = false;
+            this.attendMemberList.RowTemplate.Height = 21;
+            this.attendMemberList.Size = new System.Drawing.Size(353, 350);
+            this.attendMemberList.TabIndex = 4;
+            this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAttendedPersonList);
             // 
-            // List02Check
+            // attendMemberListCheck
             // 
-            this.List02Check.HeaderText = "選択";
-            this.List02Check.Name = "List02Check";
-            this.List02Check.Width = 50;
+            this.attendMemberListCheck.HeaderText = "選択";
+            this.attendMemberListCheck.Name = "attendMemberListCheck";
+            this.attendMemberListCheck.Width = 50;
             // 
-            // List02Id
+            // attendMemberListId
             // 
-            this.List02Id.HeaderText = "ID";
-            this.List02Id.Name = "List02Id";
-            this.List02Id.Visible = false;
+            this.attendMemberListId.HeaderText = "ID";
+            this.attendMemberListId.Name = "attendMemberListId";
+            this.attendMemberListId.Visible = false;
             // 
-            // List02Name
+            // attendMemberListName
             // 
-            this.List02Name.HeaderText = "名前";
-            this.List02Name.Name = "List02Name";
-            this.List02Name.ReadOnly = true;
+            this.attendMemberListName.HeaderText = "名前";
+            this.attendMemberListName.Name = "attendMemberListName";
+            this.attendMemberListName.ReadOnly = true;
             // 
-            // List02Gender
+            // attendMemberListGender
             // 
-            this.List02Gender.HeaderText = "性別";
-            this.List02Gender.Name = "List02Gender";
-            this.List02Gender.ReadOnly = true;
+            this.attendMemberListGender.HeaderText = "性別";
+            this.attendMemberListGender.Name = "attendMemberListGender";
+            this.attendMemberListGender.ReadOnly = true;
             // 
-            // List02Level
+            // attendMemberListLevel
             // 
-            this.List02Level.HeaderText = "レベル";
-            this.List02Level.Name = "List02Level";
-            this.List02Level.ReadOnly = true;
+            this.attendMemberListLevel.HeaderText = "レベル";
+            this.attendMemberListLevel.Name = "attendMemberListLevel";
+            this.attendMemberListLevel.ReadOnly = true;
             // 
-            // button01
+            // attendButton
             // 
-            this.button01.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button01.Location = new System.Drawing.Point(388, 190);
-            this.button01.Name = "button01";
-            this.button01.Size = new System.Drawing.Size(90, 25);
-            this.button01.TabIndex = 5;
-            this.button01.Text = "→";
-            this.button01.UseVisualStyleBackColor = true;
-            this.button01.Click += new System.EventHandler(this.AddAttendedPersons);
+            this.attendButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendButton.Location = new System.Drawing.Point(388, 190);
+            this.attendButton.Name = "attendButton";
+            this.attendButton.Size = new System.Drawing.Size(90, 25);
+            this.attendButton.TabIndex = 5;
+            this.attendButton.Text = "→";
+            this.attendButton.UseVisualStyleBackColor = true;
+            this.attendButton.Click += new System.EventHandler(this.AddAttendedPersons);
             // 
-            // button02
+            // attendCancelButton
             // 
-            this.button02.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button02.Location = new System.Drawing.Point(388, 298);
-            this.button02.Name = "button02";
-            this.button02.Size = new System.Drawing.Size(90, 25);
-            this.button02.TabIndex = 6;
-            this.button02.Text = "←";
-            this.button02.UseVisualStyleBackColor = true;
-            this.button02.Click += new System.EventHandler(this.DeleteAttendedPersons);
+            this.attendCancelButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendCancelButton.Location = new System.Drawing.Point(388, 298);
+            this.attendCancelButton.Name = "attendCancelButton";
+            this.attendCancelButton.Size = new System.Drawing.Size(90, 25);
+            this.attendCancelButton.TabIndex = 6;
+            this.attendCancelButton.Text = "←";
+            this.attendCancelButton.UseVisualStyleBackColor = true;
+            this.attendCancelButton.Click += new System.EventHandler(this.DeleteAttendedPersons);
             // 
-            // button03
+            // addButton
             // 
-            this.button03.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button03.Location = new System.Drawing.Point(12, 501);
-            this.button03.Name = "button03";
-            this.button03.Size = new System.Drawing.Size(90, 25);
-            this.button03.TabIndex = 7;
-            this.button03.Text = "追加";
-            this.button03.UseVisualStyleBackColor = true;
+            this.addButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addButton.Location = new System.Drawing.Point(12, 501);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(90, 25);
+            this.addButton.TabIndex = 7;
+            this.addButton.Text = "追加";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // button04
+            // deleteButton
             // 
-            this.button04.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button04.Location = new System.Drawing.Point(151, 501);
-            this.button04.Name = "button04";
-            this.button04.Size = new System.Drawing.Size(90, 25);
-            this.button04.TabIndex = 8;
-            this.button04.Text = "削除";
-            this.button04.UseVisualStyleBackColor = true;
+            this.deleteButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.Location = new System.Drawing.Point(151, 501);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(90, 25);
+            this.deleteButton.TabIndex = 8;
+            this.deleteButton.Text = "削除";
+            this.deleteButton.UseVisualStyleBackColor = true;
             // 
-            // button05
+            // updateButton
             // 
-            this.button05.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button05.Location = new System.Drawing.Point(290, 501);
-            this.button05.Name = "button05";
-            this.button05.Size = new System.Drawing.Size(90, 25);
-            this.button05.TabIndex = 9;
-            this.button05.Text = "変更";
-            this.button05.UseVisualStyleBackColor = true;
+            this.updateButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateButton.Location = new System.Drawing.Point(290, 501);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(90, 25);
+            this.updateButton.TabIndex = 9;
+            this.updateButton.Text = "変更";
+            this.updateButton.UseVisualStyleBackColor = true;
             // 
-            // button06
+            // startButton
             // 
-            this.button06.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button06.Location = new System.Drawing.Point(764, 501);
-            this.button06.Name = "button06";
-            this.button06.Size = new System.Drawing.Size(90, 25);
-            this.button06.TabIndex = 10;
-            this.button06.Text = "試合開始";
-            this.button06.UseVisualStyleBackColor = true;
+            this.startButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.Location = new System.Drawing.Point(764, 501);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(90, 25);
+            this.startButton.TabIndex = 10;
+            this.startButton.Text = "試合開始";
+            this.startButton.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
-            this.Controls.Add(this.button06);
-            this.Controls.Add(this.button05);
-            this.Controls.Add(this.button04);
-            this.Controls.Add(this.button03);
-            this.Controls.Add(this.button02);
-            this.Controls.Add(this.button01);
-            this.Controls.Add(this.list02);
-            this.Controls.Add(this.list01);
-            this.Controls.Add(this.label03);
-            this.Controls.Add(this.label02);
-            this.Controls.Add(this.label01);
+            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.updateButton);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.attendCancelButton);
+            this.Controls.Add(this.attendButton);
+            this.Controls.Add(this.attendMemberList);
+            this.Controls.Add(this.allMemberList);
+            this.Controls.Add(this.memberCountLabel);
+            this.Controls.Add(this.attendMemberLabel);
+            this.Controls.Add(this.memberLabel);
             this.Name = "MainWindow";
             this.Text = "コート分けアプリ　参加メンバー登録";
             this.Load += new System.EventHandler(this.MainWindow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.list01)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.list02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,27 +283,27 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label01;
-        private System.Windows.Forms.Label label02;
-        private System.Windows.Forms.Label label03;
-        private System.Windows.Forms.DataGridView list01;
-        private System.Windows.Forms.DataGridView list02;
-        private System.Windows.Forms.Button button01;
-        private System.Windows.Forms.Button button02;
-        private System.Windows.Forms.Button button03;
-        private System.Windows.Forms.Button button04;
-        private System.Windows.Forms.Button button05;
-        private System.Windows.Forms.Button button06;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn List01Check;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List01Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List01Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List01Gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List01Level;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn List02Check;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List02Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List02Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List02Gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn List02Level;
+        private System.Windows.Forms.Label memberLabel;
+        private System.Windows.Forms.Label attendMemberLabel;
+        private System.Windows.Forms.Label memberCountLabel;
+        private System.Windows.Forms.DataGridView allMemberList;
+        private System.Windows.Forms.DataGridView attendMemberList;
+        private System.Windows.Forms.Button attendButton;
+        private System.Windows.Forms.Button attendCancelButton;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn allMemberListCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListLevel;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn attendMemberListCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListLevel;
     }
 }
 

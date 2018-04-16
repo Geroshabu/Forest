@@ -31,62 +31,8 @@ namespace Forest
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
 
-
-            //自動的に並び替えられるようにする
-            foreach (DataGridViewColumn c in list01.Columns)
-                c.SortMode = DataGridViewColumnSortMode.Automatic;
-            foreach (DataGridViewColumn c in list02.Columns)
-                c.SortMode = DataGridViewColumnSortMode.Automatic;
-
-
-            //サークルメンバーを表示
-            var persons = PersonHolder.GetAll();
-            foreach(Person person in persons)
-            {
-                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
-                this.list01.Rows.Add(row);
-            }
-
-            //現在登録されている人数を表示
-            label03.Text = persons.Count + "人 / 100人";
-
-            //練習に参加しているメンバーを表示
-            var attendedPersons = PersonHolder.GetAttended();
-            foreach (Person person in attendedPersons)
-            {
-                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
-                this.list02.Rows.Add(row);
-            }
-
-
-            //並び替える列を決める
-            DataGridViewColumn sortColumn1 = list01.Columns["List01Name"];
-            DataGridViewColumn sortColumn2 = list02.Columns["List02Name"];
-
-            //並び替えの方向（昇順か降順か）を決める
-            ListSortDirection sortDirection1 = ListSortDirection.Ascending;
-            if (list01.SortedColumn != null &&
-                list01.SortedColumn.Equals(sortColumn1))
-            {
-                sortDirection1 =
-                    list01.SortOrder == SortOrder.Ascending ?
-                    ListSortDirection.Descending : ListSortDirection.Ascending;
-            }
-            ListSortDirection sortDirection2 = ListSortDirection.Ascending;
-            if (list02.SortedColumn != null &&
-                list02.SortedColumn.Equals(sortColumn2))
-            {
-                sortDirection2 =
-                    list02.SortOrder == SortOrder.Ascending ?
-                    ListSortDirection.Descending : ListSortDirection.Ascending;
-            }
-
-            //並び替えを行う
-            list01.Sort(sortColumn1, sortDirection1);
-            list02.Sort(sortColumn2, sortDirection2);
-
-            ManageButton();
-
+            //表示する
+            DisplayMainWindow();
         }
 
         /// <summary>
@@ -98,28 +44,29 @@ namespace Forest
         {
             //チェック状態を取得
             //IDを取得
-            var id_list = new List<string>();
+            var idList = new List<string>();
             for (int i = 0; i < PersonHolder.GetAll().Count; i++)
             {
-                if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value))
+                if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
                 {
-                    string targetId = (string)list01.Rows[i].Cells[1].Value;
-                    id_list.Add(targetId);
+                    string targetId = (string)allMemberList.Rows[i].Cells[1].Value;
+                    idList.Add(targetId);
                 }
             }
 
             //参加フラグを立てる処理を行う。
-            PersonHolder.Attend(id_list);
+            PersonHolder.Attend(idList);
 
             //参加メンバーを取得
             var attendedPersons = PersonHolder.GetAttended();
+
             //list02は一度クリアする
-            this.list02.Rows.Clear();
+            this.attendMemberList.Rows.Clear();
             //表示。今参加した人は選択状態にする
             for (int i = 0; i < attendedPersons.Count; i++)
             {
                 bool check = false;
-                foreach (string targetId in id_list)
+                foreach (string targetId in idList)
                 {
                     if (attendedPersons[i].ID == targetId)
                     {
@@ -127,8 +74,11 @@ namespace Forest
                     }
                 }
                 object[] row = { check, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender, attendedPersons[i].Level };
-                this.list02.Rows.Add(row);
+                this.attendMemberList.Rows.Add(row);
             }
+
+            //現在の条件でソートを行う
+            SortByCurrentSetting(attendMemberList, attendMemberList.SortedColumn.Name);
 
             ManageButton();
 
@@ -146,9 +96,9 @@ namespace Forest
             var id_list = new List<string>();
             for (int i = 0; i < PersonHolder.GetAttended().Count; i++)
             {
-                if (Convert.ToBoolean(list02.Rows[i].Cells[0].Value))
+                if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
                 {
-                    string targetId = (string)list02.Rows[i].Cells[1].Value;
+                    string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
                     id_list.Add(targetId);
                 }
             }
@@ -159,7 +109,7 @@ namespace Forest
             //参加メンバーを取得
             var allPersons = PersonHolder.GetAll();
             //list01は一度クリアする
-            this.list01.Rows.Clear();
+            this.allMemberList.Rows.Clear();
             //表示。今取り消した人は選択状態にする
             for (int i = 0; i < allPersons.Count; i++)
             {
@@ -172,21 +122,24 @@ namespace Forest
                     }
                 }
                 object[] row = { check, allPersons[i].ID, allPersons[i].Name, allPersons[i].Gender, allPersons[i].Level };
-                this.list01.Rows.Add(row);
+                this.allMemberList.Rows.Add(row);
             }
-
 
             //参加メンバーを取得
             var attendedPersons = PersonHolder.GetAttended();
             //list02は一度クリアする
-            this.list02.Rows.Clear();
+            this.attendMemberList.Rows.Clear();
             //表示
             for (int i = 0; i < attendedPersons.Count; i++)
             {
                 bool check = false;
                 object[] row = { check, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender, attendedPersons[i].Level };
-                this.list02.Rows.Add(row);
+                this.attendMemberList.Rows.Add(row);
             }
+
+            //現在の条件でソートを行う
+            SortByCurrentSetting(allMemberList, allMemberList.SortedColumn.Name);
+            SortByCurrentSetting(attendMemberList, attendMemberList.SortedColumn.Name);
 
             ManageButton();
 
@@ -210,13 +163,13 @@ namespace Forest
 
             //チェックされていた部分が選択されれば、チェック
             //チェックされていなかった部分が選択されればチェックを外す
-            if (Convert.ToBoolean(list01.CurrentRow.Cells[0].Value) == true)
+            if (Convert.ToBoolean(allMemberList.CurrentRow.Cells[0].Value) == true)
             {
-                list01.CurrentRow.Cells[0].Value = false;
+                allMemberList.CurrentRow.Cells[0].Value = false;
             }
             else
             {
-                list01.CurrentRow.Cells[0].Value = true;
+                allMemberList.CurrentRow.Cells[0].Value = true;
             }
 
             ManageButton();
@@ -240,13 +193,13 @@ namespace Forest
 
             //チェックされていた部分が選択されれば、チェック
             //チェックされていなかった部分が選択されればチェックを外す
-            if (Convert.ToBoolean(list02.CurrentRow.Cells[0].Value) == true)
+            if (Convert.ToBoolean(attendMemberList.CurrentRow.Cells[0].Value) == true)
             {
-                list02.CurrentRow.Cells[0].Value = false;
+                attendMemberList.CurrentRow.Cells[0].Value = false;
             }
             else
             {
-                list02.CurrentRow.Cells[0].Value = true;
+                attendMemberList.CurrentRow.Cells[0].Value = true;
             }
 
             ManageButton();
@@ -260,69 +213,77 @@ namespace Forest
         {
             //ボタンの状態（デフォルト）
             //→ボタン
-            button01.Enabled = false;
+            attendButton.Enabled = false;
             //←ボタン
-            button02.Enabled = false;
+            attendCancelButton.Enabled = false;
             //追加ボタン
-            if (PersonHolder.GetAll().Count < 100)
+            if (allMemberList.RowCount < 100)
             {
-                button03.Enabled = true;
+                addButton.Enabled = true;
+            }
+            else
+            {
+                addButton.Enabled = false;
             }
             //削除ボタン
-            button04.Enabled = false;
+            deleteButton.Enabled = false;
             //変更ボタン
-            button05.Enabled = false;
+            updateButton.Enabled = false;
             //試合開始ボタン
-            if (PersonHolder.GetAttended().Count <= 1)
+            if (attendMemberList.RowCount <= 1)
             {
-                button06.Enabled = false;
+                startButton.Enabled = false;
+            }
+            else
+            {
+                startButton.Enabled = true;
             }
 
             //List01のチェックが入っている個数を数える
             int count1 = 0;
             string targetId1 = "";
-            for (int i = 0; i < PersonHolder.GetAll().Count; i++)
+            for (int i = 0; i < allMemberList.RowCount; i++)
             {
                 //trueの数を数える
-                if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value))
+                if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
                 {
                     count1++;
                     //trueの時のIDを保管しておく
-                    targetId1 = (string)list01.Rows[i].Cells[1].Value;
+                    targetId1 = (string)allMemberList.Rows[i].Cells[1].Value;
                 }
             }
 
             //trueがひとつだけであれば「変更」ボタンも押せるようになる
             if (count1 == 1)
             {
-                button05.Enabled = true;
+                updateButton.Enabled = true;
 
             }
 
             //trueが複数あれば「削除」「→」ボタンも押せるようになる
             if (count1 >= 1)
             {
-                button01.Enabled = true;
-                button04.Enabled = true;
+                attendButton.Enabled = true;
+                deleteButton.Enabled = true;
             }
 
             //List02のチェックが入っている個数を数える
             int count2 = 0;
             string targetId2 = "";
-            for (int i = 0; i < PersonHolder.GetAttended().Count; i++)
+            for (int i = 0; i < attendMemberList.RowCount; i++)
             {
                 //trueの数を数える
-                if (Convert.ToBoolean(list02.Rows[i].Cells[0].Value))
+                if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
                 {
                     count2++;
                     //trueの時のIDを保管しておく
-                    targetId2 = (string)list02.Rows[i].Cells[1].Value;
+                    targetId2 = (string)attendMemberList.Rows[i].Cells[1].Value;
                 }
             }
             //trueが複数あれば「←」ボタンも押せるようになる
             if (count2 >= 1)
             {
-                button02.Enabled = true;
+                attendCancelButton.Enabled = true;
             }
 
         }
@@ -332,7 +293,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void list01_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        public void allMemberList_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
         {
             object obj1 = e.CellValue1;
             object obj2 = e.CellValue2;
@@ -340,7 +301,7 @@ namespace Forest
             switch (obj1)
             {
                 case string name:
-                    e.SortResult  = name.CompareTo(obj2 as string);
+                    e.SortResult = name.CompareTo(obj2 as string);
                     break;
                 case Gender gender:
                     e.SortResult = gender.CompareTo(obj2 as Gender);
@@ -360,19 +321,82 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button03_Click(object sender, EventArgs e)
+        private void addButton_Click(object sender, EventArgs e)
         {
-            //using(InputForm inputForm = new InputForm(PersonRepository))
-            //{
-            //    //Form2を表示する
-            //    //ここではモーダルダイアログボックスとして表示する
-            //    //オーナーウィンドウにthisを指定する
-            //    inputForm.ShowDialog(this);
-            //}
+            using (InputForm inputForm = new InputForm(PersonRepository))
+            {
+                //オーナーウィンドウにthisを指定し、imputFormをモーダルダイアログとして表示
+                inputForm.ShowDialog(this);
+            }
 
-            //Listとラベルだけ更新する処理
-            //→メソッドにする
+            //ダイアログを閉じたらListとラベルだけ更新
+            this.allMemberList.Rows.Clear();
+            this.attendMemberList.Rows.Clear();
+            DisplayMainWindow();
         }
+
+        private void DisplayMainWindow()
+        {
+            //サークルメンバーを表示
+            var persons = PersonHolder.GetAll();
+            foreach (Person person in persons)
+            {
+                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
+                this.allMemberList.Rows.Add(row);
+            }
+
+            //現在登録されている人数を表示
+            memberCountLabel.Text = allMemberList.RowCount + "人 / 100人";
+
+            //練習に参加しているメンバーを表示
+            var attendedPersons = PersonHolder.GetAttended();
+            foreach (Person person in attendedPersons)
+            {
+                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
+                this.attendMemberList.Rows.Add(row);
+            }
+
+            //現在の条件でソートを行う
+            var currentSettingInAllMemberList = allMemberList.SortedColumn;
+            if (currentSettingInAllMemberList == null)
+            {
+                SortByCurrentSetting(allMemberList, "allMemberListName");
+            }
+            else
+            {
+                SortByCurrentSetting(allMemberList, currentSettingInAllMemberList.Name);
+            }
+
+            var currentSettingInAttendMemberList = attendMemberList.SortedColumn;
+            if (currentSettingInAttendMemberList == null)
+            {
+                SortByCurrentSetting(attendMemberList, "attendMemberListName");
+            }
+            else
+            {
+                SortByCurrentSetting(attendMemberList, currentSettingInAttendMemberList.Name);
+            }
+
+            ManageButton();
+
+        }
+
+        void SortByCurrentSetting(DataGridView targetList, string currentSetting)
+        {
+            //自動的に並び替えられるようにする
+            foreach (DataGridViewColumn c in targetList.Columns)
+            {
+                c.SortMode = DataGridViewColumnSortMode.Automatic;
+            }
+            //並び替える列を決める
+            DataGridViewColumn sortColumn = targetList.Columns[currentSetting];
+            //リストの初期ソートの方向は昇順
+            ListSortDirection sortDirection = ListSortDirection.Ascending;
+            //並び替えを行う
+            targetList.Sort(sortColumn, sortDirection);
+        }
+
+
 
     }
 }

@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Microsoft.EntityFrameworkCore;
 
 namespace Forest
 {
-    /// <summary>
-    /// DbContext クラスを継承したクラス
-    /// </summary>
     public class PersonDbRepository : IPersonRepository
     {
         private PersonContext Context;
 
         public PersonDbRepository()
         {
-            //DBに接続
+            //contextを新しく作る
             Context = new PersonContext();
+
             var peronDbRepository = new PersonDbRepository(new PersonContext());        }
 
         public PersonDbRepository(PersonContext context)
         {
-            //引数で受け取ったものを入れる
+            //引数で受け取ったcontextを入れる
             Context = context;
             //DBが無ければ作る
             Context.Database.EnsureCreated();
@@ -38,7 +35,7 @@ namespace Forest
             Context.Persons.Add(new_person);
             Context.SaveChanges();
 
-
+            //同じIDが存在する場合の処理
 
             return true;
         }
