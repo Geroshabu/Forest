@@ -362,13 +362,13 @@ namespace Forest
         /// <param name="e"></param>
         private void button03_Click(object sender, EventArgs e)
         {
-            using(InputForm inputForm = new InputForm(PersonRepository))
-            {
-                //Form2を表示する
-                //ここではモーダルダイアログボックスとして表示する
-                //オーナーウィンドウにthisを指定する
-                inputForm.ShowDialog(this);
-            }
+            //using(InputForm inputForm = new InputForm(PersonRepository))
+            //{
+            //    //Form2を表示する
+            //    //ここではモーダルダイアログボックスとして表示する
+            //    //オーナーウィンドウにthisを指定する
+            //    inputForm.ShowDialog(this);
+            //}
 
             //Listとラベルだけ更新する処理
             //→メソッドにする
