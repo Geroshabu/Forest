@@ -17,6 +17,12 @@ namespace Forest
         {
             //DBに接続
             Context = new PersonContext();
+            var peronDbRepository = new PersonDbRepository(new PersonContext());        }
+
+        public PersonDbRepository(PersonContext context)
+        {
+            //引数で受け取ったものを入れる
+            Context = context;
             //DBが無ければ作る
             Context.Database.EnsureCreated();
         }
