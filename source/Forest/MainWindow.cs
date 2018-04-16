@@ -354,25 +354,5 @@ namespace Forest
             e.Handled = true;
 
         }
-
-        /// <summary>
-        /// 追加ボタンを押下されたとき
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button03_Click(object sender, EventArgs e)
-        {
-            using(InputForm inputForm = new InputForm(PersonRepository))
-            {
-                //Form2を表示する
-                //ここではモーダルダイアログボックスとして表示する
-                //オーナーウィンドウにthisを指定する
-                inputForm.ShowDialog(this);
-            }
-
-            //Listとラベルだけ更新する処理
-            //→メソッドにする
-        }
-
     }
 }
