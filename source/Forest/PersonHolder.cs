@@ -96,7 +96,7 @@ namespace Forest
             var notDeletedPersons = new List<Person>();
 
             //リストに入れて返す
-            foreach (Person target in notDeletedPersons = Persons.ToList()) { }
+            foreach (Person target in notDeletedPersons = Persons.Where(x => !(x.DeleteFlag)).ToList()) { }
             return notDeletedPersons;
         }
 
