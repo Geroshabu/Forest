@@ -7,7 +7,6 @@ namespace Forest
     {
         /// <summary>
         /// DBの設定を指定せずに初期化する
-        /// ForestTest.pdb という名前のファイルが作られる
         /// </summary>
         public PersonContext()
         { }
