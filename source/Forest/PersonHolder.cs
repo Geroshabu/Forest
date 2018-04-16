@@ -8,7 +8,7 @@ namespace Forest
         //DBに登録されているサークルメンバーを保持しておくリスト
         private List<Person> Persons;
 
-        public PersonHolder(List<Person> persons)
+        public PersonHolder(IReadOnlyList<Person> persons)
         {
             //引数のリストをそのままPersonsにコピー
             foreach (var target in Persons = persons.ToList()) { }
