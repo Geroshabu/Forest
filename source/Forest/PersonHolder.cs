@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Forest
 {
     public class PersonHolder
     {
         //DBに登録されているサークルメンバーを保持しておくリスト
-        public List<Person> Persons { get; set; }
+        private List<Person> Persons;
 
         public PersonHolder(List<Person> persons)
         {
             //引数のリストをそのままPersonsにコピー
-            Persons = new List<Person>();
-            foreach(var target in persons)
-            {
-                Persons.Add(target);
-            }
+            foreach (var target in Persons = persons.ToList()) { }
         }
 
         /// <summary>
@@ -72,7 +65,7 @@ namespace Forest
         /// <param name="new_person">新しく追加された人の情報</param>
         public void Add(Person new_person)
         {
-            
+
         }
 
         /// <summary>
@@ -97,20 +90,13 @@ namespace Forest
         /// DBに登録されているメンバーの中で削除されていないメンバー全員を返す
         /// </summary>
         /// <returns>削除されていないメンバー全員のリスト</returns>
-        public List<Person> GetAllPersons()
+        public List<Person> GetAll()
         {
             //削除されていないメンバー全員
             var notDeletedPersons = new List<Person>();
 
-            foreach (Person target in Persons)
-            {
-                //削除フラグが立っていなければリストに追加
-                if(target.DeleteFlag == false)
-                {
-                    notDeletedPersons.Add(target);
-                }
-            }
-
+            //リストに入れて返す
+            foreach (Person target in notDeletedPersons = Persons.ToList()) { }
             return notDeletedPersons;
         }
 
@@ -118,24 +104,15 @@ namespace Forest
         /// 削除されていないメンバーの中でも練習に参加するメンバーを返す
         /// </summary>
         /// <returns>削除されていない、かつ練習に参加するメンバーのリスト</returns>
-        public List<Person> GetAttendedPersons()
+        public List<Person> GetAttended()
         {
             //削除されていないかつ練習に参加するメンバー全員
             var attendedPersons = new List<Person>();
 
-            //削除されていないメンバーの中から参加フラグが立っているメンバーをリストに追加
-            foreach(Person target in GetAllPersons())
-            {
-                if(target.AttendFlag == true)
-                {
-                    attendedPersons.Add(target);
-                }
-            }
-
+            //削除されていないメンバーの中から参加フラグが立っているメンバーをリストに追加して返す
+            foreach (Person target in attendedPersons = GetAll().Where(x => x.AttendFlag).ToList()) { }
             return attendedPersons;
         }
-
-        
 
     }
 }

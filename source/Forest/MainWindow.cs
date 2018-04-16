@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
 
 namespace Forest
 {
     public partial class MainWindow : Form
     {
-        PersonContext Context;
         PersonHolder PersonHolder;
+        IPersonRepository PersonRepository;
 
         public MainWindow()
         {
@@ -17,35 +16,34 @@ namespace Forest
         }
 
         /// <summary>
-        /// MainWindowロードの際にDBからメンバー全員のデータを取得し、
+        /// MainWindowロードの際にメンバー全員のデータを取得し、
         /// PersonHolderクラスに情報を保持しておく
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void MainWindow_Load(object sender, EventArgs e)
         {
-            //DBに接続
-            string dbName = "forest.db";
-            var connection = new SqliteConnection("DataSource=" + dbName);
-            connection.Open();
-            var options = new DbContextOptionsBuilder<PersonContext>().UseSqlite(connection).Options;
-            Context = new PersonContext(options);
-            //DBが無ければ作る
-            Context.Database.EnsureCreated();
-            var personDbRepository = new PersonDbRepository(Context);
+            PersonRepository = new PersonDbRepository();
 
-            //削除されているメンバーも含めてDBからサークルの全メンバーを取得
-            var allPersons = new List<Person>();
-            allPersons = personDbRepository.GetPersons();
+            //サークルの削除されていない全メンバーを取得
+            var allPersons = PersonRepository.GetAll();
 
-            //PersonHolderを作って全メンバーを保持させる
+            //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
 
+
+            //自動的に並び替えられるようにする
+            foreach (DataGridViewColumn c in list01.Columns)
+                c.SortMode = DataGridViewColumnSortMode.Automatic;
+            foreach (DataGridViewColumn c in list02.Columns)
+                c.SortMode = DataGridViewColumnSortMode.Automatic;
+
+
             //サークルメンバーを表示
-            var persons = PersonHolder.GetAllPersons();
-            for (int i = 0; i < persons.Count; i++)
+            var persons = PersonHolder.GetAll();
+            foreach(Person person in persons)
             {
-                object[] row = { false, persons[i].ID, persons[i].Name, persons[i].Gender, persons[i].Level };
+                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
                 this.list01.Rows.Add(row);
             }
 
@@ -53,14 +51,41 @@ namespace Forest
             label03.Text = persons.Count + "人 / 100人";
 
             //練習に参加しているメンバーを表示
-            var attendedPersons = PersonHolder.GetAttendedPersons();
-            for (int i = 0; i < attendedPersons.Count; i++)
+            var attendedPersons = PersonHolder.GetAttended();
+            foreach (Person person in attendedPersons)
             {
-                object[] row = { false, attendedPersons[i].ID, attendedPersons[i].Name, attendedPersons[i].Gender, attendedPersons[i].Level };
+                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
                 this.list02.Rows.Add(row);
             }
 
-            ButtonManager();
+
+            //並び替える列を決める
+            DataGridViewColumn sortColumn1 = list01.Columns["List01Name"];
+            DataGridViewColumn sortColumn2 = list02.Columns["List02Name"];
+
+            //並び替えの方向（昇順か降順か）を決める
+            ListSortDirection sortDirection1 = ListSortDirection.Ascending;
+            if (list01.SortedColumn != null &&
+                list01.SortedColumn.Equals(sortColumn1))
+            {
+                sortDirection1 =
+                    list01.SortOrder == SortOrder.Ascending ?
+                    ListSortDirection.Descending : ListSortDirection.Ascending;
+            }
+            ListSortDirection sortDirection2 = ListSortDirection.Ascending;
+            if (list02.SortedColumn != null &&
+                list02.SortedColumn.Equals(sortColumn2))
+            {
+                sortDirection2 =
+                    list02.SortOrder == SortOrder.Ascending ?
+                    ListSortDirection.Descending : ListSortDirection.Ascending;
+            }
+
+            //並び替えを行う
+            list01.Sort(sortColumn1, sortDirection1);
+            list02.Sort(sortColumn2, sortDirection2);
+
+            ManageButton();
 
         }
 
@@ -74,7 +99,7 @@ namespace Forest
             //チェック状態を取得
             //IDを取得
             var id_list = new List<string>();
-            for (int i = 0; i < PersonHolder.GetAllPersons().Count; i++)
+            for (int i = 0; i < PersonHolder.GetAll().Count; i++)
             {
                 if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value))
                 {
@@ -87,7 +112,7 @@ namespace Forest
             PersonHolder.Attend(id_list);
 
             //参加メンバーを取得
-            var attendedPersons = PersonHolder.GetAttendedPersons();
+            var attendedPersons = PersonHolder.GetAttended();
             //list02は一度クリアする
             this.list02.Rows.Clear();
             //表示。今参加した人は選択状態にする
@@ -105,7 +130,7 @@ namespace Forest
                 this.list02.Rows.Add(row);
             }
 
-            ButtonManager();
+            ManageButton();
 
         }
 
@@ -119,7 +144,7 @@ namespace Forest
             //チェック状態を取得
             //IDを取得
             var id_list = new List<string>();
-            for (int i = 0; i < PersonHolder.GetAttendedPersons().Count; i++)
+            for (int i = 0; i < PersonHolder.GetAttended().Count; i++)
             {
                 if (Convert.ToBoolean(list02.Rows[i].Cells[0].Value))
                 {
@@ -132,7 +157,7 @@ namespace Forest
             PersonHolder.Cancel(id_list);
 
             //参加メンバーを取得
-            var allPersons = PersonHolder.GetAllPersons();
+            var allPersons = PersonHolder.GetAll();
             //list01は一度クリアする
             this.list01.Rows.Clear();
             //表示。今取り消した人は選択状態にする
@@ -152,7 +177,7 @@ namespace Forest
 
 
             //参加メンバーを取得
-            var attendedPersons = PersonHolder.GetAttendedPersons();
+            var attendedPersons = PersonHolder.GetAttended();
             //list02は一度クリアする
             this.list02.Rows.Clear();
             //表示
@@ -163,7 +188,7 @@ namespace Forest
                 this.list02.Rows.Add(row);
             }
 
-            ButtonManager();
+            ManageButton();
 
         }
 
@@ -194,7 +219,7 @@ namespace Forest
                 list01.CurrentRow.Cells[0].Value = true;
             }
 
-            ButtonManager();
+            ManageButton();
         }
 
         /// <summary>
@@ -224,14 +249,14 @@ namespace Forest
                 list02.CurrentRow.Cells[0].Value = true;
             }
 
-            ButtonManager();
+            ManageButton();
 
         }
 
         /// <summary>
         /// ボタンの活性・非活性の切り替えをする
         /// </summary>
-        public void ButtonManager()
+        public void ManageButton()
         {
             //ボタンの状態（デフォルト）
             //→ボタン
@@ -239,7 +264,7 @@ namespace Forest
             //←ボタン
             button02.Enabled = false;
             //追加ボタン
-            if (PersonHolder.GetAllPersons().Count < 100)
+            if (PersonHolder.GetAll().Count < 100)
             {
                 button03.Enabled = true;
             }
@@ -248,7 +273,7 @@ namespace Forest
             //変更ボタン
             button05.Enabled = false;
             //試合開始ボタン
-            if (PersonHolder.GetAttendedPersons().Count <= 1)
+            if (PersonHolder.GetAttended().Count <= 1)
             {
                 button06.Enabled = false;
             }
@@ -256,7 +281,7 @@ namespace Forest
             //List01のチェックが入っている個数を数える
             int count1 = 0;
             string targetId1 = "";
-            for (int i = 0; i < PersonHolder.GetAllPersons().Count; i++)
+            for (int i = 0; i < PersonHolder.GetAll().Count; i++)
             {
                 //trueの数を数える
                 if (Convert.ToBoolean(list01.Rows[i].Cells[0].Value))
@@ -284,7 +309,7 @@ namespace Forest
             //List02のチェックが入っている個数を数える
             int count2 = 0;
             string targetId2 = "";
-            for (int i = 0; i < PersonHolder.GetAttendedPersons().Count; i++)
+            for (int i = 0; i < PersonHolder.GetAttended().Count; i++)
             {
                 //trueの数を数える
                 if (Convert.ToBoolean(list02.Rows[i].Cells[0].Value))
@@ -329,5 +354,25 @@ namespace Forest
             e.Handled = true;
 
         }
+
+        /// <summary>
+        /// 追加ボタンを押下されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button03_Click(object sender, EventArgs e)
+        {
+            using(InputForm inputForm = new InputForm(PersonRepository))
+            {
+                //Form2を表示する
+                //ここではモーダルダイアログボックスとして表示する
+                //オーナーウィンドウにthisを指定する
+                inputForm.ShowDialog(this);
+            }
+
+            //Listとラベルだけ更新する処理
+            //→メソッドにする
+        }
+
     }
 }

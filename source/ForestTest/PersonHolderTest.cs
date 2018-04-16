@@ -150,7 +150,7 @@ namespace ForestTest
 
             //Act
             //実行
-            var actual = personHolder.GetAllPersons();
+            var actual = personHolder.GetAll();
 
             //Assert
             Assert.Equal(PrepareData01().Where(x => x.DeleteFlag == false).Count(), actual.Count);
@@ -168,7 +168,7 @@ namespace ForestTest
 
             //Act
             //実行
-            var actual = personHolder.GetAllPersons();
+            var actual = personHolder.GetAll();
 
             //Assert
             Assert.Empty(actual);
@@ -185,7 +185,7 @@ namespace ForestTest
 
             //Act
             //実行
-            var actual = personHolder.GetAttendedPersons();
+            var actual = personHolder.GetAttended();
 
             //Assert
             Assert.Equal(PrepareData01().Where(x => (x.DeleteFlag == false)&&(x.AttendFlag == true)).Count(), actual.Count);
@@ -203,7 +203,7 @@ namespace ForestTest
 
             //Act
             //実行
-            var actual = personHolder.GetAttendedPersons();
+            var actual = personHolder.GetAttended();
 
             //Assert
             Assert.Empty(actual);

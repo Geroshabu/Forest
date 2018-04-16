@@ -68,7 +68,7 @@ namespace ForestTest
                 //Act
                 //登録の実行
                 var personDbRepository = new PersonDbRepository(Context);
-                var actual = personDbRepository.AddPerson(testPerson);
+                var actual = personDbRepository.Add(testPerson);
 
                 //Assert
                 //登録できていればtrueが返る
@@ -111,8 +111,8 @@ namespace ForestTest
                 //Act
                 //データ登録の実行
                 var personDbRepository = new PersonDbRepository(Context);
-                personDbRepository.AddPerson(testPerson01);
-                var actual02 = personDbRepository.AddPerson(testPerson02);
+                personDbRepository.Add(testPerson01);
+                var actual02 = personDbRepository.Add(testPerson02);
 
                 //Assert
                 //登録できないのでfalseが返る
@@ -149,11 +149,11 @@ namespace ForestTest
 
                 //DBに登録
                 var personDbRepository = new PersonDbRepository(Context);
-                personDbRepository.AddPerson(testPerson);
+                personDbRepository.Add(testPerson);
 
                 //Act
                 //削除の実行
-                int actual = personDbRepository.DeletePersons(testPersons);
+                int actual = personDbRepository.Delete(testPersons);
 
                 //Assert
                 //削除フラグが立っているかどうか
@@ -199,11 +199,11 @@ namespace ForestTest
 
                 //test02のみDBに登録
                 var personDbRepository = new PersonDbRepository(Context);
-                personDbRepository.AddPerson(testPerson02);
+                personDbRepository.Add(testPerson02);
 
                 //Act
                 //削除の実行
-                int actual = personDbRepository.DeletePersons(testPersons);
+                int actual = personDbRepository.Delete(testPersons);
 
                 //Assert
                 //-1が返っているかどうか
@@ -238,11 +238,11 @@ namespace ForestTest
 
                 //DBに登録
                 var personDbRepository = new PersonDbRepository(Context);
-                personDbRepository.AddPerson(testPerson);
+                personDbRepository.Add(testPerson);
 
                 //Act
                 //削除の実行
-                int actual = personDbRepository.DeletePersons(testPersons);
+                int actual = personDbRepository.Delete(testPersons);
 
                 //Assert
                 //削除フラグが立っているかどうか
@@ -264,7 +264,7 @@ namespace ForestTest
                 //Act
                 //DBから取得
                 var personDbRepository = new PersonDbRepository(Context);
-                var actual = personDbRepository.GetPersons();
+                var actual = personDbRepository.GetAll();
 
                 //Assert
                 //空のリストが返っていることを確認
@@ -307,12 +307,12 @@ namespace ForestTest
 
                 //DBに登録
                 var personDbRepository = new PersonDbRepository(Context);
-                personDbRepository.AddPerson(testPerson01);
-                personDbRepository.AddPerson(testPerson02);
+                personDbRepository.Add(testPerson01);
+                personDbRepository.Add(testPerson02);
 
                 //Act
                 //DBから取得
-                var actual = personDbRepository.GetPersons();
+                var actual = personDbRepository.GetAll();
 
                 //Assert
                 //登録データと同じリストが返っていることを確認
@@ -351,11 +351,11 @@ namespace ForestTest
 
                 //DBに登録
                 var personDbRepository = new PersonDbRepository(Context);
-                personDbRepository.AddPerson(testPerson01);
+                personDbRepository.Add(testPerson01);
 
                 //Act
                 //testPerson01→testPerson02の内容への変更を実行
-                var actual = personDbRepository.UpdatePerson(testPerson02);
+                var actual = personDbRepository.Update(testPerson02);
 
                 //Assert
                 //変更できていればtrueが返る
@@ -402,11 +402,11 @@ namespace ForestTest
 
                 //DBに登録
                 var personDbRepository = new PersonDbRepository(Context);
-                personDbRepository.AddPerson(testPerson01);
+                personDbRepository.Add(testPerson01);
 
                 //Act
                 //testPerson01→testPerson02の内容への変更を実行
-                var actual = personDbRepository.UpdatePerson(testPerson02);
+                var actual = personDbRepository.Update(testPerson02);
 
                 //Assert
                 //変更できないのでfalseが返る
