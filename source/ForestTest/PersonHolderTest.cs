@@ -94,7 +94,8 @@ namespace ForestTest
         {
             //Arrange
             //データの準備
-            var personHolder = new PersonHolder(PrepareData01());
+            var testPersons = PrepareData01();
+            var personHolder = new PersonHolder(testPersons);
             //参加数メンバーのIDをリストにセット
             var idList = new List<string>();
             idList.Add("test01");
@@ -105,12 +106,20 @@ namespace ForestTest
             personHolder.Attend(idList);
 
             //Assert
-            Assert.True(personHolder.Persons.Where(x => x.ID == "test01").FirstOrDefault().AttendFlag);
-            Assert.True(personHolder.Persons.Where(x => x.ID == "test02").FirstOrDefault().AttendFlag);
-            Assert.False(personHolder.Persons.Where(x => x.ID == "test03").FirstOrDefault().AttendFlag);
-            Assert.True(personHolder.Persons.Where(x => x.ID == "test04").FirstOrDefault().AttendFlag);
-            Assert.True(personHolder.Persons.Where(x => x.ID == "test05").FirstOrDefault().AttendFlag);
-            Assert.True(personHolder.Persons.Where(x => x.ID == "test06").FirstOrDefault().AttendFlag);
+            //PersonData01の人を保持しておいて、その中の人のフラグが変更されているかを見る
+            //Attendした後とで比較
+
+            //Assertする前
+            //Assert.False(testPersons.Where(x => x.ID == "test01").);
+
+
+
+            //Assert.True(personHolder.Persons.Where(x => x.ID == "test01").FirstOrDefault().AttendFlag);
+            //Assert.True(personHolder.Persons.Where(x => x.ID == "test02").FirstOrDefault().AttendFlag);
+            //Assert.False(personHolder.Persons.Where(x => x.ID == "test03").FirstOrDefault().AttendFlag);
+            //Assert.True(personHolder.Persons.Where(x => x.ID == "test04").FirstOrDefault().AttendFlag);
+            //Assert.True(personHolder.Persons.Where(x => x.ID == "test05").FirstOrDefault().AttendFlag);
+            //Assert.True(personHolder.Persons.Where(x => x.ID == "test06").FirstOrDefault().AttendFlag);
 
         }
 
@@ -130,13 +139,13 @@ namespace ForestTest
             //実行
             personHolder.Cancel(idList);
 
-            //Assert
-            Assert.False(personHolder.Persons.Where(x => x.ID == "test01").FirstOrDefault().AttendFlag);
-            Assert.False(personHolder.Persons.Where(x => x.ID == "test02").FirstOrDefault().AttendFlag);
-            Assert.False(personHolder.Persons.Where(x => x.ID == "test03").FirstOrDefault().AttendFlag);
-            Assert.True(personHolder.Persons.Where(x => x.ID == "test04").FirstOrDefault().AttendFlag);
-            Assert.False(personHolder.Persons.Where(x => x.ID == "test05").FirstOrDefault().AttendFlag);
-            Assert.False(personHolder.Persons.Where(x => x.ID == "test06").FirstOrDefault().AttendFlag);
+            ////Assert
+            //Assert.False(personHolder.Persons.Where(x => x.ID == "test01").FirstOrDefault().AttendFlag);
+            //Assert.False(personHolder.Persons.Where(x => x.ID == "test02").FirstOrDefault().AttendFlag);
+            //Assert.False(personHolder.Persons.Where(x => x.ID == "test03").FirstOrDefault().AttendFlag);
+            //Assert.True(personHolder.Persons.Where(x => x.ID == "test04").FirstOrDefault().AttendFlag);
+            //Assert.False(personHolder.Persons.Where(x => x.ID == "test05").FirstOrDefault().AttendFlag);
+            //Assert.False(personHolder.Persons.Where(x => x.ID == "test06").FirstOrDefault().AttendFlag);
 
         }
 
