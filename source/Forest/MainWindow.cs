@@ -241,15 +241,12 @@ namespace Forest
 
             //List01のチェックが入っている個数を数える
             int count1 = 0;
-            string targetId1 = "";
             for (int i = 0; i < allMemberList.RowCount; i++)
             {
                 //trueの数を数える
                 if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
                 {
                     count1++;
-                    //trueの時のIDを保管しておく
-                    targetId1 = (string)allMemberList.Rows[i].Cells[1].Value;
                 }
             }
 
@@ -269,15 +266,12 @@ namespace Forest
 
             //List02のチェックが入っている個数を数える
             int count2 = 0;
-            string targetId2 = "";
             for (int i = 0; i < attendMemberList.RowCount; i++)
             {
                 //trueの数を数える
                 if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
                 {
                     count2++;
-                    //trueの時のIDを保管しておく
-                    targetId2 = (string)attendMemberList.Rows[i].Cells[1].Value;
                 }
             }
             //trueが複数あれば「←」ボタンも押せるようになる
@@ -323,15 +317,22 @@ namespace Forest
         /// <param name="e"></param>
         private void addButton_Click(object sender, EventArgs e)
         {
-            using (InputForm inputForm = new InputForm(PersonRepository))
+            using (InputForm inputForm = new InputForm(PersonRepository, null))
             {
                 //オーナーウィンドウにthisを指定し、imputFormをモーダルダイアログとして表示
                 inputForm.ShowDialog(this);
             }
 
+            //サークルの削除されていない全メンバーを取得
+            var allPersons = PersonRepository.GetAll();
+
+            //PersonHolderを作ってメンバーを保持させる
+            PersonHolder = new PersonHolder(allPersons);
+
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
+
             DisplayMainWindow();
         }
 
@@ -396,7 +397,47 @@ namespace Forest
             targetList.Sort(sortColumn, sortDirection);
         }
 
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            Person person = new Person();
+            string id = "";
 
+            //チェックが入っているPersonを探す
+            for (int i = 0; i < allMemberList.RowCount; i++)
+            {
+                if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
+                {
+                    id = (string)allMemberList.Rows[i].Cells[1].Value;
+                    break;
+                }
+            }
 
+            foreach (Person target in PersonHolder.GetAll())
+            {
+                if(target.ID == id)
+                {
+                    person = target;
+                    break;
+                }
+            }
+
+            using (InputForm inputForm = new InputForm(PersonRepository, person))
+            {
+                //オーナーウィンドウにthisを指定し、imputFormをモーダルダイアログとして表示
+                inputForm.ShowDialog(this);
+            }
+
+            //サークルの削除されていない全メンバーを取得
+            var allPersons = PersonRepository.GetAll();
+
+            //PersonHolderを作ってメンバーを保持させる
+            PersonHolder = new PersonHolder(allPersons);
+
+            //ダイアログを閉じたらListとラベルだけ更新
+            this.allMemberList.Rows.Clear();
+            this.attendMemberList.Rows.Clear();
+
+            DisplayMainWindow();
+        }
     }
 }

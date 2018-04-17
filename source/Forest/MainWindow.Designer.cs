@@ -32,11 +32,6 @@
             this.attendMemberLabel = new System.Windows.Forms.Label();
             this.memberCountLabel = new System.Windows.Forms.Label();
             this.allMemberList = new System.Windows.Forms.DataGridView();
-            this.allMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.allMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attendMemberList = new System.Windows.Forms.DataGridView();
             this.attendMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.attendMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +44,11 @@
             this.deleteButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
+            this.allMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.allMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).BeginInit();
             this.SuspendLayout();
@@ -109,36 +109,6 @@
             this.allMemberList.TabIndex = 3;
             this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageBelongedPersonList);
             this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.allMemberList_SortCompare);
-            // 
-            // allMemberListCheck
-            // 
-            this.allMemberListCheck.HeaderText = "選択";
-            this.allMemberListCheck.Name = "allMemberListCheck";
-            this.allMemberListCheck.Width = 50;
-            // 
-            // allMemberListId
-            // 
-            this.allMemberListId.HeaderText = "ID";
-            this.allMemberListId.Name = "allMemberListId";
-            this.allMemberListId.Visible = false;
-            // 
-            // allMemberListName
-            // 
-            this.allMemberListName.HeaderText = "名前";
-            this.allMemberListName.Name = "allMemberListName";
-            this.allMemberListName.ReadOnly = true;
-            // 
-            // allMemberListGender
-            // 
-            this.allMemberListGender.HeaderText = "性別";
-            this.allMemberListGender.Name = "allMemberListGender";
-            this.allMemberListGender.ReadOnly = true;
-            // 
-            // allMemberListLevel
-            // 
-            this.allMemberListLevel.HeaderText = "レベル";
-            this.allMemberListLevel.Name = "allMemberListLevel";
-            this.allMemberListLevel.ReadOnly = true;
             // 
             // attendMemberList
             // 
@@ -244,6 +214,7 @@
             this.updateButton.TabIndex = 9;
             this.updateButton.Text = "変更";
             this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // startButton
             // 
@@ -254,6 +225,36 @@
             this.startButton.TabIndex = 10;
             this.startButton.Text = "試合開始";
             this.startButton.UseVisualStyleBackColor = true;
+            // 
+            // allMemberListCheck
+            // 
+            this.allMemberListCheck.HeaderText = "選択";
+            this.allMemberListCheck.Name = "allMemberListCheck";
+            this.allMemberListCheck.Width = 50;
+            // 
+            // allMemberListId
+            // 
+            this.allMemberListId.HeaderText = "ID";
+            this.allMemberListId.Name = "allMemberListId";
+            this.allMemberListId.Visible = false;
+            // 
+            // allMemberListName
+            // 
+            this.allMemberListName.HeaderText = "名前";
+            this.allMemberListName.Name = "allMemberListName";
+            this.allMemberListName.ReadOnly = true;
+            // 
+            // allMemberListGender
+            // 
+            this.allMemberListGender.HeaderText = "性別";
+            this.allMemberListGender.Name = "allMemberListGender";
+            this.allMemberListGender.ReadOnly = true;
+            // 
+            // allMemberListLevel
+            // 
+            this.allMemberListLevel.HeaderText = "レベル";
+            this.allMemberListLevel.Name = "allMemberListLevel";
+            this.allMemberListLevel.ReadOnly = true;
             // 
             // MainWindow
             // 
@@ -294,16 +295,16 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn allMemberListCheck;
-        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListGender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListLevel;
         private System.Windows.Forms.DataGridViewCheckBoxColumn attendMemberListCheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListId;
         private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListName;
         private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListGender;
         private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListLevel;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn allMemberListCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListLevel;
     }
 }
 
