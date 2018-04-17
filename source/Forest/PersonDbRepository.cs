@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
 
 namespace Forest
 {
@@ -14,7 +14,8 @@ namespace Forest
             //contextを新しく作る
             Context = new PersonContext();
 
-            var peronDbRepository = new PersonDbRepository(new PersonContext());        }
+            var peronDbRepository = new PersonDbRepository(new PersonContext());
+        }
 
         public PersonDbRepository(PersonContext context)
         {
@@ -25,18 +26,30 @@ namespace Forest
         }
 
         /// <summary>
-        /// 【実装中】新たにメンバー情報を登録する
+        /// 新たにメンバー情報を登録する
         /// </summary>
-        /// <param name="new_person"></param>
+        /// <param name="newPerson"></param>
         /// <returns>DB登録できたかどうか</returns>
-        public bool Add(Person new_person)
+        public bool Add(Person newPerson)
         {
-            //new_personを登録する
-            Context.Persons.Add(new_person);
-            Context.SaveChanges();
-
-            //同じIDが存在する場合の処理
-
+            try
+            {
+                //new_personを登録する
+                Context.Persons.Add(newPerson);
+                Context.SaveChanges();
+            }
+            //すでに登録されているIDが登録されたとき
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            //DB保存中にエラーが起きたとき
+            catch (DbUpdateException e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
             return true;
         }
 
@@ -71,10 +84,10 @@ namespace Forest
                         return -1;
                     }
                 }
-                //DBにアクセスできなかったとき
-                catch (NullReferenceException)
+                //DB接続中にエラーが起きたとき
+                catch (DbUpdateException e)
                 {
-                    ShowDBError();
+                    Console.WriteLine(e.Message);
                     return -1;
                 }
 
@@ -98,51 +111,44 @@ namespace Forest
         }
 
         /// <summary>
-        /// 【実装中】メンバー情報を変更する
+        /// メンバー情報を変更する
         /// </summary>
-        /// <param name="update_person"></param>
+        /// <param name="updatePerson">変更内容</param>
         /// <returns>変更できたかどうか</returns>
-        public bool Update(Person update_person)
+        public bool Update(Person updatePerson)
         {
             try
             {
-                //nullが返ることがある
-                var target_person = Context.Persons.Where(x => x.ID == update_person.ID).FirstOrDefault();
+                //該当するIDの人を探す
+                var targetPerson = Context.Persons.Where(x => x.ID == updatePerson.ID).FirstOrDefault();
 
                 //対応するIDのメンバーが存在したとき
-                if (target_person != null)
+                if (targetPerson != null)
                 {
-                    target_person.Name = update_person.Name;
-                    target_person.Gender.GenderNum = update_person.Gender.GenderNum;
-                    target_person.Level.LevelNum = update_person.Level.LevelNum;
-                    target_person.DeleteFlag = update_person.DeleteFlag;
-                    target_person.AttendFlag = update_person.AttendFlag;
+                    targetPerson.Name = updatePerson.Name;
+                    targetPerson.Gender.GenderNum = updatePerson.Gender.GenderNum;
+                    targetPerson.Level.LevelNum = updatePerson.Level.LevelNum;
+                    targetPerson.DeleteFlag = updatePerson.DeleteFlag;
+                    targetPerson.AttendFlag = updatePerson.AttendFlag;
                     Context.SaveChanges();
                 }
                 //対応するIDのメンバーが存在しなかったとき
                 else
                 {
+                    Console.WriteLine("対応するIDのメンバーが存在しませんでした");
                     return false;
                 }
 
             }
-            //DBにアクセスできなかったとき
-            catch (NullReferenceException)
+            //DB保存中にエラーが起きたとき
+            catch (DbUpdateException e)
             {
-                ShowDBError();
+                Console.WriteLine(e.Message);
                 return false;
             }
 
             return true;
 
-        }
-
-        /// <summary>
-        /// 【たぶんいらない】ここで画面を出さない
-        /// </summary>
-        public void ShowDBError()
-        {
-            MessageBox.Show("データベースエラーが発生しました。（001）");
         }
     }
 }

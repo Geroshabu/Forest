@@ -62,7 +62,7 @@ namespace Forest
                 Person.Level = new Level { LevelNum = 2 };
             }
 
-            //追加する場合
+            //追加の時はIDとフラグも設定する
             if (CurrentOrder == Order.Add)
             {
                 //IDを新規に定める
@@ -71,17 +71,30 @@ namespace Forest
                 Person.DeleteFlag = false;
                 //参加フラグも立てない
                 Person.AttendFlag = false;
+            }
 
-                PersonRepository.Add(Person);
+            //追加、変更の結果
+            bool result;
+
+            if (CurrentOrder == Order.Add)
+            {
+                result = PersonRepository.Add(Person);
             }
             //変更する場合
             else
             {
-                PersonRepository.Update(Person);
+                result = PersonRepository.Update(Person);
             }
 
-            //この画面を閉じる
-            this.Close();
+            if (result)
+            {
+                //この画面を閉じる
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("データベースエラーが発生しました。");
+            }
 
         }
 
@@ -92,7 +105,7 @@ namespace Forest
         /// <param name="e"></param>
         private void InputForm_Load(object sender, EventArgs e)
         {
-            if(CurrentOrder == Order.Update)
+            if (CurrentOrder == Order.Update)
             {
                 //名前を入れる
                 nameTextBox.Text = Person.Name;
