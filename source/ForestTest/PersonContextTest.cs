@@ -25,7 +25,8 @@ namespace ForestTest
         public void Dispose()
         {
             Directory.Delete(DirectoryName, true);
-            File.Delete("./ForestTest.pdb");
+            File.Delete("forest.db");
+
         }
 
         [Trait("分類", "正常系")]
@@ -45,16 +46,17 @@ namespace ForestTest
         public void ConstructorTest02()
         {
             //Arrange
-            var connection = new SqliteConnection("DataSource=:memory:");
-            connection.Open();
-            var options = new DbContextOptionsBuilder<PersonContext>().UseSqlite(connection).Options;
+            using (var connection = new SqliteConnection("DataSource=:memory:"))
+            {
+                var options = new DbContextOptionsBuilder<PersonContext>().UseSqlite(connection).Options;
 
-            //Act
-            var personContext = new PersonContext(options);
+                //Act
+                var personContext = new PersonContext(options);
+                personContext.Database.EnsureCreated();
+            }
 
             //Assert：特になし
 
-            connection.Close();
         }
 
         [Trait("分類", "異常系")]
@@ -63,14 +65,18 @@ namespace ForestTest
         {
             //Arrange
             //存在しないディレクトリを指定
-            var connection = new SqliteConnection("DataSource=/a/damy");
 
-            //Act
-            //Assert
-            Assert.Throws<SqliteException>(() =>
+            using (var connection = new SqliteConnection("DataSource=/a/damy"))
             {
-                connection.Open();
-            });
+                var options = new DbContextOptionsBuilder<PersonContext>().UseSqlite(connection).Options;
+
+                using (var personContext = new PersonContext(options))
+                {
+                    Assert.Throws<SqliteException>(() =>
+                    { personContext.Database.EnsureCreated(); });
+                }
+            }
+
 
         }
 
@@ -83,12 +89,13 @@ namespace ForestTest
             //Act
             //DBを作成
             var personContext = new PersonContext();
+            personContext.Database.EnsureCreated();
 
             //Assert
             //現在の場所を取得
             var fullPath = Path.GetFullPath(".");
             //現在の場所にテスト用のDBが作られているかを確認
-            Assert.True(File.Exists(fullPath + "/ForestTest.pdb"));
+            Assert.True(File.Exists(fullPath + "/Forest.db"));
         }
 
         [Trait("分類", "正常系")]
@@ -101,11 +108,12 @@ namespace ForestTest
 
             //Act
             //DBを作成
-            var connection = new SqliteConnection("DataSource=" + DirectoryName + dbName);
-            connection.Open();
-            var options = new DbContextOptionsBuilder<PersonContext>().UseSqlite(connection).Options;
-            var personContext = new PersonContext(options);
-            connection.Close();
+            using (var connection = new SqliteConnection("DataSource=" + DirectoryName + dbName))
+            {
+                var options = new DbContextOptionsBuilder<PersonContext>().UseSqlite(connection).Options;
+                var personContext = new PersonContext(options);
+                personContext.Database.EnsureCreated();
+            }
 
             //Assert
             //指定場所に指定した名前のDBファイルがあるかを確認
