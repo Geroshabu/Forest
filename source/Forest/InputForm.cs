@@ -36,6 +36,17 @@ namespace Forest
 
         private void registerButton_Click(object sender, EventArgs e)
         {
+            //追加の時は新規に、変更の時は元のIDを入れる
+            if(CurrentOrder == Order.Add)
+            {
+                Person.ID = CreateId();
+            }
+            else
+            {
+                string id = Person.ID;
+                Person = new Person();
+                Person.ID = id;
+            }
 
             //入力された名前を入れる
             Person.Name = nameTextBox.Text;
@@ -65,8 +76,6 @@ namespace Forest
             //追加の時はIDとフラグも設定する
             if (CurrentOrder == Order.Add)
             {
-                //IDを新規に定める
-                Person.ID = CreateId();
                 //削除フラグは立てない
                 Person.DeleteFlag = false;
                 //参加フラグも立てない
