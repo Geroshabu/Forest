@@ -161,6 +161,34 @@ namespace ForestTest
             Assert.False((Level)null != null);
         }
 
+        [Fact]
+        public void GetHashCodeTest()
+        {
+            var level1 = new Level { LevelNum = 1 };
+            var level2 = level1;
+
+            Assert.True(level1 == level2);
+        }
+
+        [Fact]
+        public void CompareToTest01()
+        {
+            var level1 = new Level { LevelNum = 1 };
+            var expected = 1;
+            var actual = level1.CompareTo(null);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CompareToTest02()
+        {
+            var level1 = new Level { LevelNum = 0 };
+            var level2 = new Level { LevelNum = 2 };
+            var expected = -1;
+            var actual = level1.CompareTo(level2);
+            Assert.Equal(expected, actual);
+        }
+
 
     }
 }

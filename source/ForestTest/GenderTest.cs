@@ -162,5 +162,33 @@ namespace ForestTest
             Assert.False((Gender)null != null);
         }
 
+        [Fact]
+        public void GetHashCodeTest()
+        {
+            var gender1 = new Gender { GenderNum = 1 };
+            var gender2 = gender1;
+
+            Assert.True(gender1 == gender2);
+        }
+
+        [Fact]
+        public void CompareToTest01()
+        {
+            var gender1 = new Gender { GenderNum = 1 };
+            var expected = 1;
+            var actual = gender1.CompareTo(null);
+            Assert.Equal(expected,actual);
+        }
+
+        [Fact]
+        public void CompareToTest02()
+        {
+            var gender1 = new Gender { GenderNum = 0 };
+            var gender2 = new Gender { GenderNum = 1 };
+            var expected = -1;
+            var actual = gender1.CompareTo(gender2);
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
