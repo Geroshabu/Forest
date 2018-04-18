@@ -101,12 +101,25 @@ namespace Forest
         /// 削除されていない全メンバー情報を取得する
         /// </summary>
         /// <returns>DBに登録されているメンバーのリスト</returns>
-        public List<Person> GetAll()
+        public List<Person> Get()
         {
             //取得したメンバー情報を入れるためのリスト
             var persons = new List<Person>();
             //一行ずつ読んでpersonsリストに入れて返す
             foreach (var person in persons = Context.Persons.Where(x => !(x.DeleteFlag)).ToList()) { }
+            return persons;
+        }
+
+        /// <summary>
+        /// 削除しているメンバーも含めて全メンバー情報を取得する
+        /// </summary>
+        /// <returns>DBに登録されている全メンバーのリスト</returns>
+        public List<Person> GetAll()
+        {
+            //取得したメンバー情報を入れるためのリスト
+            var persons = new List<Person>();
+            //一行ずつ読んでpersonsリストに入れて返す
+            foreach (var person in persons = Context.Persons.ToList()) { }
             return persons;
         }
 

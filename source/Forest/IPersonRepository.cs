@@ -11,6 +11,12 @@ namespace Forest
         /// 削除されていない全メンバー情報を取得する
         /// </summary>
         /// <returns>削除されていない全メンバーの情報（List<Person>型）</returns>
+        List<Person> Get();
+
+        /// <summary>
+        /// 削除されているメンバーも含めて全メンバー情報を取得する
+        /// </summary>
+        /// <returns>全メンバーの情報（List<Person>型）</returns>
         List<Person> GetAll();
 
         /// <summary>

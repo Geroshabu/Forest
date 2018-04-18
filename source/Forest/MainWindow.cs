@@ -26,7 +26,7 @@ namespace Forest
             PersonRepository = new PersonDbRepository();
 
             //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.GetAll();
+            var allPersons = PersonRepository.Get();
 
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
@@ -324,7 +324,7 @@ namespace Forest
             }
 
             //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.GetAll();
+            var allPersons = PersonRepository.Get();
 
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
@@ -428,7 +428,7 @@ namespace Forest
             }
 
             //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.GetAll();
+            var allPersons = PersonRepository.Get();
 
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
@@ -476,7 +476,7 @@ namespace Forest
             }
 
             //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.GetAll();
+            var allPersons = PersonRepository.Get();
 
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
