@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Forest
 {
@@ -37,7 +38,7 @@ namespace Forest
         /// <summary>
         /// 試合に参加するかどうか
         /// </summary>
-        [Required]
+        [NotMapped]
         public bool AttendFlag { get; set; }
 
     }
