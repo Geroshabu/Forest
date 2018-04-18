@@ -60,33 +60,6 @@ namespace Forest
         }
 
         /// <summary>
-        /// 【未実装】
-        /// </summary>
-        /// <param name="new_person">新しく追加された人の情報</param>
-        public void Add(Person new_person)
-        {
-
-        }
-
-        /// <summary>
-        /// 【未実装】
-        /// </summary>
-        /// <param name="id_list">削除する人のIDリスト</param>
-        public void Delete(List<string> id_list)
-        {
-
-        }
-
-        /// <summary>
-        /// 【未実装】
-        /// </summary>
-        /// <param name="new_person">更新後の情報</param>
-        public void update(Person new_person)
-        {
-
-        }
-
-        /// <summary>
         /// DBに登録されているメンバーの中で削除されていないメンバー全員を返す
         /// </summary>
         /// <returns>削除されていないメンバー全員のリスト</returns>

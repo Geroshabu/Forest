@@ -54,7 +54,7 @@ namespace Forest
         }
 
         /// <summary>
-        /// 【実装中】メンバー情報を削除する
+        /// メンバー情報を削除する
         /// ※物理削除ではなく、フラグを立てるのみ
         /// </summary>
         /// <param name="delete_persons"></param>

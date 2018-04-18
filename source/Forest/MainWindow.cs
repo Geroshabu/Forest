@@ -439,5 +439,54 @@ namespace Forest
 
             DisplayMainWindow();
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            var deletePersons = new List<Person>();
+            var person = new Person();
+            var idList = new List<String>();
+            string id = "";
+
+            //チェックが入っているPersonを探す
+            for (int i = 0; i < allMemberList.RowCount; i++)
+            {
+                if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
+                {
+                    id = (string)allMemberList.Rows[i].Cells[1].Value;
+                    idList.Add(id);
+                }
+            }
+
+            foreach (Person target in PersonHolder.GetAll())
+            {
+                foreach(string targetId in idList)
+                {
+                    if (target.ID == targetId)
+                    {
+                        person = target;
+                        deletePersons.Add(person);
+                    }
+                }
+            }
+
+            using (DeleteCheckDialog deletecheckDialog = new DeleteCheckDialog(PersonRepository,deletePersons))
+            {
+                //オーナーウィンドウにthisを指定し、削除確認画面をモーダルダイアログとして表示
+                deletecheckDialog.ShowDialog(this);
+            }
+
+            //サークルの削除されていない全メンバーを取得
+            var allPersons = PersonRepository.GetAll();
+
+            //PersonHolderを作ってメンバーを保持させる
+            PersonHolder = new PersonHolder(allPersons);
+
+            //ダイアログを閉じたらListとラベルだけ更新
+            this.allMemberList.Rows.Clear();
+            this.attendMemberList.Rows.Clear();
+
+            DisplayMainWindow();
+
+        }
     }
 }

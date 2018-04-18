@@ -204,6 +204,7 @@
             this.deleteButton.TabIndex = 8;
             this.deleteButton.Text = "削除";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // updateButton
             // 
