@@ -62,6 +62,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(285, 23);
             this.nameTextBox.TabIndex = 0;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // label2
             // 
@@ -94,6 +95,7 @@
             this.radioButtonMale.TabStop = true;
             this.radioButtonMale.Text = "男";
             this.radioButtonMale.UseVisualStyleBackColor = true;
+            this.radioButtonMale.Click += new System.EventHandler(this.radioButtonMale_Click);
             // 
             // radioButtonFemale
             // 
@@ -106,6 +108,7 @@
             this.radioButtonFemale.TabStop = true;
             this.radioButtonFemale.Text = "女";
             this.radioButtonFemale.UseVisualStyleBackColor = true;
+            this.radioButtonFemale.CheckedChanged += new System.EventHandler(this.radioButtonFemale_CheckedChanged);
             // 
             // radioButtonSenior
             // 
@@ -118,6 +121,7 @@
             this.radioButtonSenior.TabStop = true;
             this.radioButtonSenior.Text = "上級者";
             this.radioButtonSenior.UseVisualStyleBackColor = true;
+            this.radioButtonSenior.CheckedChanged += new System.EventHandler(this.radioButtonSenior_CheckedChanged);
             // 
             // radioButtonIntermediate
             // 
@@ -130,6 +134,7 @@
             this.radioButtonIntermediate.TabStop = true;
             this.radioButtonIntermediate.Text = "中級者";
             this.radioButtonIntermediate.UseVisualStyleBackColor = true;
+            this.radioButtonIntermediate.CheckedChanged += new System.EventHandler(this.radioButtonIntermediate_CheckedChanged);
             // 
             // radioButtonBeginner
             // 
@@ -142,6 +147,7 @@
             this.radioButtonBeginner.TabStop = true;
             this.radioButtonBeginner.Text = "初級者";
             this.radioButtonBeginner.UseVisualStyleBackColor = true;
+            this.radioButtonBeginner.CheckedChanged += new System.EventHandler(this.radioButtonBeginner_CheckedChanged);
             // 
             // registerButton
             // 

@@ -133,6 +133,9 @@ namespace Forest
                 }
             }
 
+            //ボタンの制御
+            ManageButton();
+
         }
 
         /// <summary>
@@ -154,6 +157,105 @@ namespace Forest
         private void stopButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// 『登録ボタン』を制御するメソッド
+        /// </summary>
+        private void ManageButton()
+        {
+            registerButton.Enabled = false;
+
+            //チェック項目のカウント
+            //全部で3項目あるから、値が3になれば
+            int checkCount = 0;
+
+            //名前が1文字以上20文字以内で入力されていればOK
+            if ((CountText(nameTextBox.Text)) >= 1 && (CountText(nameTextBox.Text)) <= 20)
+            {
+                checkCount++;
+            }
+
+            //男女どちらかが選択されていれば押下OK
+            if (radioButtonMale.Checked || radioButtonFemale.Checked)
+            {
+                checkCount++;
+            }
+
+            //レベルのどれかが押下されていればOK
+            if (radioButtonBeginner.Checked || radioButtonIntermediate.Checked || radioButtonSenior.Checked)
+            {
+                checkCount++;
+            }
+
+            if (checkCount == 3)
+            {
+                registerButton.Enabled = true;
+            }
+
+        }
+
+        private int CountText(string target)
+        {
+            //数えた結果
+            int result;
+
+            //前後の空白を削除した文字列
+            string removeBlankTarget = target.Trim();
+
+            //nullであれば0文字
+            if (removeBlankTarget == null)
+            {
+                result = 0;
+            }
+            //文字数を結果に入れる
+            else
+            {
+                result = removeBlankTarget.Length;
+            }
+
+            return result;
+        }
+
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            //ボタンの制御
+            ManageButton();
+        }
+
+        private void radioButtonMale_Click(object sender, EventArgs e)
+        {
+            //ボタンの制御
+            ManageButton();
+
+        }
+
+        private void radioButtonFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            //ボタンの制御
+            ManageButton();
+
+        }
+
+        private void radioButtonSenior_CheckedChanged(object sender, EventArgs e)
+        {
+            //ボタンの制御
+            ManageButton();
+
+        }
+
+        private void radioButtonIntermediate_CheckedChanged(object sender, EventArgs e)
+        {
+            //ボタンの制御
+            ManageButton();
+
+        }
+
+        private void radioButtonBeginner_CheckedChanged(object sender, EventArgs e)
+        {
+            //ボタンの制御
+            ManageButton();
+
         }
     }
 }
