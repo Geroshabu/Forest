@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Forest
@@ -32,7 +33,7 @@ namespace Forest
             PersonHolder = new PersonHolder(allPersons);
 
             //表示する
-            DisplayMainWindow();
+            DisplayMainWindow(new List<Person>());
         }
 
         /// <summary>
@@ -326,6 +327,9 @@ namespace Forest
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
+            //追加された人を探す
+            var newPersons = allPersons.Except(PersonHolder.GetAll());
+
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
 
@@ -333,16 +337,26 @@ namespace Forest
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
 
-            DisplayMainWindow();
+            DisplayMainWindow(newPersons);
         }
 
-        private void DisplayMainWindow()
+        private void DisplayMainWindow(IEnumerable<Person> checkMember)
         {
             //サークルメンバーを表示
             var persons = PersonHolder.GetAll();
             foreach (Person person in persons)
             {
-                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
+                //checkMemberのチェックボックスにはチェックを入れる
+                var check = false;
+                foreach (Person target in checkMember)
+                {
+                    if (target.ID == person.ID)
+                    {
+                        check = true;
+                    }
+                }
+
+                object[] row = { check, person.ID, person.Name, person.Gender, person.Level };
                 this.allMemberList.Rows.Add(row);
             }
 
@@ -353,7 +367,17 @@ namespace Forest
             var attendedPersons = PersonHolder.GetAttended();
             foreach (Person person in attendedPersons)
             {
-                object[] row = { false, person.ID, person.Name, person.Gender, person.Level };
+                //checkMemberのチェックボックスにはチェックを入れる
+                var check = false;
+                foreach (Person target in checkMember)
+                {
+                    if (target.ID == person.ID)
+                    {
+                        check = true;
+                    }
+                }
+
+                object[] row = { check, person.ID, person.Name, person.Gender, person.Level };
                 this.attendMemberList.Rows.Add(row);
             }
 
@@ -399,7 +423,7 @@ namespace Forest
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            Person person = new Person();
+            Person updatePerson = new Person();
             string id = "";
 
             //チェックが入っているPersonを探す
@@ -412,16 +436,17 @@ namespace Forest
                 }
             }
 
+            //IDが一致する人を探す
             foreach (Person target in PersonHolder.GetAll())
             {
-                if(target.ID == id)
+                if (target.ID == id)
                 {
-                    person = target;
+                    updatePerson = target;
                     break;
                 }
             }
 
-            using (InputForm inputForm = new InputForm(PersonRepository, person))
+            using (InputForm inputForm = new InputForm(PersonRepository, updatePerson))
             {
                 //オーナーウィンドウにthisを指定し、imputFormをモーダルダイアログとして表示
                 inputForm.ShowDialog(this);
@@ -430,6 +455,16 @@ namespace Forest
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
+            //変更した人の参加フラグを立て直す
+            foreach (var person in allPersons)
+            {
+                if (updatePerson.ID == person.ID)
+                {
+                    person.AttendFlag = true;
+
+                }
+            }
+
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
 
@@ -437,7 +472,8 @@ namespace Forest
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
 
-            DisplayMainWindow();
+            var updatePersons = new List < Person>{ updatePerson };
+            DisplayMainWindow(updatePersons);
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -459,7 +495,7 @@ namespace Forest
 
             foreach (Person target in PersonHolder.GetAll())
             {
-                foreach(string targetId in idList)
+                foreach (string targetId in idList)
                 {
                     if (target.ID == targetId)
                     {
@@ -469,7 +505,7 @@ namespace Forest
                 }
             }
 
-            using (DeleteCheckDialog deletecheckDialog = new DeleteCheckDialog(PersonRepository,deletePersons))
+            using (DeleteCheckDialog deletecheckDialog = new DeleteCheckDialog(PersonRepository, deletePersons))
             {
                 //オーナーウィンドウにthisを指定し、削除確認画面をモーダルダイアログとして表示
                 deletecheckDialog.ShowDialog(this);
@@ -485,7 +521,7 @@ namespace Forest
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
 
-            DisplayMainWindow();
+            DisplayMainWindow(deletePersons);
 
         }
     }
