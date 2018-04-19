@@ -107,7 +107,7 @@
             this.allMemberList.RowTemplate.Height = 21;
             this.allMemberList.Size = new System.Drawing.Size(353, 350);
             this.allMemberList.TabIndex = 3;
-            this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageBelongedPersonList);
+            this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAllMemberList);
             this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.allMemberList_SortCompare);
             // 
             // allMemberListCheck
@@ -160,7 +160,7 @@
             this.attendMemberList.RowTemplate.Height = 21;
             this.attendMemberList.Size = new System.Drawing.Size(353, 350);
             this.attendMemberList.TabIndex = 4;
-            this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAttendedPersonList);
+            this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAttendMemberList);
             // 
             // attendMemberListCheck
             // 
@@ -223,7 +223,7 @@
             this.addButton.TabIndex = 7;
             this.addButton.Text = "追加";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.Click += new System.EventHandler(this.AddPerson);
             // 
             // deleteButton
             // 
@@ -234,7 +234,7 @@
             this.deleteButton.TabIndex = 8;
             this.deleteButton.Text = "削除";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.DeletePersons);
             // 
             // updateButton
             // 
@@ -245,7 +245,7 @@
             this.updateButton.TabIndex = 9;
             this.updateButton.Text = "変更";
             this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            this.updateButton.Click += new System.EventHandler(this.UpdatePerson);
             // 
             // startButton
             // 
@@ -275,7 +275,7 @@
             this.Controls.Add(this.memberLabel);
             this.Name = "MainWindow";
             this.Text = "コート分けアプリ　参加メンバー登録";
-            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.Load += new System.EventHandler(this.MainWindowLoad);
             ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).EndInit();
             this.ResumeLayout(false);

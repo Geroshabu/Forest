@@ -158,7 +158,7 @@
             this.registerButton.TabIndex = 6;
             this.registerButton.Text = "登録";
             this.registerButton.UseVisualStyleBackColor = true;
-            this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
+            this.registerButton.Click += new System.EventHandler(this.Register);
             // 
             // stopButton
             // 
@@ -205,7 +205,7 @@
             this.Controls.Add(this.panelLevel);
             this.Name = "InputForm";
             this.Text = "メンバー情報入力";
-            this.Load += new System.EventHandler(this.InputForm_Load);
+            this.Load += new System.EventHandler(this.LoadInputForm);
             this.panelGender.ResumeLayout(false);
             this.panelGender.PerformLayout();
             this.panelLevel.ResumeLayout(false);

@@ -3,13 +3,13 @@
 namespace Forest
 {
     /// <summary>
-    /// Gender型を定義するクラス
-    /// ToString()をオーバーライドしている
+    /// Gender型を定義するクラス。
+    /// ToString()をオーバーライドしている。
     /// </summary>
     public class Gender : IEquatable<Gender> , IComparable
     {
         /// <summary>
-        /// 性別を数字で表す
+        /// 性別を数字で表す。
         /// 0：男　1：女
         /// </summary>
         public int GenderNum { get; set; }
@@ -72,8 +72,8 @@ namespace Forest
         }
 
         /// <summary>
-        /// CompareTo()をオーバーライドするクラス
-        /// GenderNumによってソート順を判断する
+        /// CompareTo()をオーバーライドするクラス。
+        /// GenderNumによってソート順を判断する。
         /// </summary>
         /// <param name="obj">比較対象のオブジェクト</param>
         /// <returns>ソート順を決める数字</returns>

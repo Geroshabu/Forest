@@ -8,20 +8,24 @@ namespace Forest
         //DBに登録されているサークルメンバーを保持しておくリスト
         private List<Person> Persons;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="persons">サークルに所属している全メンバー</param>
         public PersonHolder(IReadOnlyList<Person> persons)
         {
-            //引数のリストをそのままPersonsにコピー
+            //引数のリストをそのままにコピー
             foreach (var target in Persons = persons.ToList()) { }
         }
 
         /// <summary>
         /// 引数のIDをもつ人の参加フラグを立てる
         /// </summary>
-        /// <param name="id_ist">参加者として選択されている人のID</param>
-        public void Attend(List<string> id_list)
+        /// <param name="idList">参加者として選択されている人のID</param>
+        public void Attend(List<string> idList)
         {
             //IDリストをはじめから見ていく
-            foreach (string targetID in id_list)
+            foreach (string targetID in idList)
             {
                 //リストの中にいる一致するIDの人を探す
                 foreach (Person targetPerson in Persons)
@@ -40,11 +44,11 @@ namespace Forest
         /// <summary>
         /// 引数のIDをもつ人の参加フラグを下げる
         /// </summary>
-        /// <param name="id_list">参加を取り下げた人のID</param>
-        public void Cancel(List<string> id_list)
+        /// <param name="idList">参加を取り下げた人のID</param>
+        public void Cancel(List<string> idList)
         {
             //IDリストをはじめから見ていく
-            foreach (string targetID in id_list)
+            foreach (string targetID in idList)
             {
                 //リストの中にいる一致するIDの人を探す
                 foreach (Person targetPerson in Persons)

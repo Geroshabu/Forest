@@ -102,7 +102,7 @@
             this.stopButton.TabIndex = 9;
             this.stopButton.Text = "中止";
             this.stopButton.UseVisualStyleBackColor = true;
-            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            this.stopButton.Click += new System.EventHandler(this.Stop);
             // 
             // deleteButton
             // 
@@ -113,7 +113,7 @@
             this.deleteButton.TabIndex = 8;
             this.deleteButton.Text = "削除";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.Delete);
             // 
             // DeleteCheckDialog
             // 
@@ -126,7 +126,7 @@
             this.Controls.Add(this.labelDeleteMessage);
             this.Name = "DeleteCheckDialog";
             this.Text = "DeleteCheckDialog";
-            this.Load += new System.EventHandler(this.DeleteCheckDialog_Load);
+            this.Load += new System.EventHandler(this.LoadDeleteCheckDialog);
             ((System.ComponentModel.ISupportInitialize)(this.deleteMemberList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

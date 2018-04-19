@@ -15,14 +15,16 @@ namespace Forest
             Update
         }
 
+        //変更なのか、追加なのか
         Order CurrentOrder;
 
         public InputForm(IPersonRepository personRepository, Person person)
         {
             InitializeComponent();
+
             PersonRepository = personRepository;
             Person = person;
-            //追加なのか、変更なのか
+            //追加なのか、変更なのかを判断
             if (Person == null)
             {
                 CurrentOrder = Order.Add;
@@ -34,18 +36,25 @@ namespace Forest
             }
         }
 
-        private void registerButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 登録ボタンを押下したとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Register(object sender, EventArgs e)
         {
             //追加の時は新規に、変更の時は元のIDを入れる
-            if(CurrentOrder == Order.Add)
+            if (CurrentOrder == Order.Add)
             {
                 Person.ID = CreateId();
             }
             else
             {
                 string id = Person.ID;
-                Person = new Person();
-                Person.ID = id;
+                Person = new Person
+                {
+                    ID = id
+                };
             }
 
             //入力された名前を入れる
@@ -112,7 +121,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void InputForm_Load(object sender, EventArgs e)
+        private void LoadInputForm(object sender, EventArgs e)
         {
             if (CurrentOrder == Order.Update)
             {
@@ -204,6 +213,11 @@ namespace Forest
 
         }
 
+        /// <summary>
+        /// テキストの文字数を数えるメソッド
+        /// </summary>
+        /// <param name="target">数えたいテキスト</param>
+        /// <returns>文字数</returns>
         private int CountText(string target)
         {
             //数えた結果
@@ -225,6 +239,9 @@ namespace Forest
 
             return result;
         }
+
+        //以下、それぞれの編集可能項目を選択されたときのイベント
+        //ボタンの制御のみを行う
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {

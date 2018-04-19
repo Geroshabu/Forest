@@ -27,7 +27,7 @@ namespace Forest
             //キャストできないときはnullが入る
             Level otherLevel = obj as Level;
 
-            if(otherLevel != null)
+            if (otherLevel != null)
             {
                 //LevelNumでソート順を判断
                 return this.LevelNum.CompareTo(otherLevel.LevelNum);
@@ -119,8 +119,8 @@ namespace Forest
         /// <summary>
         /// == の逆の結果を返す
         /// </summary>
-        /// <param name="level1"></param>
-        /// <param name="level2"></param>
+        /// <param name="level1">左辺</param>
+        /// <param name="level2">右辺</param>
         /// <returns>結果</returns>
         public static bool operator !=(Level level1, Level level2)
         {

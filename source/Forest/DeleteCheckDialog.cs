@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Forest
@@ -25,6 +20,12 @@ namespace Forest
             //引数でもらってきたリストをそのままコピー
             foreach (var target in DeletePersons = deletePersons.ToList()) { }
 
+        }
+
+        private void LoadDeleteCheckDialog(object sender, EventArgs e)
+        {
+            labelDeleteMessage.Text = "以下のメンバーを削除してよろしいですか？";
+
             //削除される人たちをリストに表示する
             foreach (Person person in DeletePersons)
             {
@@ -34,23 +35,29 @@ namespace Forest
 
         }
 
-        private void DeleteCheckDialog_Load(object sender, EventArgs e)
-        {
-            labelDeleteMessage.Text = "以下のメンバーを削除してよろしいですか？";
-        }
-
-        private void stopButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 中止ボタンが押下されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Stop(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 削除ボタンが押下されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Delete(object sender, EventArgs e)
         {
             int result;
 
             result = PersonRepository.Delete(DeletePersons);
 
-            if(result == DeletePersons.Count)
+            //一件でも削除できていなければデータベースエラー扱いにする
+            if (result == DeletePersons.Count)
             {
                 //この画面を閉じる
                 this.Close();

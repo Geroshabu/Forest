@@ -36,7 +36,7 @@ namespace Forest
         public bool DeleteFlag { get; set; }
 
         /// <summary>
-        /// 試合に参加するかどうか
+        /// 試合に参加するかどうか(DBには登録しない)
         /// </summary>
         [NotMapped]
         public bool AttendFlag { get; set; }

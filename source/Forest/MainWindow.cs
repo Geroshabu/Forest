@@ -22,7 +22,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MainWindow_Load(object sender, EventArgs e)
+        public void MainWindowLoad(object sender, EventArgs e)
         {
             PersonRepository = new PersonDbRepository();
 
@@ -61,7 +61,7 @@ namespace Forest
             //参加メンバーを取得
             var attendedPersons = PersonHolder.GetAttended();
 
-            //list02は一度クリアする
+            //参加者リストを一度クリアする
             this.attendMemberList.Rows.Clear();
             //表示。今参加した人は選択状態にする
             for (int i = 0; i < attendedPersons.Count; i++)
@@ -78,9 +78,10 @@ namespace Forest
                 this.attendMemberList.Rows.Add(row);
             }
 
-            //現在の条件でソートを行う
+            //現在選択されている条件でソートを行う
             SortByCurrentSetting(attendMemberList, attendMemberList.SortedColumn.Name);
 
+            //ボタンの制御を行う
             ManageButton();
 
         }
@@ -92,8 +93,7 @@ namespace Forest
         /// <param name="e"></param>
         public void DeleteAttendedPersons(object sender, EventArgs e)
         {
-            //チェック状態を取得
-            //IDを取得
+            //チェックされている人のIDを取得
             var id_list = new List<string>();
             for (int i = 0; i < PersonHolder.GetAttended().Count; i++)
             {
@@ -107,11 +107,11 @@ namespace Forest
             //参加フラグを取り消す処理を行う。
             PersonHolder.Cancel(id_list);
 
-            //参加メンバーを取得
+            //全メンバーを取得
             var allPersons = PersonHolder.GetAll();
-            //list01は一度クリアする
+            //全メンバーのリストは一度クリアする
             this.allMemberList.Rows.Clear();
-            //表示。今取り消した人は選択状態にする
+            //表示。今、参加を取り消した人は選択状態にする
             for (int i = 0; i < allPersons.Count; i++)
             {
                 bool check = false;
@@ -128,7 +128,7 @@ namespace Forest
 
             //参加メンバーを取得
             var attendedPersons = PersonHolder.GetAttended();
-            //list02は一度クリアする
+            //参加者のリストは一度クリアする
             this.attendMemberList.Rows.Clear();
             //表示
             for (int i = 0; i < attendedPersons.Count; i++)
@@ -142,16 +142,17 @@ namespace Forest
             SortByCurrentSetting(allMemberList, allMemberList.SortedColumn.Name);
             SortByCurrentSetting(attendMemberList, attendMemberList.SortedColumn.Name);
 
+            //ボタンの制御を行う
             ManageButton();
 
         }
 
         /// <summary>
-        /// List01(サークルメンバーのリスト)が操作されたときに発生するイベント
+        /// サークルメンバーのリストが操作されたときに発生するイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ManageBelongedPersonList(object sender, DataGridViewCellMouseEventArgs e)
+        public void ManageAllMemberList(object sender, DataGridViewCellMouseEventArgs e)
         {
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
             if (PersonHolder == null)
@@ -173,15 +174,16 @@ namespace Forest
                 allMemberList.CurrentRow.Cells[0].Value = true;
             }
 
+            //ボタンの制御を行う
             ManageButton();
         }
 
         /// <summary>
-        /// List02(参加者リスト)が操作されたときに発生するイベント
+        /// 参加者リストが操作されたときに発生するイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ManageAttendedPersonList(object sender, DataGridViewCellMouseEventArgs e)
+        public void ManageAttendMemberList(object sender, DataGridViewCellMouseEventArgs e)
         {
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
             if (PersonHolder == null)
@@ -203,6 +205,7 @@ namespace Forest
                 attendMemberList.CurrentRow.Cells[0].Value = true;
             }
 
+            //ボタンの制御を行う
             ManageButton();
 
         }
@@ -240,43 +243,43 @@ namespace Forest
                 startButton.Enabled = true;
             }
 
-            //List01のチェックが入っている個数を数える
-            int count1 = 0;
+            //全メンバーのリストにチェックが入っている個数を数える
+            int checkCountInAllMemberList = 0;
             for (int i = 0; i < allMemberList.RowCount; i++)
             {
                 //trueの数を数える
                 if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
                 {
-                    count1++;
+                    checkCountInAllMemberList++;
                 }
             }
 
             //trueがひとつだけであれば「変更」ボタンも押せるようになる
-            if (count1 == 1)
+            if (checkCountInAllMemberList == 1)
             {
                 updateButton.Enabled = true;
 
             }
 
             //trueが複数あれば「削除」「→」ボタンも押せるようになる
-            if (count1 >= 1)
+            if (checkCountInAllMemberList >= 1)
             {
                 attendButton.Enabled = true;
                 deleteButton.Enabled = true;
             }
 
-            //List02のチェックが入っている個数を数える
-            int count2 = 0;
+            //参加メンバーのリストのチェックが入っている個数を数える
+            int checkCountInAttendMemberList = 0;
             for (int i = 0; i < attendMemberList.RowCount; i++)
             {
                 //trueの数を数える
                 if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
                 {
-                    count2++;
+                    checkCountInAttendMemberList++;
                 }
             }
             //trueが複数あれば「←」ボタンも押せるようになる
-            if (count2 >= 1)
+            if (checkCountInAttendMemberList >= 1)
             {
                 attendCancelButton.Enabled = true;
             }
@@ -316,18 +319,18 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void addButton_Click(object sender, EventArgs e)
+        private void AddPerson(object sender, EventArgs e)
         {
             using (InputForm inputForm = new InputForm(PersonRepository, null))
             {
-                //オーナーウィンドウにthisを指定し、imputFormをモーダルダイアログとして表示
+                //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
                 inputForm.ShowDialog(this);
             }
 
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
-            //追加された人を探す
+            //新たに追加された人を探す
             var newPersons = allPersons.Except(PersonHolder.GetAll());
 
             //PersonHolderを作ってメンバーを保持させる
@@ -336,10 +339,13 @@ namespace Forest
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-
             DisplayMainWindow(newPersons);
         }
 
+        /// <summary>
+        /// MainWindowのリストとラベルを表示するためのメソッド
+        /// </summary>
+        /// <param name="checkMember">チェックボックスにチェックを入れる人のリスト</param>
         private void DisplayMainWindow(IEnumerable<Person> checkMember)
         {
             //サークルメンバーを表示
@@ -382,6 +388,7 @@ namespace Forest
             }
 
             //現在の条件でソートを行う
+            //初期ソート条件は名前の順
             var currentSettingInAllMemberList = allMemberList.SortedColumn;
             if (currentSettingInAllMemberList == null)
             {
@@ -402,10 +409,16 @@ namespace Forest
                 SortByCurrentSetting(attendMemberList, currentSettingInAttendMemberList.Name);
             }
 
+            //ボタンの制御を行う
             ManageButton();
 
         }
 
+        /// <summary>
+        /// 現在の条件でソートを行う
+        /// </summary>
+        /// <param name="targetList">ソートを行うリスト</param>
+        /// <param name="currentSetting">現在のソート対象のカラム名</param>
         void SortByCurrentSetting(DataGridView targetList, string currentSetting)
         {
             //自動的に並び替えられるようにする
@@ -421,12 +434,17 @@ namespace Forest
             targetList.Sort(sortColumn, sortDirection);
         }
 
-        private void updateButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 変更ボタンを押下したときのイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdatePerson(object sender, EventArgs e)
         {
             Person updatePerson = new Person();
             string id = "";
 
-            //チェックが入っているPersonを探す
+            //チェックが入っている人のIDを取得
             for (int i = 0; i < allMemberList.RowCount; i++)
             {
                 if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
@@ -448,14 +466,14 @@ namespace Forest
 
             using (InputForm inputForm = new InputForm(PersonRepository, updatePerson))
             {
-                //オーナーウィンドウにthisを指定し、imputFormをモーダルダイアログとして表示
+                //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
                 inputForm.ShowDialog(this);
             }
 
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
-            //変更した人の参加フラグを立て直す
+            //今、変更した人の参加フラグを立て直す
             foreach (var person in allPersons)
             {
                 if (updatePerson.ID == person.ID)
@@ -471,12 +489,16 @@ namespace Forest
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-
-            var updatePersons = new List < Person>{ updatePerson };
+            var updatePersons = new List<Person> { updatePerson };
             DisplayMainWindow(updatePersons);
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 削除ボタンを押下したときに発生するイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeletePersons(object sender, EventArgs e)
         {
             var deletePersons = new List<Person>();
             var person = new Person();
@@ -520,9 +542,9 @@ namespace Forest
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-
             DisplayMainWindow(deletePersons);
 
         }
+
     }
 }
