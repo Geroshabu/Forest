@@ -28,13 +28,13 @@ namespace Forest
         /// <summary>
         /// 新たにメンバー情報を登録する
         /// </summary>
-        /// <param name="newPerson"></param>
+        /// <param name="newPerson">新たに登録する人</param>
         /// <returns>DB登録できたかどうか</returns>
         public bool Add(Person newPerson)
         {
             try
             {
-                //new_personを登録する
+                //登録する
                 Context.Persons.Add(newPerson);
                 Context.SaveChanges();
             }
@@ -57,43 +57,43 @@ namespace Forest
         /// メンバー情報を削除する
         /// ※物理削除ではなく、フラグを立てるのみ
         /// </summary>
-        /// <param name="delete_persons"></param>
+        /// <param name="deletePersons">削除する人たち</param>
         /// <returns>削除フラグを立てた件数</returns>
-        public int Delete(List<Person> delete_persons)
+        public int Delete(List<Person> deletePersons)
         {
             //削除した件数
-            int delete_num = 0;
+            int deleteNum = 0;
 
-            foreach (var person in delete_persons)
+            foreach (var person in deletePersons)
             {
                 try
                 {
                     //削除したい人のIDと一致する人をDBから探す
-                    var target_person = Context.Persons.Where(x => x.ID == person.ID).FirstOrDefault();
+                    var targetPerson = Context.Persons.Where(x => x.ID == person.ID).FirstOrDefault();
 
-                    //対応メンバーのdelete_flagをtrueにして、削除件数に1を足す
-                    if (target_person != null)
+                    //対応メンバーの削除フラグをtrueにして、削除件数に1を足す
+                    if (targetPerson != null)
                     {
-                        target_person.DeleteFlag = true;
+                        targetPerson.DeleteFlag = true;
                         Context.SaveChanges();
-                        delete_num++;
+                        deleteNum++;
                     }
                     else
                     {
                         //対応するIDの人がいなかったとき
-                        return -1;
+                        return (-1);
                     }
                 }
                 //DB接続中にエラーが起きたとき
                 catch (DbUpdateException e)
                 {
                     Console.WriteLine(e.Message);
-                    return -1;
+                    return (-1);
                 }
 
             }
 
-            return delete_num;
+            return deleteNum;
 
         }
 
