@@ -16,6 +16,12 @@ namespace Forest
             InitializeComponent();
         }
 
+        public MainWindow(PersonHolder personHolder)
+        {
+            InitializeComponent();
+            PersonHolder = personHolder;
+        }
+
         /// <summary>
         /// MainWindowロードの際にメンバー全員のデータを取得し、
         /// PersonHolderクラスに情報を保持しておく
@@ -29,8 +35,11 @@ namespace Forest
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
-            //PersonHolderを作ってメンバーを保持させる
-            PersonHolder = new PersonHolder(allPersons);
+            if(PersonHolder == null)
+            {
+                //PersonHolderを作ってメンバーを保持させる
+                PersonHolder = new PersonHolder(allPersons);
+            }
 
             //表示する
             DisplayMainWindow(new List<Person>());
@@ -546,5 +555,29 @@ namespace Forest
 
         }
 
+        /// <summary>
+        /// 試合開始ボタンが押下されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StartGame(object sender, EventArgs e)
+        {
+            //コート数は暫定二つ
+            int courtNum = 2;
+
+            //練習に参加するメンバー
+            var attendMember = PersonHolder.GetAttended();
+
+            //RamdomGeneratorを読んで、試合を決めてもらう
+            IGameGenerator gameGenerator = new RandomGenerator();
+            var breakPersons = new List<Person>();
+            Game[] game = gameGenerator.Generate(courtNum, PersonHolder.GetAttended(), out breakPersons);
+
+            //試合の組み合わせ結果を表示する（今の画面は非表示にする）
+            GameWindow gameWindow = new GameWindow(game, breakPersons,PersonHolder);
+            gameWindow.Show();
+            this.Visible = false;
+
+        }
     }
 }

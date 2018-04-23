@@ -256,6 +256,7 @@
             this.startButton.TabIndex = 10;
             this.startButton.Text = "試合開始";
             this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.StartGame);
             // 
             // MainWindow
             // 
