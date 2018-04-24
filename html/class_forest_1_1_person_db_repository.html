@@ -94,9 +94,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Forest.PersonDbRepository Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>DbContext クラスを継承したクラス  
- <a href="class_forest_1_1_person_db_repository.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Forest.PersonDbRepository:</div>
 <div class="dyncontent">
@@ -120,25 +117,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a50b09022a507818afa1c9f86924bdb82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7828057258c8d7beb6d73792543c812"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#ad7828057258c8d7beb6d73792543c812">PersonDbRepository</a> (<a class="el" href="class_forest_1_1_person_context.html">PersonContext</a> context)</td></tr>
 <tr class="separator:ad7828057258c8d7beb6d73792543c812"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a560df0be6c090daf0788d4f991c05fe8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#a560df0be6c090daf0788d4f991c05fe8">Add</a> (<a class="el" href="class_forest_1_1_person.html">Person</a> new_person)</td></tr>
-<tr class="memdesc:a560df0be6c090daf0788d4f991c05fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">【実装中】新たにメンバー情報を登録する  <a href="#a560df0be6c090daf0788d4f991c05fe8">More...</a><br /></td></tr>
-<tr class="separator:a560df0be6c090daf0788d4f991c05fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeddb7ee72cd6421d46fac01ff579dc04"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#aeddb7ee72cd6421d46fac01ff579dc04">Delete</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; delete_persons)</td></tr>
-<tr class="memdesc:aeddb7ee72cd6421d46fac01ff579dc04"><td class="mdescLeft">&#160;</td><td class="mdescRight">【実装中】メンバー情報を削除する ※物理削除ではなく、フラグを立てるのみ  <a href="#aeddb7ee72cd6421d46fac01ff579dc04">More...</a><br /></td></tr>
-<tr class="separator:aeddb7ee72cd6421d46fac01ff579dc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaedf07b257a308f76929f453fe01d9e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#aaedf07b257a308f76929f453fe01d9e9">Add</a> (<a class="el" href="class_forest_1_1_person.html">Person</a> newPerson)</td></tr>
+<tr class="memdesc:aaedf07b257a308f76929f453fe01d9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">新たにメンバー情報を登録する  <a href="#aaedf07b257a308f76929f453fe01d9e9">More...</a><br /></td></tr>
+<tr class="separator:aaedf07b257a308f76929f453fe01d9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f4fe62ee38507b672ccec9082330f16"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#a6f4fe62ee38507b672ccec9082330f16">Delete</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; deletePersons)</td></tr>
+<tr class="memdesc:a6f4fe62ee38507b672ccec9082330f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">メンバー情報を削除する ※物理削除ではなく、フラグを立てるのみ  <a href="#a6f4fe62ee38507b672ccec9082330f16">More...</a><br /></td></tr>
+<tr class="separator:a6f4fe62ee38507b672ccec9082330f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61dfb90be623cb8916651f2f6920383"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#ad61dfb90be623cb8916651f2f6920383">Get</a> ()</td></tr>
+<tr class="memdesc:ad61dfb90be623cb8916651f2f6920383"><td class="mdescLeft">&#160;</td><td class="mdescRight">削除されていない全メンバー情報を取得する  <a href="#ad61dfb90be623cb8916651f2f6920383">More...</a><br /></td></tr>
+<tr class="separator:ad61dfb90be623cb8916651f2f6920383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4803f9385f7a60a4e4e697af7f15308"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#ab4803f9385f7a60a4e4e697af7f15308">GetAll</a> ()</td></tr>
-<tr class="memdesc:ab4803f9385f7a60a4e4e697af7f15308"><td class="mdescLeft">&#160;</td><td class="mdescRight">削除されていない全メンバー情報を取得する  <a href="#ab4803f9385f7a60a4e4e697af7f15308">More...</a><br /></td></tr>
+<tr class="memdesc:ab4803f9385f7a60a4e4e697af7f15308"><td class="mdescLeft">&#160;</td><td class="mdescRight">削除しているメンバーも含めて全メンバー情報を取得する  <a href="#ab4803f9385f7a60a4e4e697af7f15308">More...</a><br /></td></tr>
 <tr class="separator:ab4803f9385f7a60a4e4e697af7f15308"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7356a48622917fc6f157f4ee62a3c9b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#a7356a48622917fc6f157f4ee62a3c9b9">Update</a> (<a class="el" href="class_forest_1_1_person.html">Person</a> update_person)</td></tr>
-<tr class="memdesc:a7356a48622917fc6f157f4ee62a3c9b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">【実装中】メンバー情報を変更する  <a href="#a7356a48622917fc6f157f4ee62a3c9b9">More...</a><br /></td></tr>
-<tr class="separator:a7356a48622917fc6f157f4ee62a3c9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95ca8a5ffe719fb8e003d0a7e196c3b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#a95ca8a5ffe719fb8e003d0a7e196c3b9">ShowDBError</a> ()</td></tr>
-<tr class="memdesc:a95ca8a5ffe719fb8e003d0a7e196c3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">【たぶんいらない】ここで画面を出さない  <a href="#a95ca8a5ffe719fb8e003d0a7e196c3b9">More...</a><br /></td></tr>
-<tr class="separator:a95ca8a5ffe719fb8e003d0a7e196c3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbbd6e63e7c4625f36460501deccec95"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_person_db_repository.html#acbbd6e63e7c4625f36460501deccec95">Update</a> (<a class="el" href="class_forest_1_1_person.html">Person</a> updatePerson)</td></tr>
+<tr class="memdesc:acbbd6e63e7c4625f36460501deccec95"><td class="mdescLeft">&#160;</td><td class="mdescRight">メンバー情報を変更する  <a href="#acbbd6e63e7c4625f36460501deccec95">More...</a><br /></td></tr>
+<tr class="separator:acbbd6e63e7c4625f36460501deccec95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>DbContext クラスを継承したクラス </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a50b09022a507818afa1c9f86924bdb82"></a>
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +182,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a560df0be6c090daf0788d4f991c05fe8"></a>
+<a class="anchor" id="aaedf07b257a308f76929f453fe01d9e9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -198,7 +193,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">bool Forest.PersonDbRepository.Add </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_forest_1_1_person.html">Person</a>&#160;</td>
-          <td class="paramname"><em>new_person</em></td><td>)</td>
+          <td class="paramname"><em>newPerson</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -209,10 +204,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>【実装中】新たにメンバー情報を登録する </p>
+<p>新たにメンバー情報を登録する </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">new_person</td><td></td></tr>
+    <tr><td class="paramname">newPerson</td><td>新たに登録する人</td></tr>
   </table>
   </dd>
 </dl>
@@ -222,7 +217,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeddb7ee72cd6421d46fac01ff579dc04"></a>
+<a class="anchor" id="a6f4fe62ee38507b672ccec9082330f16"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -233,7 +228,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">int Forest.PersonDbRepository.Delete </td>
           <td>(</td>
           <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
-          <td class="paramname"><em>delete_persons</em></td><td>)</td>
+          <td class="paramname"><em>deletePersons</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -244,16 +239,44 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>【実装中】メンバー情報を削除する ※物理削除ではなく、フラグを立てるのみ </p>
+<p>メンバー情報を削除する ※物理削除ではなく、フラグを立てるのみ </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delete_persons</td><td></td></tr>
+    <tr><td class="paramname">deletePersons</td><td>削除する人たち</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>削除フラグを立てた件数</dd></dl>
 
 <p>Implements <a class="el" href="interface_forest_1_1_i_person_repository.html#a3fb5d3b3c89b6a8006ebeeec5857302b">Forest.IPersonRepository</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad61dfb90be623cb8916651f2f6920383"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_forest_1_1_person.html">Person</a>&gt; Forest.PersonDbRepository.Get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>削除されていない全メンバー情報を取得する </p>
+<dl class="section return"><dt>Returns</dt><dd>DBに登録されているメンバーのリスト</dd></dl>
+
+<p>Implements <a class="el" href="interface_forest_1_1_i_person_repository.html#a755ec041802173c1c97b54ded8aa67e4">Forest.IPersonRepository</a>.</p>
 
 </div>
 </div>
@@ -278,39 +301,14 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>削除されていない全メンバー情報を取得する </p>
-<dl class="section return"><dt>Returns</dt><dd>DBに登録されているメンバーのリスト</dd></dl>
+<p>削除しているメンバーも含めて全メンバー情報を取得する </p>
+<dl class="section return"><dt>Returns</dt><dd>DBに登録されている全メンバーのリスト</dd></dl>
 
 <p>Implements <a class="el" href="interface_forest_1_1_i_person_repository.html#a9d237e6bc805f1c3bee4d48b8e2d6172">Forest.IPersonRepository</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a95ca8a5ffe719fb8e003d0a7e196c3b9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Forest.PersonDbRepository.ShowDBError </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>【たぶんいらない】ここで画面を出さない </p>
-
-</div>
-</div>
-<a class="anchor" id="a7356a48622917fc6f157f4ee62a3c9b9"></a>
+<a class="anchor" id="acbbd6e63e7c4625f36460501deccec95"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -321,7 +319,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">bool Forest.PersonDbRepository.Update </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_forest_1_1_person.html">Person</a>&#160;</td>
-          <td class="paramname"><em>update_person</em></td><td>)</td>
+          <td class="paramname"><em>updatePerson</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -332,10 +330,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>【実装中】メンバー情報を変更する </p>
+<p>メンバー情報を変更する </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">update_person</td><td></td></tr>
+    <tr><td class="paramname">updatePerson</td><td>変更内容</td></tr>
   </table>
   </dd>
 </dl>
@@ -346,7 +344,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>source/Forest/<a class="el" href="_person_db_repository_8cs.html">PersonDbRepository.cs</a></li>
+<li>C:/projects/Forest/source/Forest/<a class="el" href="_person_db_repository_8cs.html">PersonDbRepository.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

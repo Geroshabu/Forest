@@ -102,14 +102,17 @@ Inheritance diagram for Forest.IPersonRepository:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_forest_1_1_i_person_repository__inherit__graph.png" border="0" usemap="#_forest_8_i_person_repository_inherit__map" alt="Inheritance graph"/></div>
 <map name="_forest_8_i_person_repository_inherit__map" id="_forest_8_i_person_repository_inherit__map">
-<area shape="rect" id="node2" href="class_forest_1_1_person_db_repository.html" title="DbContext クラスを継承したクラス " alt="" coords="5,80,188,107"/>
+<area shape="rect" id="node2" href="class_forest_1_1_person_db_repository.html" title="Forest.PersonDbRepository" alt="" coords="5,80,188,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a755ec041802173c1c97b54ded8aa67e4"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_person_repository.html#a755ec041802173c1c97b54ded8aa67e4">Get</a> ()</td></tr>
+<tr class="memdesc:a755ec041802173c1c97b54ded8aa67e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">削除されていない全メンバー情報を取得する  <a href="#a755ec041802173c1c97b54ded8aa67e4">More...</a><br /></td></tr>
+<tr class="separator:a755ec041802173c1c97b54ded8aa67e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d237e6bc805f1c3bee4d48b8e2d6172"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_person_repository.html#a9d237e6bc805f1c3bee4d48b8e2d6172">GetAll</a> ()</td></tr>
-<tr class="memdesc:a9d237e6bc805f1c3bee4d48b8e2d6172"><td class="mdescLeft">&#160;</td><td class="mdescRight">削除されていない全メンバー情報を取得する  <a href="#a9d237e6bc805f1c3bee4d48b8e2d6172">More...</a><br /></td></tr>
+<tr class="memdesc:a9d237e6bc805f1c3bee4d48b8e2d6172"><td class="mdescLeft">&#160;</td><td class="mdescRight">削除されているメンバーも含めて全メンバー情報を取得する  <a href="#a9d237e6bc805f1c3bee4d48b8e2d6172">More...</a><br /></td></tr>
 <tr class="separator:a9d237e6bc805f1c3bee4d48b8e2d6172"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaeed8c3783f3214143cb6a11142e8f31"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_person_repository.html#aaeed8c3783f3214143cb6a11142e8f31">Add</a> (<a class="el" href="class_forest_1_1_person.html">Person</a> newPerson)</td></tr>
 <tr class="memdesc:aaeed8c3783f3214143cb6a11142e8f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">新たにメンバー情報を登録する  <a href="#aaeed8c3783f3214143cb6a11142e8f31">More...</a><br /></td></tr>
@@ -147,7 +150,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>登録できたかどうか</dd></dl>
 
-<p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#a560df0be6c090daf0788d4f991c05fe8">Forest.PersonDbRepository</a>.</p>
+<p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#aaedf07b257a308f76929f453fe01d9e9">Forest.PersonDbRepository</a>.</p>
 
 </div>
 </div>
@@ -174,7 +177,27 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>削除した件数</dd></dl>
 
-<p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#aeddb7ee72cd6421d46fac01ff579dc04">Forest.PersonDbRepository</a>.</p>
+<p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#a6f4fe62ee38507b672ccec9082330f16">Forest.PersonDbRepository</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a755ec041802173c1c97b54ded8aa67e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_forest_1_1_person.html">Person</a>&gt; Forest.IPersonRepository.Get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>削除されていない全メンバー情報を取得する </p>
+<dl class="section return"><dt>Returns</dt><dd>削除されていない全メンバーの情報（List&lt;Person&gt;型）</dd></dl>
+
+<p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#ad61dfb90be623cb8916651f2f6920383">Forest.PersonDbRepository</a>.</p>
 
 </div>
 </div>
@@ -191,8 +214,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>削除されていない全メンバー情報を取得する </p>
-<dl class="section return"><dt>Returns</dt><dd>削除されていない全メンバーの情報（List&lt;Person&gt;型）</dd></dl>
+<p>削除されているメンバーも含めて全メンバー情報を取得する </p>
+<dl class="section return"><dt>Returns</dt><dd>全メンバーの情報（List&lt;Person&gt;型）</dd></dl>
 
 <p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#ab4803f9385f7a60a4e4e697af7f15308">Forest.PersonDbRepository</a>.</p>
 
@@ -221,12 +244,12 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>変更できたかどうか</dd></dl>
 
-<p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#a7356a48622917fc6f157f4ee62a3c9b9">Forest.PersonDbRepository</a>.</p>
+<p>Implemented in <a class="el" href="class_forest_1_1_person_db_repository.html#acbbd6e63e7c4625f36460501deccec95">Forest.PersonDbRepository</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
-<li>source/Forest/<a class="el" href="_i_person_repository_8cs.html">IPersonRepository.cs</a></li>
+<li>C:/projects/Forest/source/Forest/<a class="el" href="_i_person_repository_8cs.html">IPersonRepository.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

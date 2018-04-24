@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ipersonrepository',['IPersonRepository',['../interface_forest_1_1_i_person_repository.html',1,'Forest']]]
+  ['deletecheckdialog',['DeleteCheckDialog',['../class_forest_1_1_delete_check_dialog.html',1,'Forest']]]
 ];
