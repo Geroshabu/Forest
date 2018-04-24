@@ -204,6 +204,7 @@
             this.Controls.Add(this.panelGender);
             this.Controls.Add(this.panelLevel);
             this.Name = "InputForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "メンバー情報入力";
             this.Load += new System.EventHandler(this.LoadInputForm);
             this.panelGender.ResumeLayout(false);

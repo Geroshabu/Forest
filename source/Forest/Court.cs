@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Forest
+﻿namespace Forest
 {
-    /// <summary>
-    /// Court型を定義するクラス
-    /// </summary>
     public class Court
     {
         /// <summary>

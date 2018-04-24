@@ -125,6 +125,7 @@
             this.Controls.Add(this.deleteMemberList);
             this.Controls.Add(this.labelDeleteMessage);
             this.Name = "DeleteCheckDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeleteCheckDialog";
             this.Load += new System.EventHandler(this.LoadDeleteCheckDialog);
             ((System.ComponentModel.ISupportInitialize)(this.deleteMemberList)).EndInit();

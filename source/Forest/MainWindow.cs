@@ -571,16 +571,21 @@ namespace Forest
             //RamdomGeneratorを読んで、試合を決めてもらう
             IGameGenerator gameGenerator = new RandomGenerator();
             var breakPersons = new List<Person>();
-            Game[] game = gameGenerator.Generate(courtNum, PersonHolder.GetAttended(), out breakPersons);
+            Game[] game = gameGenerator.Generate(courtNum, attendMember, out breakPersons);
 
-            //試合の組み合わせ結果を表示する（今の画面は非表示にする）
+            //試合の組み合わせ結果を表示する
             GameWindow gameWindow = new GameWindow(game, breakPersons,PersonHolder);
             gameWindow.Show();
             this.Visible = false;
 
         }
 
-        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        /// <summary>
+        /// フォームが閉じる直前に発生するイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClosingMainWindow(object sender, FormClosingEventArgs e)
         {
             //アプリケーションを終了する
             Application.Exit(); 

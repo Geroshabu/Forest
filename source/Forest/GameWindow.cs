@@ -7,8 +7,11 @@ namespace Forest
 {
     public partial class GameWindow : Form
     {
+        //試合の詳細が入った配列
         Game[] Games;
+        //休憩する人たち
         List<Person> BreakPersons;
+
         PersonHolder PersonHolder;
 
         public GameWindow(Game[] games, List<Person> breakPersons, PersonHolder personHolder)
@@ -19,7 +22,7 @@ namespace Forest
             PersonHolder = personHolder;
         }
 
-        private void GameWindow_Load(object sender, EventArgs e)
+        private void LoadGameWindow(object sender, EventArgs e)
         {
             //描画先とするImageオブジェクトを作成する
             Bitmap canvas = new Bitmap(resultPictureBox.Width, resultPictureBox.Height);
@@ -29,7 +32,7 @@ namespace Forest
             //Penオブジェクトの作成
             Pen black_pen = new Pen(Color.Black, 2);
 
-            //コートを表示する
+            //コート（二つ）を表示する
             //penで四角と線をかく
             graphics.DrawRectangle(black_pen, 20, 80, 100, 200);
             graphics.DrawLine(black_pen, 20, 180, 120, 180);
@@ -41,24 +44,25 @@ namespace Forest
 
             //コート名
             courtNameLabel1.Text = Games[0].Court.CourtName;
-            //組み合わせ結果を表示する
+            //組み合わせ結果
             playerNameLabel1.Text = Games[0].Player1[0].Name;
             playerNameLabel2.Text = Games[0].Player2[0].Name;
 
+            //人が入って入れば表示する
             if ((Games[1].Player1[0] != null) && (Games[1].Player2[0] != null))
             {
                 //コート名
                 courtNameLabel2.Text = Games[1].Court.CourtName;
-                //組み合わせ結果を表示する
+                //組み合わせ結果
                 playerNameLabel3.Text = Games[1].Player1[0].Name;
                 playerNameLabel4.Text = Games[1].Player2[0].Name;
             }
             //人が入っていないコートは空欄にする
             else
             {
-                //コート名
+                //コート名を空欄にする
                 courtNameLabel2.Text = "";
-                //組み合わせ結果
+                //組み合わせ結果を空欄にする
                 playerNameLabel3.Text = "";
                 playerNameLabel4.Text = "";
             }
@@ -72,12 +76,15 @@ namespace Forest
 
         }
 
-        private void endGameButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 試合終了ボタンが押下されたときに発生するイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EndGame(object sender, EventArgs e)
         {
-            //todo メイン画面を表示する
+            //メイン画面を表示する
             MainWindow mainWindow = new MainWindow(PersonHolder);
-
-            //メイン画面を表示
             mainWindow.Show();
             this.Visible = false;
 

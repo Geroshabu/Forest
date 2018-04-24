@@ -2,10 +2,6 @@
 
 namespace Forest
 {
-    /// <summary>
-    /// Gender型を定義するクラス。
-    /// ToString()をオーバーライドしている。
-    /// </summary>
     public class Gender : IEquatable<Gender> , IComparable
     {
         /// <summary>

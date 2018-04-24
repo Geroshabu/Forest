@@ -275,8 +275,9 @@
             this.Controls.Add(this.attendMemberLabel);
             this.Controls.Add(this.memberLabel);
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "コート分けアプリ　参加メンバー登録";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClosingMainWindow);
             this.Load += new System.EventHandler(this.MainWindowLoad);
             ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).EndInit();
