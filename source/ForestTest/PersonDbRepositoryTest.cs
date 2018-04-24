@@ -166,7 +166,7 @@ namespace ForestTest
         }
 
         [Trait("分類", "異常系")]
-        [Fact(DisplayName = "対応するIDの人がいないときは-1が返ることを確認する")]
+        [Fact(DisplayName = "対応するIDの人がいないときはそれまでに削除した件数が返ることを確認する")]
         public void DeleteTest02()
         {
             using (Context)
@@ -207,7 +207,7 @@ namespace ForestTest
 
                 //Assert
                 //-1が返っているかどうか
-                int expected = -1;
+                int expected = 0;
                 Assert.Equal(expected, actual);
 
             }

@@ -9,7 +9,7 @@ namespace ForestTest
         /// <summary>
         /// ToStringメソッドのテスト
         /// </summary>
-        [Theory(DisplayName = "値によって男か女を正常に返すことを確認する")]
+        [Theory(DisplayName = "ToString()のテスト")]
         [InlineData(0, "男")]
         [InlineData(1, "女")]
         [Trait("分類", "正常系")]
@@ -19,7 +19,7 @@ namespace ForestTest
             Assert.Equal(expectedText, gender.ToString());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（等しいとき）")]
         public void EqualsGenderTest1()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -28,7 +28,7 @@ namespace ForestTest
             Assert.True(gender1.Equals(gender2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（異なるとき）")]
         public void EqualsGenderTest2()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -37,7 +37,7 @@ namespace ForestTest
             Assert.False(gender1.Equals(gender2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（nullのとき）")]
         public void EqualsGenderTest3()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -45,7 +45,7 @@ namespace ForestTest
             Assert.False(gender1.Equals(null));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（等しいとき）")]
         public void EqualsObjectTest1()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -54,7 +54,7 @@ namespace ForestTest
             Assert.True(gender1.Equals((object)gender2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（異なるとき）")]
         public void EqualsObjectTest2()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -63,7 +63,7 @@ namespace ForestTest
             Assert.False(gender1.Equals((object)gender2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（nullのとき）")]
         public void EqualsObjectTest3()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -71,7 +71,7 @@ namespace ForestTest
             Assert.False(gender1.Equals((object)null));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（異なる型のとき）")]
         public void EqualsObjectTest4()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -81,7 +81,7 @@ namespace ForestTest
         }
 
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（等しいとき）")]
         public void OperatorTest01()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -90,7 +90,7 @@ namespace ForestTest
             Assert.True(gender1 == gender2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（異なるとき）")]
         public void OperatorTest02()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -99,7 +99,7 @@ namespace ForestTest
             Assert.False(gender1 == gender2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（nullのとき）")]
         public void OperatorTest03()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -107,7 +107,7 @@ namespace ForestTest
             Assert.False(gender1 == null);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（nullのとき）")]
         public void OperatorTest04()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -115,14 +115,13 @@ namespace ForestTest
             Assert.False(null == gender1);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（nullのとき）")]
         public void OparatorTest05()
         {
             Assert.True((Gender)null == null);
         }
 
-
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（等しいとき）")]
         public void OperatorTest06()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -131,7 +130,7 @@ namespace ForestTest
             Assert.False(gender1 != gender2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（異なるとき）")]
         public void OperatorTest07()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -140,7 +139,7 @@ namespace ForestTest
             Assert.True(gender1 != gender2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（nullのとき）")]
         public void OperatorTest08()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -148,7 +147,7 @@ namespace ForestTest
             Assert.True(gender1 != null);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（nullのとき）")]
         public void OperatorTest09()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -156,13 +155,13 @@ namespace ForestTest
             Assert.True(null != gender1);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（nullのとき）")]
         public void OparatorTest10()
         {
             Assert.False((Gender)null != null);
         }
 
-        [Fact]
+        [Fact(DisplayName = "GetHashCode()のテスト")]
         public void GetHashCodeTest()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -171,7 +170,7 @@ namespace ForestTest
             Assert.True(gender1 == gender2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "CompareTo()のテスト（nullのとき）")]
         public void CompareToTest01()
         {
             var gender1 = new Gender { GenderNum = 1 };
@@ -180,7 +179,7 @@ namespace ForestTest
             Assert.Equal(expected,actual);
         }
 
-        [Fact]
+        [Fact(DisplayName = "CompareTo()のテスト（異なるとき）")]
         public void CompareToTest02()
         {
             var gender1 = new Gender { GenderNum = 0 };

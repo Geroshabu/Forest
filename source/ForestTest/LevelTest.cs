@@ -7,7 +7,7 @@ namespace ForestTest
 
     public class LevelTest
     {
-        [Theory]
+        [Theory(DisplayName = "ToString()のテスト")]
         [InlineData(0, "初級者")]
         [InlineData(1, "中級者")]
         [InlineData(2, "上級者")]
@@ -17,8 +17,7 @@ namespace ForestTest
             Assert.Equal(expectedText, level.ToString());
         }
 
-
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（等しいとき）")]
         public void EqualsLevelTest1()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -27,7 +26,7 @@ namespace ForestTest
             Assert.True(level1.Equals(level2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（等しくないとき）")]
         public void EqualsLevelTest2()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -36,7 +35,7 @@ namespace ForestTest
             Assert.False(level1.Equals(level2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（引数がnullのとき）")]
         public void EqualsLevelTest3()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -44,7 +43,7 @@ namespace ForestTest
             Assert.False(level1.Equals(null));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（等しいとき）")]
         public void EqualsObjectTest1()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -53,7 +52,7 @@ namespace ForestTest
             Assert.True(level1.Equals((object)level2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（等しくないとき）")]
         public void EqualsObjectTest2()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -62,7 +61,7 @@ namespace ForestTest
             Assert.False(level1.Equals((object)level2));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（引数がnullのとき）")]
         public void EqualsObjectTest3()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -70,7 +69,7 @@ namespace ForestTest
             Assert.False(level1.Equals((object)null));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Equalsのテスト（引数が異なる型のとき）")]
         public void EqualsObjectTest4()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -79,8 +78,7 @@ namespace ForestTest
             Assert.False(level1.Equals(other1));
         }
 
-
-        [Fact]
+        [Fact(DisplayName = "==のテスト（等しいとき）")]
         public void OperatorTest01()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -89,7 +87,7 @@ namespace ForestTest
             Assert.True(level1 == level2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（異なるとき）")]
         public void OperatorTest02()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -98,7 +96,7 @@ namespace ForestTest
             Assert.False(level1 == level2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（nullとき）")]
         public void OperatorTest03()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -106,7 +104,7 @@ namespace ForestTest
             Assert.False(level1 == null);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（nullのとき）")]
         public void OperatorTest04()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -114,14 +112,13 @@ namespace ForestTest
             Assert.False(null == level1);
         }
 
-        [Fact]
+        [Fact(DisplayName = "==のテスト（両方ともnullのとき）")]
         public void OparatorTest05()
         {
             Assert.True((Level)null == null);
         }
 
-
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（等しいとき）")]
         public void OperatorTest06()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -130,7 +127,7 @@ namespace ForestTest
             Assert.False(level1 != level2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（異なるとき）")]
         public void OperatorTest07()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -139,7 +136,7 @@ namespace ForestTest
             Assert.True(level1 != level2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（nullのとき）")]
         public void OperatorTest08()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -147,7 +144,7 @@ namespace ForestTest
             Assert.True(level1 != null);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（nullのとき）")]
         public void OperatorTest09()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -155,13 +152,13 @@ namespace ForestTest
             Assert.True(null != level1);
         }
 
-        [Fact]
+        [Fact(DisplayName = "!=のテスト（両方ともnullのとき）")]
         public void OparatorTest10()
         {
             Assert.False((Level)null != null);
         }
 
-        [Fact]
+        [Fact(DisplayName = "GetHashCode()のテスト")]
         public void GetHashCodeTest()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -170,7 +167,7 @@ namespace ForestTest
             Assert.True(level1 == level2);
         }
 
-        [Fact]
+        [Fact(DisplayName = "CompareTo()のテスト（nullのとき）")]
         public void CompareToTest01()
         {
             var level1 = new Level { LevelNum = 1 };
@@ -179,7 +176,7 @@ namespace ForestTest
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
+        [Fact(DisplayName = "CompareTo()のテスト（異なるとき）")]
         public void CompareToTest02()
         {
             var level1 = new Level { LevelNum = 0 };
