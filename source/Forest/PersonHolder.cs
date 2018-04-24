@@ -15,7 +15,7 @@ namespace Forest
         public PersonHolder(IReadOnlyList<Person> persons)
         {
             //引数のリストをそのままにコピー
-            foreach (var target in Persons = persons.ToList()) { }
+            Persons = persons.ToList();
         }
 
         /// <summary>
@@ -69,12 +69,8 @@ namespace Forest
         /// <returns>削除されていないメンバー全員のリスト</returns>
         public List<Person> GetAll()
         {
-            //削除されていないメンバー全員
-            var notDeletedPersons = new List<Person>();
-
-            //リストに入れて返す
-            foreach (Person target in notDeletedPersons = Persons.Where(x => !(x.DeleteFlag)).ToList()) { }
-            return notDeletedPersons;
+            //削除されていないメンバー全員をリストに入れて返す
+            return Persons.Where(x => !(x.DeleteFlag)).ToList();
         }
 
         /// <summary>
@@ -84,11 +80,8 @@ namespace Forest
         public List<Person> GetAttended()
         {
             //削除されていないかつ練習に参加するメンバー全員
-            var attendedPersons = new List<Person>();
-
             //削除されていないメンバーの中から参加フラグが立っているメンバーをリストに追加して返す
-            foreach (Person target in attendedPersons = GetAll().Where(x => x.AttendFlag).ToList()) { }
-            return attendedPersons;
+            return GetAll().Where(x => x.AttendFlag).ToList();
         }
 
     }
