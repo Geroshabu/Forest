@@ -103,11 +103,8 @@ namespace Forest
         /// <returns>DBに登録されているメンバーのリスト</returns>
         public List<Person> Get()
         {
-            //取得したメンバー情報を入れるためのリスト
-            var persons = new List<Person>();
-            //一行ずつ読んでpersonsリストに入れて返す
-            foreach (var person in persons = Context.Persons.Where(x => !(x.DeleteFlag)).ToList()) { }
-            return persons;
+            //取得したメンバー情報を返す
+            return Context.Persons.Where(x => !(x.DeleteFlag)).ToList();
         }
 
         /// <summary>
@@ -116,11 +113,8 @@ namespace Forest
         /// <returns>DBに登録されている全メンバーのリスト</returns>
         public List<Person> GetAll()
         {
-            //取得したメンバー情報を入れるためのリスト
-            var persons = new List<Person>();
-            //一行ずつ読んでpersonsリストに入れて返す
-            foreach (var person in persons = Context.Persons.ToList()) { }
-            return persons;
+            //取得したメンバー情報を返す
+            return Context.Persons.ToList();
         }
 
         /// <summary>
