@@ -579,5 +579,11 @@ namespace Forest
             this.Visible = false;
 
         }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //アプリケーションを終了する
+            Application.Exit(); 
+        }
     }
 }
