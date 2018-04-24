@@ -75,24 +75,22 @@ namespace Forest
                     if (targetPerson != null)
                     {
                         targetPerson.DeleteFlag = true;
-                        Context.SaveChanges();
                         deleteNum++;
                     }
                     else
                     {
                         //対応するIDの人がいなかったとき
-                        return (-1);
                     }
                 }
                 //DB接続中にエラーが起きたとき
                 catch (DbUpdateException e)
                 {
                     Console.WriteLine(e.Message);
-                    return (-1);
                 }
 
             }
 
+            Context.SaveChanges();
             return deleteNum;
 
         }
