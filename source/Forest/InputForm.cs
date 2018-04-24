@@ -193,32 +193,31 @@ namespace Forest
         {
             registerButton.Enabled = false;
 
-            //チェック項目のカウント
-            //全部で3項目あるから、値が3になれば
-            int checkCount = 0;
-
             //名前が1文字以上20文字以内で入力されていればOK
             if ((CountText(nameTextBox.Text)) >= 1 && (CountText(nameTextBox.Text)) <= 20)
+            { }
+            else
             {
-                checkCount++;
+                return;
             }
 
             //男女どちらかが選択されていれば押下OK
             if (radioButtonMale.Checked || radioButtonFemale.Checked)
+            { }
+            else
             {
-                checkCount++;
+                return;
             }
 
             //レベルのどれかが押下されていればOK
             if (radioButtonBeginner.Checked || radioButtonIntermediate.Checked || radioButtonSenior.Checked)
+            { }
+            else
             {
-                checkCount++;
+                return;
             }
 
-            if (checkCount == 3)
-            {
-                registerButton.Enabled = true;
-            }
+            registerButton.Enabled = true;
 
         }
 
