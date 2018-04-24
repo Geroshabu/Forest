@@ -24,8 +24,6 @@ namespace Forest
 
         private void LoadDeleteCheckDialog(object sender, EventArgs e)
         {
-            labelDeleteMessage.Text = "以下のメンバーを削除してよろしいですか？";
-
             //削除される人たちをリストに表示する
             foreach (Person person in DeletePersons)
             {

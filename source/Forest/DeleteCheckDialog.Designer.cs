@@ -45,9 +45,9 @@
             this.labelDeleteMessage.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDeleteMessage.Location = new System.Drawing.Point(26, 9);
             this.labelDeleteMessage.Name = "labelDeleteMessage";
-            this.labelDeleteMessage.Size = new System.Drawing.Size(64, 19);
+            this.labelDeleteMessage.Size = new System.Drawing.Size(258, 19);
             this.labelDeleteMessage.TabIndex = 0;
-            this.labelDeleteMessage.Text = "メッセージ";
+            this.labelDeleteMessage.Text = "以下のメンバーを削除してよろしいですか？";
             // 
             // deleteMemberList
             // 
