@@ -18,22 +18,31 @@ namespace Forest
         //変更なのか、追加なのか
         Order CurrentOrder;
 
+        /// <summary>
+        /// 変更時に用いるコンストラクタ
+        /// </summary>
+        /// <param name="personRepository">インスタンス</param>
+        /// <param name="person">変更情報</param>
         public InputForm(IPersonRepository personRepository, Person person)
         {
             InitializeComponent();
 
             PersonRepository = personRepository;
             Person = person;
-            //追加なのか、変更なのかを判断
-            if (Person == null)
-            {
-                CurrentOrder = Order.Add;
-                Person = new Person();
-            }
-            else
-            {
-                CurrentOrder = Order.Update;
-            }
+            CurrentOrder = Order.Update;
+        }
+
+        /// <summary>
+        /// 追加時に用いるコンストラクタ
+        /// </summary>
+        /// <param name="personRepository">インスタンス</param>
+        public InputForm(IPersonRepository personRepository)
+        {
+            InitializeComponent();
+
+            PersonRepository = personRepository;
+            CurrentOrder = Order.Add;
+            Person = new Person();
         }
 
         /// <summary>

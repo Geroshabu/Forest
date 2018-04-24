@@ -330,7 +330,7 @@ namespace Forest
         /// <param name="e"></param>
         private void AddPerson(object sender, EventArgs e)
         {
-            using (InputForm inputForm = new InputForm(PersonRepository, null))
+            using (InputForm inputForm = new InputForm(PersonRepository))
             {
                 //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
                 inputForm.ShowDialog(this);
