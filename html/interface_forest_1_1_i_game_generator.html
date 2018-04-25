@@ -89,6 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="interface_forest_1_1_i_game_generator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Forest.IGameGenerator Interface Reference</div>  </div>
@@ -105,22 +106,35 @@ Inheritance diagram for Forest.IGameGenerator:</div>
 <area shape="rect" id="node2" href="class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="5,80,173,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for Forest.IGameGenerator:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_forest_1_1_i_game_generator__coll__graph.png" border="0" usemap="#_forest_8_i_game_generator_coll__map" alt="Collaboration graph"/></div>
+<map name="_forest_8_i_game_generator_coll__map" id="_forest_8_i_game_generator_coll__map">
+<area shape="rect" id="node2" href="class_forest_1_1_game.html" title="Forest.Game" alt="" coords="35,5,134,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7cfe99b2a5ba2701e24cf0df2956ebb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_game_generator.html#a7cfe99b2a5ba2701e24cf0df2956ebb4">Generate</a> (int courtNum, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; attendPersons, out List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; breakPersons)</td></tr>
-<tr class="memdesc:a7cfe99b2a5ba2701e24cf0df2956ebb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合の組み合わせを決める  <a href="#a7cfe99b2a5ba2701e24cf0df2956ebb4">More...</a><br /></td></tr>
-<tr class="separator:a7cfe99b2a5ba2701e24cf0df2956ebb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2acd6109a1b4f77fe2837a2750b7f79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[] IEnumerable&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; breakPersons&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_game_generator.html#ac2acd6109a1b4f77fe2837a2750b7f79">Generate</a> (int courtNum, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; attendPersons)</td></tr>
+<tr class="separator:ac2acd6109a1b4f77fe2837a2750b7f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a758a1adcf1c24268eaf18853dea7cd0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_game_generator.html#a758a1adcf1c24268eaf18853dea7cd0e">games</a></td></tr>
+<tr class="memdesc:a758a1adcf1c24268eaf18853dea7cd0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合の組み合わせを決める  <a href="#a758a1adcf1c24268eaf18853dea7cd0e">More...</a><br /></td></tr>
+<tr class="separator:a758a1adcf1c24268eaf18853dea7cd0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>試合の組み合わせを決めるためのインターフェース </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7cfe99b2a5ba2701e24cf0df2956ebb4"></a>
+<a class="anchor" id="ac2acd6109a1b4f77fe2837a2750b7f79"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_forest_1_1_game.html">Game</a> [] Forest.IGameGenerator.Generate </td>
+          <td class="memname"><a class="el" href="class_forest_1_1_game.html">Game</a> [] IEnumerable&lt;<a class="el" href="class_forest_1_1_person.html">Person</a>&gt; breakPersons Forest.IGameGenerator.Generate </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>courtNum</em>, </td>
@@ -129,18 +143,25 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
-          <td class="paramname"><em>attendPersons</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
-          <td class="paramname"><em>breakPersons</em>&#160;</td>
+          <td class="paramname"><em>attendPersons</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a758a1adcf1c24268eaf18853dea7cd0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_forest_1_1_game.html">Game</a> [] Forest.IGameGenerator.games</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -155,8 +176,6 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>試合の組み合わせ結果</dd></dl>
-
-<p>Implemented in <a class="el" href="class_forest_1_1_random_generator.html#ac7c1c6987a6714d40dc5961fb439f147">Forest.RandomGenerator</a>.</p>
 
 </div>
 </div>
