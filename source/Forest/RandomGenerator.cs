@@ -11,9 +11,16 @@ namespace Forest
         /// </summary>
         /// <param name="courtNum">コート数</param>
         /// <param name="attendPersons">試合に参加する人</param>
-        /// <returns></returns>
+        /// <returns>試合と休憩者</returns>
+        /// <exception cref="ArgumentOutOfRangeException">コート数が負の場合に発生する</exception>
         public (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, List<Person> attendPersons)
         {
+            //コート数が負の数であるときは例外を出す
+            if(courtNum <= 0)
+            {
+                throw new ArgumentOutOfRangeException("courtNumが負の数です");
+            }
+
             //参加者リストをコピーしてシャッフルする
             var attendPersonsList = attendPersons.ToList();
             ShuffleMember(attendPersonsList);

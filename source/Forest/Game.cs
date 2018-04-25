@@ -27,12 +27,7 @@ namespace Forest
         /// <param name="player2">半分のコートに入る選手</param>
         public Game(Court court, Person[] player1, Person[] player2)
         {
-            if(court == null)
-            {
-                throw new ArgumentNullException("Courtにnullを設定しようとしています");
-            }
-
-            Court = court;
+            Court = court ?? throw new ArgumentNullException("Courtにnullを設定しようとしています");
             Player1 = player1;
             Player2 = player2;
         }
