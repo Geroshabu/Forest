@@ -52,70 +52,79 @@ namespace Forest
         /// <param name="e"></param>
         private void Register(object sender, EventArgs e)
         {
-            //追加の時は新規に、変更の時は元のIDを入れる
+            //追加、変更の結果
+            bool result;
+
+            //追加のとき
             if (CurrentOrder == Order.Add)
             {
+                //新規にIDを作成する
                 Person.ID = CreateId();
-            }
-            else
-            {
-                string id = Person.ID;
-                Person = new Person
+                //入力された名前を入れる
+                Person.Name = nameTextBox.Text;
+                //選択された性別を入れる
+                if (radioButtonMale.Checked)
                 {
-                    ID = id
-                };
-            }
-
-            //入力された名前を入れる
-            Person.Name = nameTextBox.Text;
-            //選択された性別を入れる
-            if (radioButtonMale.Checked)
-            {
-                Person.Gender = new Gender { GenderNum = 0 };
-            }
-            else if (radioButtonFemale.Checked)
-            {
-                Person.Gender = new Gender { GenderNum = 1 };
-            }
-            //選択されたレベルを入れる
-            if (radioButtonBeginner.Checked)
-            {
-                Person.Level = new Level { LevelNum = 0 };
-            }
-            else if (radioButtonIntermediate.Checked)
-            {
-                Person.Level = new Level { LevelNum = 1 };
-            }
-            else if (radioButtonSenior.Checked)
-            {
-                Person.Level = new Level { LevelNum = 2 };
-            }
-
-            //追加の時はIDとフラグも設定する
-            if (CurrentOrder == Order.Add)
-            {
+                    Person.Gender = new Gender { GenderNum = 0 };
+                }
+                else if (radioButtonFemale.Checked)
+                {
+                    Person.Gender = new Gender { GenderNum = 1 };
+                }
+                //選択されたレベルを入れる
+                if (radioButtonBeginner.Checked)
+                {
+                    Person.Level = new Level { LevelNum = 0 };
+                }
+                else if (radioButtonIntermediate.Checked)
+                {
+                    Person.Level = new Level { LevelNum = 1 };
+                }
+                else if (radioButtonSenior.Checked)
+                {
+                    Person.Level = new Level { LevelNum = 2 };
+                }
                 //削除フラグは立てない
                 Person.DeleteFlag = false;
                 //参加フラグも立てない
                 Person.AttendFlag = false;
-            }
 
-            //追加、変更の結果
-            bool result;
-
-            if (CurrentOrder == Order.Add)
-            {
                 result = PersonRepository.Add(Person);
             }
-            //変更する場合
+            //変更のとき
             else
             {
+                //入力された名前を入れる
+                Person.Name = nameTextBox.Text;
+                //選択された性別を入れる
+                if (radioButtonMale.Checked)
+                {
+                    Person.Gender.GenderNum = 0;
+                }
+                else if (radioButtonFemale.Checked)
+                {
+                    Person.Gender.GenderNum = 1;
+                }
+                //選択されたレベルを入れる
+                if (radioButtonBeginner.Checked)
+                {
+                    Person.Level.LevelNum = 0;
+                }
+                else if (radioButtonIntermediate.Checked)
+                {
+                    Person.Level.LevelNum = 1;
+                }
+                else if (radioButtonSenior.Checked)
+                {
+                    Person.Level.LevelNum = 2;
+                }
+
                 result = PersonRepository.Update(Person);
             }
 
+            //成功したら画面を閉じる
             if (result)
             {
-                //この画面を閉じる
                 this.Close();
             }
             else

@@ -101,8 +101,8 @@ namespace Forest
         /// <returns>DBに登録されているメンバーのリスト</returns>
         public List<Person> Get()
         {
-            //取得したメンバー情報を返す
-            return Context.Persons.Where(x => !(x.DeleteFlag)).ToList();
+            ////取得したメンバー情報のコピーを返す
+            return new List<Person>(Context.Persons.Where(x => !(x.DeleteFlag)).ToList());
         }
 
         /// <summary>
