@@ -26,19 +26,11 @@ namespace Forest
         {
             //描画先とするImageオブジェクトを作成する
             Bitmap canvas = new Bitmap(resultPictureBox.Width, resultPictureBox.Height);
-            //ImageオブジェクトのGraphicsオブジェクトを作成する
-            Graphics graphics = Graphics.FromImage(canvas);
-
             //Penオブジェクトの作成
-            Pen black_pen = new Pen(Color.Black, 2);
-
-            //コート（二つ）を表示する
-            //penで四角と線をかく
-            graphics.DrawRectangle(black_pen, 20, 80, 100, 200);
-            graphics.DrawLine(black_pen, 20, 180, 120, 180);
-            graphics.DrawRectangle(black_pen, 250, 80, 100, 200);
-            graphics.DrawLine(black_pen, 250, 180, 350, 180);
-            graphics.Dispose();
+            Pen blackPen = new Pen(Color.Black, 2);
+            //描く
+            canvas = DrawCourt(canvas, blackPen,20,80);
+            canvas = DrawCourt(canvas, blackPen, 250, 80);
             //画面に反映する
             resultPictureBox.Image = canvas;
 
@@ -74,6 +66,32 @@ namespace Forest
             }
 
         }
+
+        /// <summary>
+        /// コートを描く
+        /// </summary>
+        /// <param name="canvas">描くところ</param>
+        /// <param name="blackPen">黒いペン</param>
+        /// <param name="x">四角の左端のx座標</param>
+        /// <param name="y">四角の左端のy座標</param>
+        /// <returns></returns>
+        private Bitmap DrawCourt(Bitmap canvas, Pen blackPen, int x, int y)
+        {
+            //ImageオブジェクトのGraphicsオブジェクトを作成する
+            Graphics graphics = Graphics.FromImage(canvas);
+            //コート（二つ）を表示する
+            int width = 100;
+            int height = 200 ;
+            //四角を描く
+            graphics.DrawRectangle(blackPen, x, y, width, height);
+            //線を描く
+            graphics.DrawLine(blackPen, x, (y + width), (x + width), (y + width));
+
+            graphics.Dispose();
+
+            return canvas;
+        }
+
 
         /// <summary>
         /// 試合終了ボタンが押下されたときに発生するイベント

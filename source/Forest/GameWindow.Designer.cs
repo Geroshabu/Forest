@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.breakMemberList = new System.Windows.Forms.DataGridView();
+            this.breakMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endGameButton = new System.Windows.Forms.Button();
             this.breakMemberLabel = new System.Windows.Forms.Label();
             this.courtNameLabel1 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.playerNameLabel2 = new System.Windows.Forms.Label();
             this.playerNameLabel3 = new System.Windows.Forms.Label();
             this.playerNameLabel4 = new System.Windows.Forms.Label();
-            this.breakMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.breakMemberList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -59,6 +59,13 @@
             this.breakMemberList.RowTemplate.Height = 21;
             this.breakMemberList.Size = new System.Drawing.Size(264, 373);
             this.breakMemberList.TabIndex = 5;
+            // 
+            // breakMemberListName
+            // 
+            this.breakMemberListName.HeaderText = "名前";
+            this.breakMemberListName.Name = "breakMemberListName";
+            this.breakMemberListName.ReadOnly = true;
+            this.breakMemberListName.Width = 250;
             // 
             // endGameButton
             // 
@@ -93,9 +100,9 @@
             // 
             // resultPictureBox
             // 
-            this.resultPictureBox.Location = new System.Drawing.Point(90, 110);
+            this.resultPictureBox.Location = new System.Drawing.Point(70, 103);
             this.resultPictureBox.Name = "resultPictureBox";
-            this.resultPictureBox.Size = new System.Drawing.Size(478, 297);
+            this.resultPictureBox.Size = new System.Drawing.Size(500, 300);
             this.resultPictureBox.TabIndex = 13;
             this.resultPictureBox.TabStop = false;
             // 
@@ -148,13 +155,6 @@
             this.playerNameLabel4.Size = new System.Drawing.Size(130, 19);
             this.playerNameLabel4.TabIndex = 18;
             this.playerNameLabel4.Text = "playerNameLabel4";
-            // 
-            // breakMemberListName
-            // 
-            this.breakMemberListName.HeaderText = "名前";
-            this.breakMemberListName.Name = "breakMemberListName";
-            this.breakMemberListName.ReadOnly = true;
-            this.breakMemberListName.Width = 250;
             // 
             // GameWindow
             // 
