@@ -6,7 +6,7 @@ namespace ForestTest
     public class GameTest
     {
         [Fact(DisplayName = "Gameのテスト")]
-        public void TestMethod1()
+        public void GameTest1()
         {
             Court court = new Court
             {

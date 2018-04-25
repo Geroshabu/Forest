@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Forest
 {
-    class RandomGenerator : IGameGenerator
+    public class RandomGenerator : IGameGenerator
     {
         /// <summary>
         /// 試合の組み合わせと休憩する人を決める
