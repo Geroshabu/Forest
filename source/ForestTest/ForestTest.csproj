@@ -129,6 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameTest.cs" />
     <Compile Include="LevelTest.cs" />
     <Compile Include="PersonContextTest.cs" />
     <Compile Include="PersonDbRepositoryTest.cs" />
