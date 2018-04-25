@@ -574,10 +574,16 @@ namespace Forest
             Game[] game = gameGenerator.Generate(courtNum, attendMember, out breakPersons);
 
             //試合の組み合わせ結果を表示する
-            GameWindow gameWindow = new GameWindow(game, breakPersons,PersonHolder);
-            gameWindow.Show();
-            this.Visible = false;
+            using (GameWindow gameWindow = new GameWindow(game, breakPersons, PersonHolder))
+            {
+                //オーナーウィンドウにthisを指定し、結果画面をモーダルダイアログとして表示
+                gameWindow.ShowDialog(this);
+            }
 
+            //ダイアログを閉じたらListとラベルだけ更新
+            this.allMemberList.Rows.Clear();
+            this.attendMemberList.Rows.Clear();
+            DisplayMainWindow(new List<Person>());
         }
 
         /// <summary>

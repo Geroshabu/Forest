@@ -83,11 +83,7 @@ namespace Forest
         /// <param name="e"></param>
         private void EndGame(object sender, EventArgs e)
         {
-            //メイン画面を表示する
-            MainWindow mainWindow = new MainWindow(PersonHolder);
-            mainWindow.Show();
-            this.Visible = false;
-
+            this.Close();
         }
     }
 }
