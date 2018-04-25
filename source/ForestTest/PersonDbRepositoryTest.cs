@@ -255,7 +255,7 @@ namespace ForestTest
 
         [Trait("分類", "正常系")]
         [Fact(DisplayName = "DBに一件も登録されていないときに登録件数0が返ることを確認する")]
-        public void GetTest01()
+        public void GetAllCountTest01()
         {
             using (Context)
             {
@@ -267,7 +267,6 @@ namespace ForestTest
                 var actual = personDbRepository.GetAllCount();
 
                 //Assert
-                //空のリストが返っていることを確認
                 var expected = new List<Person>().Count;
                 Assert.Equal(expected, actual);
             }
@@ -275,7 +274,7 @@ namespace ForestTest
 
         [Trait("分類", "正常系")]
         [Fact(DisplayName = "DBの全データ件数を正常に取得できることを確認する")]
-        public void GetTest02()
+        public void GetAllCountTest02()
         {
             using (Context)
             {
@@ -301,9 +300,11 @@ namespace ForestTest
                 };
 
                 //登録するデータをリストに入れる
-                List<Person> expected = new List<Person>();
-                expected.Add(testPerson01);
-                expected.Add(testPerson02);
+                List<Person> expected = new List<Person>
+                {
+                    testPerson01,
+                    testPerson02
+                };
                 var expectedCount = expected.Count;
 
                 //DBに登録
@@ -316,10 +317,55 @@ namespace ForestTest
                 var actual = personDbRepository.GetAllCount();
 
                 //Assert
-                //登録データと同じリストが返っていることを確認
                 Assert.Equal(expectedCount, actual);
-                //登録件数が2件であることを確認
-                Assert.Equal(2, Context.Persons.Count());
+            }
+        }
+
+        [Trait("分類", "正常系")]
+        [Fact(DisplayName = "DBの削除されていないデータを正常に取得できることを確認する")]
+        public void GetTest01()
+        {
+            using (Context)
+            {
+                //Arrange
+                //登録するデータの準備
+                var testPerson01 = new Person
+                {
+                    ID = "test01",
+                    Name = "snoopy",
+                    Gender = new Gender { GenderNum = 0 },
+                    Level = new Level { LevelNum = 2 },
+                    DeleteFlag = false,
+                    AttendFlag = false
+                };
+                var testPerson02 = new Person
+                {
+                    ID = "test02",
+                    Name = "bell",
+                    Gender = new Gender { GenderNum = 1 },
+                    Level = new Level { LevelNum = 0 },
+                    DeleteFlag = true,
+                    AttendFlag = true
+                };
+
+                //登録するデータをリストに入れる
+                List<Person> expected = new List<Person>
+                {
+                    testPerson01
+                };
+
+                //DBに登録
+                var personDbRepository = new PersonDbRepository(Context);
+                personDbRepository.Add(testPerson01);
+                personDbRepository.Add(testPerson02);
+
+                //Act
+                //DBから取得
+                var actual = personDbRepository.Get();
+
+                //Assert
+                Assert.Empty(expected.Except(actual));
+                Assert.Empty(actual.Except(expected));
             }
         }
 

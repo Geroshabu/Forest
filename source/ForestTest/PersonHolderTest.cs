@@ -9,21 +9,25 @@ namespace ForestTest
     {
         List<Person> persons;
 
+        Person testPerson01;
+        Person testPerson02;
+        Person testPerson03;
+        Person testPerson04;
+        Person testPerson05;
+        Person testPerson06;
+
         /// <summary>
-        /// PersonHplderに登録しておくためのデータを用意する
+        /// テストの準備をする。テストデータの初期化
         /// </summary>
-        /// <returns>データのリスト</returns>
-        public List<Person> PrepareData01()
+        public PersonHolderTest()
         {
-            persons = new List<Person>();
+            Gender men = new Gender { GenderNum = 0 };
+            Gender women = new Gender { GenderNum = 1 };
+            Level beginner = new Level { LevelNum = 0 };
+            Level intermediate = new Level { LevelNum = 1 };
+            Level advanced = new Level { LevelNum = 2 };
 
-            var men = new Gender { GenderNum = 0 };
-            var women = new Gender { GenderNum = 1 };
-            var beginner = new Level { LevelNum = 0 };
-            var intermediate = new Level { LevelNum = 1 };
-            var advanced = new Level { LevelNum = 2 };
-
-            var testPerson01 = new Person
+            testPerson01 = new Person
             {
                 ID = "test01",
                 Name = "snoopy",
@@ -32,7 +36,7 @@ namespace ForestTest
                 DeleteFlag = false,
                 AttendFlag = false
             };
-            var testPerson02 = new Person
+            testPerson02 = new Person
             {
                 ID = "test02",
                 Name = "bell",
@@ -41,7 +45,7 @@ namespace ForestTest
                 DeleteFlag = false,
                 AttendFlag = true
             };
-            var testPerson03 = new Person
+            testPerson03 = new Person
             {
                 ID = "test03",
                 Name = "andy",
@@ -50,7 +54,7 @@ namespace ForestTest
                 DeleteFlag = true,
                 AttendFlag = false
             };
-            var testPerson04 = new Person
+            testPerson04 = new Person
             {
                 ID = "test04",
                 Name = "marbles",
@@ -59,7 +63,7 @@ namespace ForestTest
                 DeleteFlag = true,
                 AttendFlag = true
             };
-            var testPerson05 = new Person
+            testPerson05 = new Person
             {
                 ID = "test05",
                 Name = "spike",
@@ -68,7 +72,7 @@ namespace ForestTest
                 DeleteFlag = false,
                 AttendFlag = false
             };
-            var testPerson06 = new Person
+            testPerson06 = new Person
             {
                 ID = "test06",
                 Name = "olaf",
@@ -78,75 +82,83 @@ namespace ForestTest
                 AttendFlag = true
             };
 
-            persons.Add(testPerson01);
-            persons.Add(testPerson02);
-            persons.Add(testPerson03);
-            persons.Add(testPerson04);
-            persons.Add(testPerson05);
-            persons.Add(testPerson06);
+        }
+
+        /// <summary>
+        /// PersonHplderに登録しておくためのデータの配列を用意し、返す
+        /// </summary>
+        /// <returns>データのリスト</returns>
+        public List<Person> PrepareData01()
+        {
+            persons = new List<Person>
+            {
+                testPerson01,
+                testPerson02,
+                testPerson03,
+                testPerson04,
+                testPerson05,
+                testPerson06
+            };
 
             return persons;
         }
 
         [Trait("分類", "正常系")]
-        [Fact(DisplayName = "参加フラグを正常に立てられることを確認する")]
+        [Fact(DisplayName = "参加フラグを立てられることを確認する")]
         public void AttendTest01()
         {
             //Arrange
             //データの準備
             var testPersons = PrepareData01();
             var personHolder = new PersonHolder(testPersons);
-            //参加数メンバーのIDをリストにセット
-            var idList = new List<string>();
-            idList.Add("test01");
-            idList.Add("test05");
+            //期待値
+            var expected = new List<Person>
+            {
+                testPerson01,
+                testPerson05,
+                testPerson02,
+                testPerson06
+            };
+
+            //参加メンバーのIDをリストにセット
+            var idList = new List<string>
+            {
+                "test01",
+                "test05"
+            };
 
             //Act
             //実行
             personHolder.Attend(idList);
 
             //Assert
-            //PersonData01の人を保持しておいて、その中の人のフラグが変更されているかを見る
-            //Attendした後とで比較
-
-            //Assertする前
-            //Assert.False(testPersons.Where(x => x.ID == "test01").);
-
-
-
-            //Assert.True(personHolder.Persons.Where(x => x.ID == "test01").FirstOrDefault().AttendFlag);
-            //Assert.True(personHolder.Persons.Where(x => x.ID == "test02").FirstOrDefault().AttendFlag);
-            //Assert.False(personHolder.Persons.Where(x => x.ID == "test03").FirstOrDefault().AttendFlag);
-            //Assert.True(personHolder.Persons.Where(x => x.ID == "test04").FirstOrDefault().AttendFlag);
-            //Assert.True(personHolder.Persons.Where(x => x.ID == "test05").FirstOrDefault().AttendFlag);
-            //Assert.True(personHolder.Persons.Where(x => x.ID == "test06").FirstOrDefault().AttendFlag);
-
+            Assert.Empty(expected.Except(personHolder.GetAttended()));
+            Assert.Empty(personHolder.GetAttended().Except(expected));
         }
 
         [Trait("分類", "正常系")]
-        [Fact(DisplayName = "参加を正常に取り消せることを確認する")]
+        [Fact(DisplayName = "参加を取り消せることを確認する")]
         public void Cancelest01()
         {
             //Arrange
             //データの準備
             var personHolder = new PersonHolder(PrepareData01());
+            //期待値
+            var expected = new List<Person>
+            {
+                testPerson02,
+            };
+
             //参加を取り消すメンバーのIDをリストにセット
-            var idList = new List<string>();
-            idList.Add("test02");
-            idList.Add("test06");
+            var idList = new List<string> { "test06" };
 
             //Act
             //実行
             personHolder.Cancel(idList);
 
-            ////Assert
-            //Assert.False(personHolder.Persons.Where(x => x.ID == "test01").FirstOrDefault().AttendFlag);
-            //Assert.False(personHolder.Persons.Where(x => x.ID == "test02").FirstOrDefault().AttendFlag);
-            //Assert.False(personHolder.Persons.Where(x => x.ID == "test03").FirstOrDefault().AttendFlag);
-            //Assert.True(personHolder.Persons.Where(x => x.ID == "test04").FirstOrDefault().AttendFlag);
-            //Assert.False(personHolder.Persons.Where(x => x.ID == "test05").FirstOrDefault().AttendFlag);
-            //Assert.False(personHolder.Persons.Where(x => x.ID == "test06").FirstOrDefault().AttendFlag);
-
+            //Assert
+            Assert.Empty(expected.Except(personHolder.GetAttended()));
+            Assert.Empty(personHolder.GetAttended().Except(expected));
         }
 
         [Trait("分類", "正常系")]
@@ -156,18 +168,27 @@ namespace ForestTest
             //Arrange
             //データの準備
             var personHolder = new PersonHolder(PrepareData01());
+            //期待値
+            var expected = new List<Person>
+            {
+                testPerson02,
+                testPerson01,
+                testPerson06,
+                testPerson05
+            };
 
             //Act
             //実行
             var actual = personHolder.GetAll();
 
             //Assert
-            Assert.Equal(PrepareData01().Where(x => x.DeleteFlag == false).Count(), actual.Count);
+            Assert.Empty(expected.Except(actual));
+            Assert.Empty(actual.Except(expected));
 
         }
 
         [Trait("分類", "正常系")]
-        [Fact(DisplayName = "メンバーがいないときに空のリストを返すことを確認する")]
+        [Fact(DisplayName = "GetAllメソッドにおいてメンバーがいないときに空のリストを返すことを確認する")]
         public void GetAllPersonsTest02()
         {
             //Arrange
@@ -185,24 +206,31 @@ namespace ForestTest
         }
 
         [Trait("分類", "正常系")]
-        [Fact(DisplayName = "参加フラグが立っているメンバーを取得できることを確認する")]
+        [Fact(DisplayName = "削除されておらずに参加フラグが立っているメンバーを取得できることを確認する")]
         public void GetAttendedPersonsTest01()
         {
             //Arrange
             //データの準備
             var personHolder = new PersonHolder(PrepareData01());
+            //期待値
+            var expected = new List<Person>
+            {
+                testPerson02,
+                testPerson06
+            };
 
             //Act
             //実行
             var actual = personHolder.GetAttended();
 
             //Assert
-            Assert.Equal(PrepareData01().Where(x => (x.DeleteFlag == false)&&(x.AttendFlag == true)).Count(), actual.Count);
+            Assert.Empty(expected.Except(actual));
+            Assert.Empty(actual.Except(expected));
 
         }
 
         [Trait("分類", "正常系")]
-        [Fact(DisplayName = "メンバーがいないときに空のリストを返すことを確認する")]
+        [Fact(DisplayName = "GetAttendedメソッドにおいてメンバーがいないときに空のリストを返すことを確認する")]
         public void GetAttendedPersonsTest02()
         {
             //Arrange
