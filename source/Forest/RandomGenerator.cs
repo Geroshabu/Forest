@@ -30,30 +30,29 @@ namespace Forest
                 //参加者2人をを試合に入れられるときは処理を行う
                 if ((index + 1) < attendPersonsList.Count)
                 {
-                    //Gameのインスタンスを作る
-                    var game = new Game();
-
                     //コートの用意
-                    game.Court = new Court
+                    var court = new Court
                     {
                         CourtName = "コート" + (courtCounter + 1),
                         AccommodateNumber = 2 //今はシングルスのみだから todo 今後のことを考えると変数作った方がいい気がする
                     };
 
                     //試合をする人を入れる
-                    game.Player1 = new Person[game.Court.AccommodateNumber / 2];
-                    game.Player1[0] = new Person
+                    var player1 = new Person[court.AccommodateNumber / 2];
+                    player1[0] = new Person
                     {
                         ID = attendPersonsList[index].ID,
                         Name = attendPersonsList[index++].Name
                     };
-                    game.Player2 = new Person[game.Court.AccommodateNumber / 2];
-                    game.Player2[0] = new Person
+                    var player2 = new Person[court.AccommodateNumber / 2];
+                    player2[0] = new Person
                     {
                         ID = attendPersonsList[index].ID,
                         Name = attendPersonsList[index++].Name
                     };
 
+                    //Gameのインスタンスを作って入れる
+                    var game = new Game(court, player1, player2);
                     games[courtCounter] = game;
                 }
                 //人を入れられないときは抜ける
