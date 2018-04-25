@@ -14,6 +14,6 @@ namespace Forest
         /// <param name="attendPersons">試合に参加する人</param>
         /// <param name="breakPersons">休憩する人</param>
         /// <returns>試合の組み合わせ結果</returns>
-        Game[] Generate(int courtNum, List<Person> attendPersons, out List<Person> breakPersons);
+        (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, List<Person> attendPersons);
     }
 }

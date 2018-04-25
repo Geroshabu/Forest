@@ -571,11 +571,10 @@ namespace Forest
             //RamdomGeneratorを読んで、試合を決めてもらう
             string currentGeneratorMode = "random";
             IGameGenerator gameGenerator = GeneratorFactory(currentGeneratorMode);
-            var breakPersons = new List<Person>();
-            Game[] game = gameGenerator.Generate(courtNum, attendMember, out breakPersons);
+            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember);
 
             //試合の組み合わせ結果を表示する
-            using (GameWindow gameWindow = new GameWindow(game, breakPersons, PersonHolder))
+            using (GameWindow gameWindow = new GameWindow(result.games, result.breakPersons, PersonHolder))
             {
                 //オーナーウィンドウにthisを指定し、結果画面をモーダルダイアログとして表示
                 gameWindow.ShowDialog(this);

@@ -10,11 +10,11 @@ namespace Forest
         //試合の詳細が入った配列
         Game[] Games;
         //休憩する人たち
-        List<Person> BreakPersons;
+        IEnumerable<Person> BreakPersons;
 
         PersonHolder PersonHolder;
 
-        public GameWindow(Game[] games, List<Person> breakPersons, PersonHolder personHolder)
+        public GameWindow(Game[] games, IEnumerable<Person> breakPersons, PersonHolder personHolder)
         {
             InitializeComponent();
             Games = games;
@@ -48,8 +48,8 @@ namespace Forest
             playerNameLabel1.Text = Games[0].Player1[0].Name;
             playerNameLabel2.Text = Games[0].Player2[0].Name;
 
-            //人が入って入れば表示する
-            if ((Games[1].Player1[0] != null) && (Games[1].Player2[0] != null))
+            //中身が入って入れば表示する
+            if (Games[1] != null)
             {
                 //コート名
                 courtNameLabel2.Text = Games[1].Court.CourtName;
@@ -57,7 +57,6 @@ namespace Forest
                 playerNameLabel3.Text = Games[1].Player1[0].Name;
                 playerNameLabel4.Text = Games[1].Player2[0].Name;
             }
-            //人が入っていないコートは空欄にする
             else
             {
                 //コート名を空欄にする
