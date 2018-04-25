@@ -35,7 +35,7 @@ namespace Forest
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
-            if(PersonHolder == null)
+            if (PersonHolder == null)
             {
                 //PersonHolderを作ってメンバーを保持させる
                 PersonHolder = new PersonHolder(allPersons);
@@ -88,7 +88,7 @@ namespace Forest
             }
 
             //現在選択されている条件でソートを行う
-            SortByCurrentSetting(attendMemberList, attendMemberList.SortedColumn.Name);
+            SortByCurrentSetting(attendMemberList);
 
             //ボタンの制御を行う
             ManageButton();
@@ -148,8 +148,8 @@ namespace Forest
             }
 
             //現在の条件でソートを行う
-            SortByCurrentSetting(allMemberList, allMemberList.SortedColumn.Name);
-            SortByCurrentSetting(attendMemberList, attendMemberList.SortedColumn.Name);
+            SortByCurrentSetting(allMemberList);
+            SortByCurrentSetting(attendMemberList);
 
             //ボタンの制御を行う
             ManageButton();
@@ -163,26 +163,8 @@ namespace Forest
         /// <param name="e"></param>
         public void ManageAllMemberList(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //PersonHolderがnullの時（初回起動のとき）はそのまま返す
-            if (PersonHolder == null)
-            {
-                return;
-            }
-
-            //チェック列以外がクリックされても何も起きない
-            if (e.ColumnIndex != 0) { return; }
-
-            //チェックされていた部分が選択されれば、チェック
-            //チェックされていなかった部分が選択されればチェックを外す
-            if (Convert.ToBoolean(allMemberList.CurrentRow.Cells[0].Value) == true)
-            {
-                allMemberList.CurrentRow.Cells[0].Value = false;
-            }
-            else
-            {
-                allMemberList.CurrentRow.Cells[0].Value = true;
-            }
-
+            //リストの制御をする
+            Managelist(allMemberList, e);
             //ボタンの制御を行う
             ManageButton();
         }
@@ -193,6 +175,20 @@ namespace Forest
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void ManageAttendMemberList(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //リストの制御をする
+            Managelist(attendMemberList, e);
+            //ボタンの制御を行う
+            ManageButton();
+
+        }
+
+        /// <summary>
+        /// リストのチェック状態の切り替えをする
+        /// </summary>
+        /// <param name="targetList">切り替え対象のリスト</param>
+        /// <param name="e">マウスのイベントのデータ</param>
+        public void Managelist(DataGridView targetList, DataGridViewCellMouseEventArgs e)
         {
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
             if (PersonHolder == null)
@@ -205,17 +201,14 @@ namespace Forest
 
             //チェックされていた部分が選択されれば、チェック
             //チェックされていなかった部分が選択されればチェックを外す
-            if (Convert.ToBoolean(attendMemberList.CurrentRow.Cells[0].Value) == true)
+            if (Convert.ToBoolean(targetList.CurrentRow.Cells[0].Value) == true)
             {
-                attendMemberList.CurrentRow.Cells[0].Value = false;
+                targetList.CurrentRow.Cells[0].Value = false;
             }
             else
             {
-                attendMemberList.CurrentRow.Cells[0].Value = true;
+                targetList.CurrentRow.Cells[0].Value = true;
             }
-
-            //ボタンの制御を行う
-            ManageButton();
 
         }
 
@@ -397,26 +390,8 @@ namespace Forest
             }
 
             //現在の条件でソートを行う
-            //初期ソート条件は名前の順
-            var currentSettingInAllMemberList = allMemberList.SortedColumn;
-            if (currentSettingInAllMemberList == null)
-            {
-                SortByCurrentSetting(allMemberList, "allMemberListName");
-            }
-            else
-            {
-                SortByCurrentSetting(allMemberList, currentSettingInAllMemberList.Name);
-            }
-
-            var currentSettingInAttendMemberList = attendMemberList.SortedColumn;
-            if (currentSettingInAttendMemberList == null)
-            {
-                SortByCurrentSetting(attendMemberList, "attendMemberListName");
-            }
-            else
-            {
-                SortByCurrentSetting(attendMemberList, currentSettingInAttendMemberList.Name);
-            }
+            SortByCurrentSetting(allMemberList);
+            SortByCurrentSetting(attendMemberList);
 
             //ボタンの制御を行う
             ManageButton();
@@ -428,8 +403,20 @@ namespace Forest
         /// </summary>
         /// <param name="targetList">ソートを行うリスト</param>
         /// <param name="currentSetting">現在のソート対象のカラム名</param>
-        void SortByCurrentSetting(DataGridView targetList, string currentSetting)
+        void SortByCurrentSetting(DataGridView targetList)
         {
+            //ソート対象のカラム名
+            string currentSetting;
+            //初期ソートの条件は名前(3行目)
+            if (targetList.SortedColumn == null)
+            {
+                currentSetting = targetList.Columns[2].Name;
+            }
+            else
+            {
+                currentSetting = targetList.SortedColumn.Name;
+            }
+
             //自動的に並び替えられるようにする
             foreach (DataGridViewColumn c in targetList.Columns)
             {
@@ -594,7 +581,7 @@ namespace Forest
         private void ClosingMainWindow(object sender, FormClosingEventArgs e)
         {
             //アプリケーションを終了する
-            Application.Exit(); 
+            Application.Exit();
         }
 
         /// <summary>
