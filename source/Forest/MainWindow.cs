@@ -569,7 +569,8 @@ namespace Forest
             var attendMember = PersonHolder.GetAttended();
 
             //RamdomGeneratorを読んで、試合を決めてもらう
-            IGameGenerator gameGenerator = new RandomGenerator();
+            string currentGeneratorMode = "random";
+            IGameGenerator gameGenerator = GeneratorFactory(currentGeneratorMode);
             var breakPersons = new List<Person>();
             Game[] game = gameGenerator.Generate(courtNum, attendMember, out breakPersons);
 
@@ -596,5 +597,24 @@ namespace Forest
             //アプリケーションを終了する
             Application.Exit(); 
         }
+
+        /// <summary>
+        /// 設定されている組み合わせのモードによって生成するインスタンスを変える。
+        /// </summary>
+        /// <param name="generatorMode">設定されている組み合わせ方法</param>
+        /// <returns>生成したインスタンス</returns>
+        private IGameGenerator GeneratorFactory(string generatorMode)
+        {
+            switch (generatorMode)
+            {
+                case "random":
+                    return new RandomGenerator();
+
+                //デフォルトはランダム
+                default:
+                    return new RandomGenerator();
+            }
+        }
+
     }
 }
