@@ -106,13 +106,13 @@ namespace Forest
         }
 
         /// <summary>
-        /// 削除しているメンバーも含めて全メンバー情報を取得する
+        /// 削除しているメンバーも含めた全メンバー情報の件数を取得する
         /// </summary>
         /// <returns>DBに登録されている全メンバーのリスト</returns>
-        public List<Person> GetAll()
+        public int GetAllCount()
         {
-            //取得したメンバー情報を返す
-            return Context.Persons.ToList();
+            //全メンバー情報の件数を返す
+            return Context.Persons.Count<Person>();
         }
 
         /// <summary>

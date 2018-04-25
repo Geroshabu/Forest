@@ -17,7 +17,7 @@ namespace Forest
         /// 削除されているメンバーも含めて全メンバー情報を取得する
         /// </summary>
         /// <returns>全メンバーの情報（List<Person>型）</returns>
-        List<Person> GetAll();
+        int GetAllCount();
 
         /// <summary>
         /// 新たにメンバー情報を登録する

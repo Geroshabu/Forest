@@ -176,7 +176,7 @@ namespace Forest
             string id;
 
             groupCode = "A";
-            id = groupCode + PersonRepository.GetAll().Count.ToString();
+            id = groupCode + PersonRepository.GetAllCount().ToString();
 
             return id;
         }

@@ -254,7 +254,7 @@ namespace ForestTest
         }
 
         [Trait("分類", "正常系")]
-        [Fact(DisplayName = "DBに一件も登録されていないときに空のリストが返ることを確認する")]
+        [Fact(DisplayName = "DBに一件も登録されていないときに登録件数0が返ることを確認する")]
         public void GetTest01()
         {
             using (Context)
@@ -264,17 +264,17 @@ namespace ForestTest
                 //Act
                 //DBから取得
                 var personDbRepository = new PersonDbRepository(Context);
-                var actual = personDbRepository.GetAll();
+                var actual = personDbRepository.GetAllCount();
 
                 //Assert
                 //空のリストが返っていることを確認
-                List<Person> expected = new List<Person>();
+                var expected = new List<Person>().Count;
                 Assert.Equal(expected, actual);
             }
         }
 
         [Trait("分類", "正常系")]
-        [Fact(DisplayName = "DBの全データを正常に取得できることを確認する")]
+        [Fact(DisplayName = "DBの全データ件数を正常に取得できることを確認する")]
         public void GetTest02()
         {
             using (Context)
@@ -304,6 +304,7 @@ namespace ForestTest
                 List<Person> expected = new List<Person>();
                 expected.Add(testPerson01);
                 expected.Add(testPerson02);
+                var expectedCount = expected.Count;
 
                 //DBに登録
                 var personDbRepository = new PersonDbRepository(Context);
@@ -312,11 +313,11 @@ namespace ForestTest
 
                 //Act
                 //DBから取得
-                var actual = personDbRepository.GetAll();
+                var actual = personDbRepository.GetAllCount();
 
                 //Assert
                 //登録データと同じリストが返っていることを確認
-                Assert.Equal(expected, actual);
+                Assert.Equal(expectedCount, actual);
                 //登録件数が2件であることを確認
                 Assert.Equal(2, Context.Persons.Count());
             }
