@@ -32,23 +32,23 @@
             this.attendMemberLabel = new System.Windows.Forms.Label();
             this.memberCountLabel = new System.Windows.Forms.Label();
             this.allMemberList = new System.Windows.Forms.DataGridView();
-            this.allMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.allMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attendMemberList = new System.Windows.Forms.DataGridView();
-            this.attendMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.attendMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attendMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attendMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attendMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attendButton = new System.Windows.Forms.Button();
             this.attendCancelButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
+            this.allMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.allMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberListCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.attendMemberListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).BeginInit();
             this.SuspendLayout();
@@ -80,11 +80,11 @@
             this.memberCountLabel.AutoSize = true;
             this.memberCountLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.memberCountLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.memberCountLabel.Location = new System.Drawing.Point(201, 63);
+            this.memberCountLabel.Location = new System.Drawing.Point(285, 63);
             this.memberCountLabel.Name = "memberCountLabel";
-            this.memberCountLabel.Size = new System.Drawing.Size(164, 19);
+            this.memberCountLabel.Size = new System.Drawing.Size(92, 19);
             this.memberCountLabel.TabIndex = 2;
-            this.memberCountLabel.Text = "登録人数を表示するところ";
+            this.memberCountLabel.Text = "〇人 / 100人";
             this.memberCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // allMemberList
@@ -105,40 +105,10 @@
             this.allMemberList.Name = "allMemberList";
             this.allMemberList.RowHeadersVisible = false;
             this.allMemberList.RowTemplate.Height = 21;
-            this.allMemberList.Size = new System.Drawing.Size(353, 350);
+            this.allMemberList.Size = new System.Drawing.Size(365, 350);
             this.allMemberList.TabIndex = 3;
             this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAllMemberList);
             this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.allMemberList_SortCompare);
-            // 
-            // allMemberListCheck
-            // 
-            this.allMemberListCheck.HeaderText = "選択";
-            this.allMemberListCheck.Name = "allMemberListCheck";
-            this.allMemberListCheck.Width = 50;
-            // 
-            // allMemberListId
-            // 
-            this.allMemberListId.HeaderText = "ID";
-            this.allMemberListId.Name = "allMemberListId";
-            this.allMemberListId.Visible = false;
-            // 
-            // allMemberListName
-            // 
-            this.allMemberListName.HeaderText = "名前";
-            this.allMemberListName.Name = "allMemberListName";
-            this.allMemberListName.ReadOnly = true;
-            // 
-            // allMemberListGender
-            // 
-            this.allMemberListGender.HeaderText = "性別";
-            this.allMemberListGender.Name = "allMemberListGender";
-            this.allMemberListGender.ReadOnly = true;
-            // 
-            // allMemberListLevel
-            // 
-            this.allMemberListLevel.HeaderText = "レベル";
-            this.allMemberListLevel.Name = "allMemberListLevel";
-            this.allMemberListLevel.ReadOnly = true;
             // 
             // attendMemberList
             // 
@@ -158,39 +128,9 @@
             this.attendMemberList.Name = "attendMemberList";
             this.attendMemberList.RowHeadersVisible = false;
             this.attendMemberList.RowTemplate.Height = 21;
-            this.attendMemberList.Size = new System.Drawing.Size(353, 350);
+            this.attendMemberList.Size = new System.Drawing.Size(365, 350);
             this.attendMemberList.TabIndex = 4;
             this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAttendMemberList);
-            // 
-            // attendMemberListCheck
-            // 
-            this.attendMemberListCheck.HeaderText = "選択";
-            this.attendMemberListCheck.Name = "attendMemberListCheck";
-            this.attendMemberListCheck.Width = 50;
-            // 
-            // attendMemberListId
-            // 
-            this.attendMemberListId.HeaderText = "ID";
-            this.attendMemberListId.Name = "attendMemberListId";
-            this.attendMemberListId.Visible = false;
-            // 
-            // attendMemberListName
-            // 
-            this.attendMemberListName.HeaderText = "名前";
-            this.attendMemberListName.Name = "attendMemberListName";
-            this.attendMemberListName.ReadOnly = true;
-            // 
-            // attendMemberListGender
-            // 
-            this.attendMemberListGender.HeaderText = "性別";
-            this.attendMemberListGender.Name = "attendMemberListGender";
-            this.attendMemberListGender.ReadOnly = true;
-            // 
-            // attendMemberListLevel
-            // 
-            this.attendMemberListLevel.HeaderText = "レベル";
-            this.attendMemberListLevel.Name = "attendMemberListLevel";
-            this.attendMemberListLevel.ReadOnly = true;
             // 
             // attendButton
             // 
@@ -258,6 +198,66 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.StartGame);
             // 
+            // allMemberListCheck
+            // 
+            this.allMemberListCheck.HeaderText = "選択";
+            this.allMemberListCheck.Name = "allMemberListCheck";
+            this.allMemberListCheck.Width = 60;
+            // 
+            // allMemberListId
+            // 
+            this.allMemberListId.HeaderText = "ID";
+            this.allMemberListId.Name = "allMemberListId";
+            this.allMemberListId.Visible = false;
+            // 
+            // allMemberListName
+            // 
+            this.allMemberListName.HeaderText = "名前";
+            this.allMemberListName.Name = "allMemberListName";
+            this.allMemberListName.ReadOnly = true;
+            // 
+            // allMemberListGender
+            // 
+            this.allMemberListGender.HeaderText = "性別";
+            this.allMemberListGender.Name = "allMemberListGender";
+            this.allMemberListGender.ReadOnly = true;
+            // 
+            // allMemberListLevel
+            // 
+            this.allMemberListLevel.HeaderText = "レベル";
+            this.allMemberListLevel.Name = "allMemberListLevel";
+            this.allMemberListLevel.ReadOnly = true;
+            // 
+            // attendMemberListCheck
+            // 
+            this.attendMemberListCheck.HeaderText = "選択";
+            this.attendMemberListCheck.Name = "attendMemberListCheck";
+            this.attendMemberListCheck.Width = 60;
+            // 
+            // attendMemberListId
+            // 
+            this.attendMemberListId.HeaderText = "ID";
+            this.attendMemberListId.Name = "attendMemberListId";
+            this.attendMemberListId.Visible = false;
+            // 
+            // attendMemberListName
+            // 
+            this.attendMemberListName.HeaderText = "名前";
+            this.attendMemberListName.Name = "attendMemberListName";
+            this.attendMemberListName.ReadOnly = true;
+            // 
+            // attendMemberListGender
+            // 
+            this.attendMemberListGender.HeaderText = "性別";
+            this.attendMemberListGender.Name = "attendMemberListGender";
+            this.attendMemberListGender.ReadOnly = true;
+            // 
+            // attendMemberListLevel
+            // 
+            this.attendMemberListLevel.HeaderText = "レベル";
+            this.attendMemberListLevel.Name = "attendMemberListLevel";
+            this.attendMemberListLevel.ReadOnly = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -299,16 +299,16 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn attendMemberListCheck;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListGender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListLevel;
         private System.Windows.Forms.DataGridViewCheckBoxColumn allMemberListCheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListId;
         private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListName;
         private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListGender;
         private System.Windows.Forms.DataGridViewTextBoxColumn allMemberListLevel;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn attendMemberListCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendMemberListLevel;
     }
 }
 
