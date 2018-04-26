@@ -223,14 +223,7 @@ namespace Forest
             //←ボタン
             attendCancelButton.Enabled = false;
             //追加ボタン
-            if (allMemberList.RowCount < 100)
-            {
-                addButton.Enabled = true;
-            }
-            else
-            {
-                addButton.Enabled = false;
-            }
+            addButton.Enabled = true;
             //削除ボタン
             deleteButton.Enabled = false;
             //変更ボタン
@@ -323,47 +316,55 @@ namespace Forest
         /// <param name="e"></param>
         private void AddPerson(object sender, EventArgs e)
         {
-            //追加前のメンバーのチェック状態を保持
-            var checkedInAllMembers = new List<Person>();
-            for (int i = 0; i < allMemberList.RowCount; i++)
+            if (allMemberList.RowCount >= 100)
             {
-                if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
+                MessageBox.Show("メンバーをこれ以上登録できません。");
+            }
+            else
+            {
+                //追加前のメンバーのチェック状態を保持
+                var checkedInAllMembers = new List<Person>();
+                for (int i = 0; i < allMemberList.RowCount; i++)
                 {
-                    //チェックされていた人のID
-                    string targetId = (string)allMemberList.Rows[i].Cells[1].Value;
-                    //IDが一致する人をリストに保持
-                    checkedInAllMembers.Add(PersonHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
+                    if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
+                    {
+                        //チェックされていた人のID
+                        string targetId = (string)allMemberList.Rows[i].Cells[1].Value;
+                        //IDが一致する人をリストに保持
+                        checkedInAllMembers.Add(PersonHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
+                    }
                 }
-            }
-            //追加前の参加メンバーのチェック状態を保持
-            var checkedInAttendMembers = new List<Person>();
-            for (int i = 0; i < attendMemberList.RowCount; i++)
-            {
-                if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
+                //追加前の参加メンバーのチェック状態を保持
+                var checkedInAttendMembers = new List<Person>();
+                for (int i = 0; i < attendMemberList.RowCount; i++)
                 {
-                    //チェックされていた人のID
-                    string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
-                    //IDが一致する人をリストに保持
-                    checkedInAttendMembers.Add(PersonHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
+                    if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
+                    {
+                        //チェックされていた人のID
+                        string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
+                        //IDが一致する人をリストに保持
+                        checkedInAttendMembers.Add(PersonHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
+                    }
                 }
+
+                using (InputForm inputForm = new InputForm(PersonRepository))
+                {
+                    //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
+                    inputForm.ShowDialog(this);
+                }
+
+                //サークルの削除されていない全メンバーを取得
+                var allPersons = PersonRepository.Get();
+
+                //PersonHolderを作ってメンバーを保持させる
+                PersonHolder = new PersonHolder(allPersons);
+
+                //ダイアログを閉じたらListとラベルだけ更新
+                this.allMemberList.Rows.Clear();
+                this.attendMemberList.Rows.Clear();
+                DisplayMainWindow(checkedInAllMembers, checkedInAttendMembers);
             }
 
-            using (InputForm inputForm = new InputForm(PersonRepository))
-            {
-                //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
-                inputForm.ShowDialog(this);
-            }
-
-            //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.Get();
-
-            //PersonHolderを作ってメンバーを保持させる
-            PersonHolder = new PersonHolder(allPersons);
-
-            //ダイアログを閉じたらListとラベルだけ更新
-            this.allMemberList.Rows.Clear();
-            this.attendMemberList.Rows.Clear();
-            DisplayMainWindow(checkedInAllMembers, checkedInAttendMembers);
         }
 
         /// <summary>
