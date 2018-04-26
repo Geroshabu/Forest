@@ -347,8 +347,8 @@ namespace Forest
         /// <summary>
         /// MainWindowのリストとラベルを表示するためのメソッド
         /// </summary>
-        /// <param name="checkMember">チェックボックスにチェックを入れる人のリスト</param>
-        private void DisplayMainWindow(IEnumerable<Person> checkMember)
+        /// <param name="checkInAllMenberList">チェックボックスにチェックを入れる人のリスト</param>
+        private void DisplayMainWindow(IEnumerable<Person> checkInAllMenberList)
         {
             //サークルメンバーを表示
             var persons = PersonHolder.GetAll();
@@ -356,7 +356,7 @@ namespace Forest
             {
                 //checkMemberのチェックボックスにはチェックを入れる
                 var check = false;
-                foreach (Person target in checkMember)
+                foreach (Person target in checkInAllMenberList)
                 {
                     if (target.ID == person.ID)
                     {
@@ -377,7 +377,7 @@ namespace Forest
             {
                 //checkMemberのチェックボックスにはチェックを入れる
                 var check = false;
-                foreach (Person target in checkMember)
+                foreach (Person target in checkInAllMenberList)
                 {
                     if (target.ID == person.ID)
                     {
@@ -440,12 +440,22 @@ namespace Forest
             Person updatePerson = new Person();
             string id = "";
 
-            //チェックが入っている人のIDを取得
+            //変更する人(メンバーリストでチェックが入っている人)のIDを取得
             for (int i = 0; i < allMemberList.RowCount; i++)
             {
                 if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
                 {
                     id = (string)allMemberList.Rows[i].Cells[1].Value;
+                    break;
+                }
+            }
+            //変更前の参加メンバーのチェック状態を保持
+            var checkedIdInAttendMembers = new List<string>();
+            for (int i = 0; i < attendMemberList.RowCount; i++)
+            {
+                if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
+                {
+                    checkedIdInAttendMembers.Add((string)attendMemberList.Rows[i].Cells[1].Value);
                     break;
                 }
             }
@@ -469,12 +479,12 @@ namespace Forest
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
-            //今、変更した人の参加フラグを立て直す
-            foreach (var person in allPersons)
+            //todo 参加メンバーに入っていたら参加フラグを立て直す
+            foreach (var targetId in checkedIdInAttendMembers)
             {
-                if (updatePerson.ID == person.ID)
+                if (updatePerson.ID == targetId)
                 {
-                    person.AttendFlag = true;
+                    allPersons.Where(x => x.ID == targetId).FirstOrDefault().AttendFlag = true;
 
                 }
             }
@@ -485,7 +495,7 @@ namespace Forest
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-            var updatePersons = new List<Person> { updatePerson };
+            var updatePersons = new List<Person> { updatePerson};
             DisplayMainWindow(updatePersons);
         }
 
