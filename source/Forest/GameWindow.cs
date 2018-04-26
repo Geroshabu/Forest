@@ -79,13 +79,13 @@ namespace Forest
         {
             //ImageオブジェクトのGraphicsオブジェクトを作成する
             Graphics graphics = Graphics.FromImage(canvas);
-            //コート（二つ）を表示する
-            int width = 100;
+            //コートを表示する
+            int width = 200;
             int height = 200 ;
             //四角を描く
             graphics.DrawRectangle(blackPen, x, y, width, height);
             //線を描く
-            graphics.DrawLine(blackPen, x, (y + width), (x + width), (y + width));
+            graphics.DrawLine(blackPen, x, (y + height/2), (x + width), (y + height / 2));
 
             graphics.Dispose();
 

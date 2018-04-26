@@ -6,6 +6,10 @@ namespace Forest
 {
     public class RandomGenerator : IGameGenerator
     {
+        //コート名を決めるときに用いるアルファベット
+        char[] Alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
+        'O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+
         /// <summary>
         /// 試合の組み合わせと休憩する人を決める
         /// </summary>
@@ -40,7 +44,7 @@ namespace Forest
                     //コートの用意
                     var court = new Court
                     {
-                        CourtName = "コート" + (courtCounter + 1),
+                        CourtName = "コート" + (Alphabet[courtCounter]),
                         AccommodateNumber = 2 //今はシングルスのみだから todo 今後のことを考えると変数作った方がいい気がする
                     };
 
