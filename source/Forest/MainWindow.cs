@@ -42,7 +42,7 @@ namespace Forest
             }
 
             //表示する
-            DisplayMainWindow(new List<Person>());
+            DisplayMainWindow(new List<Person>(), new List<Person>());
         }
 
         /// <summary>
@@ -323,6 +323,31 @@ namespace Forest
         /// <param name="e"></param>
         private void AddPerson(object sender, EventArgs e)
         {
+            //追加前のメンバーのチェック状態を保持
+            var checkedInAllMembers = new List<Person>();
+            for (int i = 0; i < allMemberList.RowCount; i++)
+            {
+                if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
+                {
+                    //チェックされていた人のID
+                    string targetId = (string)allMemberList.Rows[i].Cells[1].Value;
+                    //IDが一致する人をリストに保持
+                    checkedInAllMembers.Add(PersonHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
+                }
+            }
+            //追加前の参加メンバーのチェック状態を保持
+            var checkedInAttendMembers = new List<Person>();
+            for (int i = 0; i < attendMemberList.RowCount; i++)
+            {
+                if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
+                {
+                    //チェックされていた人のID
+                    string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
+                    //IDが一致する人をリストに保持
+                    checkedInAttendMembers.Add(PersonHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
+                }
+            }
+
             using (InputForm inputForm = new InputForm(PersonRepository))
             {
                 //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
@@ -332,23 +357,20 @@ namespace Forest
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
-            //新たに追加された人を探す
-            var newPersons = allPersons.Except(PersonHolder.GetAll());
-
             //PersonHolderを作ってメンバーを保持させる
             PersonHolder = new PersonHolder(allPersons);
 
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-            DisplayMainWindow(newPersons);
+            DisplayMainWindow(checkedInAllMembers, checkedInAttendMembers);
         }
 
         /// <summary>
         /// MainWindowのリストとラベルを表示するためのメソッド
         /// </summary>
         /// <param name="checkInAllMenberList">チェックボックスにチェックを入れる人のリスト</param>
-        private void DisplayMainWindow(IEnumerable<Person> checkInAllMenberList)
+        private void DisplayMainWindow(IEnumerable<Person> checkInAllMenberList, IEnumerable<Person> checkInAttendMenberList)
         {
             //サークルメンバーを表示
             var persons = PersonHolder.GetAll();
@@ -377,7 +399,7 @@ namespace Forest
             {
                 //checkMemberのチェックボックスにはチェックを入れる
                 var check = false;
-                foreach (Person target in checkInAllMenberList)
+                foreach (Person target in checkInAttendMenberList)
                 {
                     if (target.ID == person.ID)
                     {
@@ -446,27 +468,22 @@ namespace Forest
                 if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
                 {
                     id = (string)allMemberList.Rows[i].Cells[1].Value;
-                    break;
+                    //IDが一致する人を探して保持
+                    updatePerson = PersonHolder.GetAll().Where(x => x.ID == id).FirstOrDefault();
                 }
             }
             //変更前の参加メンバーのチェック状態を保持
             var checkedIdInAttendMembers = new List<string>();
+            var checkedInAttendMembers = new List<Person>();
             for (int i = 0; i < attendMemberList.RowCount; i++)
             {
                 if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
                 {
-                    checkedIdInAttendMembers.Add((string)attendMemberList.Rows[i].Cells[1].Value);
-                    break;
-                }
-            }
-
-            //IDが一致する人を探す
-            foreach (Person target in PersonHolder.GetAll())
-            {
-                if (target.ID == id)
-                {
-                    updatePerson = target;
-                    break;
+                    //チェックされていた人のID
+                    string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
+                    checkedIdInAttendMembers.Add(targetId);
+                    //IDが一致する人をリストに保持
+                    checkedInAttendMembers.Add(PersonHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
                 }
             }
 
@@ -479,7 +496,7 @@ namespace Forest
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
 
-            //todo 参加メンバーに入っていたら参加フラグを立て直す
+            //参加メンバーに入っていたら参加フラグを立て直す
             foreach (var targetId in checkedIdInAttendMembers)
             {
                 if (updatePerson.ID == targetId)
@@ -495,8 +512,8 @@ namespace Forest
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-            var updatePersons = new List<Person> { updatePerson};
-            DisplayMainWindow(updatePersons);
+            var updatePersons = new List<Person> { updatePerson };
+            DisplayMainWindow(updatePersons, checkedInAttendMembers);
         }
 
         /// <summary>
@@ -518,18 +535,21 @@ namespace Forest
                 {
                     id = (string)allMemberList.Rows[i].Cells[1].Value;
                     idList.Add(id);
+                    deletePersons.Add(PersonHolder.GetAll().Where(x => x.ID == id).FirstOrDefault());
+
                 }
             }
 
-            foreach (Person target in PersonHolder.GetAll())
+            //削除前の参加メンバーのチェック状態を保持
+            var checkedInAttendMembers = new List<Person>();
+            for (int i = 0; i < attendMemberList.RowCount; i++)
             {
-                foreach (string targetId in idList)
+                if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
                 {
-                    if (target.ID == targetId)
-                    {
-                        person = target;
-                        deletePersons.Add(person);
-                    }
+                    //チェックされていた人のID
+                    string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
+                    //IDが一致する人をリストに保持
+                    checkedInAttendMembers.Add(PersonHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
                 }
             }
 
@@ -548,7 +568,7 @@ namespace Forest
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-            DisplayMainWindow(deletePersons);
+            DisplayMainWindow(deletePersons, checkedInAttendMembers);
 
         }
 
@@ -580,7 +600,7 @@ namespace Forest
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
-            DisplayMainWindow(new List<Person>());
+            DisplayMainWindow(new List<Person>(), new List<Person>());
         }
 
         /// <summary>
