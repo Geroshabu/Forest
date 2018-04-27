@@ -65,11 +65,11 @@ namespace Forest
                 //選択された性別を入れる
                 if (radioButtonMale.Checked)
                 {
-                    Person.Gender = new Gender { GenderNum = 0 };
+                    Person.Gender = new Gender { GenderNum = 1 };
                 }
                 else if (radioButtonFemale.Checked)
                 {
-                    Person.Gender = new Gender { GenderNum = 1 };
+                    Person.Gender = new Gender { GenderNum = 0 };
                 }
                 //選択されたレベルを入れる
                 if (radioButtonBeginner.Checked)
@@ -99,11 +99,11 @@ namespace Forest
                 //選択された性別を入れる
                 if (radioButtonMale.Checked)
                 {
-                    Person.Gender.GenderNum = 0;
+                    Person.Gender.GenderNum = 1;
                 }
                 else if (radioButtonFemale.Checked)
                 {
-                    Person.Gender.GenderNum = 1;
+                    Person.Gender.GenderNum = 0;
                 }
                 //選択されたレベルを入れる
                 if (radioButtonBeginner.Checked)
@@ -146,11 +146,11 @@ namespace Forest
                 //名前を入れる
                 nameTextBox.Text = Person.Name;
                 //性別を入れる
-                if (Person.Gender == new Gender { GenderNum = 0 })
+                if (Person.Gender == new Gender { GenderNum = 1 })
                 {
                     radioButtonMale.Checked = true;
                 }
-                else if (Person.Gender == new Gender { GenderNum = 1 })
+                else if (Person.Gender == new Gender { GenderNum = 0 })
                 {
                     radioButtonFemale.Checked = true;
                 }

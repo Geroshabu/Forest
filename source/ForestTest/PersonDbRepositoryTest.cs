@@ -59,7 +59,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -93,7 +93,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -102,7 +102,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "bell",
-                    Gender = new Gender { GenderNum = 1 },
+                    Gender = new Gender { GenderNum = 0 },
                     Level = new Level { LevelNum = 0 },
                     DeleteFlag = false,
                     AttendFlag = true
@@ -137,7 +137,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -178,7 +178,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -187,7 +187,7 @@ namespace ForestTest
                 {
                     ID = "test02",
                     Name = "bell",
-                    Gender = new Gender { GenderNum = 1 },
+                    Gender = new Gender { GenderNum = 0 },
                     Level = new Level { LevelNum = 0 },
                     DeleteFlag = false,
                     AttendFlag = true
@@ -226,7 +226,7 @@ namespace ForestTest
                 {
                     ID = "test03",
                     Name = "andy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 1 },
                     DeleteFlag = true,
                     AttendFlag = false
@@ -284,7 +284,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -293,7 +293,7 @@ namespace ForestTest
                 {
                     ID = "test02",
                     Name = "bell",
-                    Gender = new Gender { GenderNum = 1 },
+                    Gender = new Gender { GenderNum = 0 },
                     Level = new Level { LevelNum = 0 },
                     DeleteFlag = false,
                     AttendFlag = true
@@ -333,7 +333,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -342,7 +342,7 @@ namespace ForestTest
                 {
                     ID = "test02",
                     Name = "bell",
-                    Gender = new Gender { GenderNum = 1 },
+                    Gender = new Gender { GenderNum = 0 },
                     Level = new Level { LevelNum = 0 },
                     DeleteFlag = true,
                     AttendFlag = true
@@ -381,7 +381,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -390,7 +390,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "bell",
-                    Gender = new Gender { GenderNum = 1 },
+                    Gender = new Gender { GenderNum = 0 },
                     Level = new Level { LevelNum = 0 },
                     DeleteFlag = false,
                     AttendFlag = true
@@ -430,7 +430,7 @@ namespace ForestTest
                 {
                     ID = "test01",
                     Name = "snoopy",
-                    Gender = new Gender { GenderNum = 0 },
+                    Gender = new Gender { GenderNum = 1 },
                     Level = new Level { LevelNum = 2 },
                     DeleteFlag = false,
                     AttendFlag = false
@@ -441,7 +441,7 @@ namespace ForestTest
                 {
                     ID = "test02",
                     Name = "bell",
-                    Gender = new Gender { GenderNum = 1 },
+                    Gender = new Gender { GenderNum = 0 },
                     Level = new Level { LevelNum = 0 },
                     DeleteFlag = false,
                     AttendFlag = true

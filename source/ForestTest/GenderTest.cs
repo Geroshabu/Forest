@@ -10,8 +10,8 @@ namespace ForestTest
         /// ToStringメソッドのテスト
         /// </summary>
         [Theory(DisplayName = "ToString()のテスト")]
-        [InlineData(0, "男")]
-        [InlineData(1, "女")]
+        [InlineData(1, "男")]
+        [InlineData(0, "女")]
         [Trait("分類", "正常系")]
         public void ToStringTest(int genderNum, string expectedText)
         {
@@ -31,8 +31,8 @@ namespace ForestTest
         [Fact(DisplayName = "Equalsのテスト（異なるとき）")]
         public void EqualsGenderTest2()
         {
-            var gender1 = new Gender { GenderNum = 1 };
-            var gender2 = new Gender { GenderNum = 2 };
+            var gender1 = new Gender { GenderNum = 0 };
+            var gender2 = new Gender { GenderNum = 1 };
 
             Assert.False(gender1.Equals(gender2));
         }
@@ -57,8 +57,8 @@ namespace ForestTest
         [Fact(DisplayName = "Equalsのテスト（異なるとき）")]
         public void EqualsObjectTest2()
         {
-            var gender1 = new Gender { GenderNum = 1 };
-            var gender2 = new Gender { GenderNum = 2 };
+            var gender1 = new Gender { GenderNum = 0 };
+            var gender2 = new Gender { GenderNum = 1 };
 
             Assert.False(gender1.Equals((object)gender2));
         }
@@ -93,8 +93,8 @@ namespace ForestTest
         [Fact(DisplayName = "==のテスト（異なるとき）")]
         public void OperatorTest02()
         {
-            var gender1 = new Gender { GenderNum = 1 };
-            var gender2 = new Gender { GenderNum = 2 };
+            var gender1 = new Gender { GenderNum = 0 };
+            var gender2 = new Gender { GenderNum = 1 };
 
             Assert.False(gender1 == gender2);
         }
@@ -133,8 +133,8 @@ namespace ForestTest
         [Fact(DisplayName = "!=のテスト（異なるとき）")]
         public void OperatorTest07()
         {
-            var gender1 = new Gender { GenderNum = 1 };
-            var gender2 = new Gender { GenderNum = 2 };
+            var gender1 = new Gender { GenderNum = 0 };
+            var gender2 = new Gender { GenderNum = 1 };
 
             Assert.True(gender1 != gender2);
         }

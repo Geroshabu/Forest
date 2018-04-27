@@ -21,8 +21,8 @@ namespace ForestTest
         /// </summary>
         public PersonHolderTest()
         {
-            Gender men = new Gender { GenderNum = 0 };
-            Gender women = new Gender { GenderNum = 1 };
+            Gender men = new Gender { GenderNum = 1 };
+            Gender women = new Gender { GenderNum = 0 };
             Level beginner = new Level { LevelNum = 0 };
             Level intermediate = new Level { LevelNum = 1 };
             Level advanced = new Level { LevelNum = 2 };

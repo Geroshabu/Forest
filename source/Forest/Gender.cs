@@ -6,7 +6,7 @@ namespace Forest
     {
         /// <summary>
         /// 性別を数字で表す。
-        /// 0：男　1：女
+        /// 0：女　1：男
         /// </summary>
         public int GenderNum { get; set; }
 
@@ -19,11 +19,11 @@ namespace Forest
         {
             if (GenderNum == 0)
             {
-                return "男";
+                return "女";
             }
             else if (GenderNum == 1)
             {
-                return "女";
+                return "男";
             }
 
             throw new InvalidOperationException("GenderNumが適切でないです。GenderNum：" + GenderNum);
