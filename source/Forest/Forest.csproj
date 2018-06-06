@@ -131,6 +131,7 @@
     <Compile Include="GameWindow.Designer.cs">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generator.cs" />
     <Compile Include="IGameGenerator.cs" />
     <Compile Include="InputForm.cs">
       <SubType>Form</SubType>
@@ -154,6 +155,7 @@
     <Compile Include="PersonHolder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomByGenderGenerator.cs" />
     <Compile Include="RandomGenerator.cs" />
     <EmbeddedResource Include="DeleteCheckDialog.resx">
       <DependentUpon>DeleteCheckDialog.cs</DependentUpon>
