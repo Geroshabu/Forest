@@ -10,6 +10,7 @@ namespace Forest
     {
         PersonHolder PersonHolder;
         IPersonRepository PersonRepository;
+        IGameGeneratorFactory GameGeneratorFactory;
 
         public MainWindow()
         {
@@ -31,6 +32,7 @@ namespace Forest
         public void MainWindowLoad(object sender, EventArgs e)
         {
             PersonRepository = new PersonDbRepository();
+            GameGeneratorFactory = new GameGeneratorFactory();
 
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
@@ -287,7 +289,7 @@ namespace Forest
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void allMemberList_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        { 
+        {
             //列の名前
             string targetColum = e.Column.Name;
 
@@ -328,10 +330,10 @@ namespace Forest
                 return;
             }
 
-            foreach(var compare in compareList)
+            foreach (var compare in compareList)
             {
                 //同じだったら次に行く
-                if(compare.columName == targetColum)
+                if (compare.columName == targetColum)
                 {
                     continue;
                 }
@@ -616,6 +618,17 @@ namespace Forest
         }
 
         /// <summary>
+        /// 組み合わせを決めるアルゴリズム
+        /// </summary>
+        private enum GenerateMode
+        {
+            random,
+            randomByGender,
+            randomByLebel,
+            fewMatchPriority
+        }
+
+        /// <summary>
         /// 試合開始ボタンが押下されたとき
         /// </summary>
         /// <param name="sender"></param>
@@ -629,10 +642,9 @@ namespace Forest
             //練習に参加するメンバー
             var attendMember = PersonHolder.GetAttended();
 
-            //RamdomGeneratorを読んで、試合を決めてもらう
-            string currentGeneratorMode = "random";
-            IGameGenerator gameGenerator = GeneratorFactory(currentGeneratorMode);
-            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber);
+            //RamdomGeneratorをよんで、試合を決めてもらう
+            IGameGenerator gameGenerator = GameGeneratorFactory.Create();
+            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember);
 
             //試合の組み合わせ結果を表示する
             using (GameWindow gameWindow = new GameWindow(result.games, result.breakPersons, PersonHolder))
