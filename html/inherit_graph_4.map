@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="5,5,164,32"/>
-<area shape="rect" id="node2" href="$class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="212,5,380,32"/>
+<area shape="rect" id="node2" href="$class_forest_1_1_gender.html" title="Forest.Gender" alt="" coords="148,5,253,32"/>
+<area shape="rect" id="node3" href="$class_forest_1_1_level.html" title="Forest.Level" alt="" coords="155,56,247,83"/>
 </map>
