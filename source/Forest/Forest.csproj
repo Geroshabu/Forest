@@ -125,6 +125,7 @@
     <Compile Include="DeleteCheckDialog.Designer.cs">
       <DependentUpon>DeleteCheckDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameRecorder.cs" />
     <Compile Include="GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
