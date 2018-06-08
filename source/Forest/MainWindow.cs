@@ -203,8 +203,8 @@ namespace Forest
                 return;
             }
 
-            //チェック列以外がクリックされても何も起きない
-            if (e.ColumnIndex != 0) { return; }
+            //チェック列以外とヘッダーがクリックされても何も起きない
+            if (e.ColumnIndex != 0　|| e.RowIndex == -1 ) { return; }
 
             //チェックされていた部分が選択されれば、チェック
             //チェックされていなかった部分が選択されればチェックを外す
@@ -342,7 +342,7 @@ namespace Forest
             var compareList = compareListDictionary[targetList];
 
             //対象の列でまず比較
-            (string columName, int sortResult) = compareList.Single(tuple => tuple.columName == targetColum);
+            (string columName, int sortResult)  = compareList.FirstOrDefault(tuple => tuple.columName == targetColum);
             //0じゃなければ返す
             if (sortResult != 0)
             {
@@ -481,6 +481,10 @@ namespace Forest
             SortByCurrentSetting(allMemberList);
             SortByCurrentSetting(attendMemberList);
 
+            //最初はどの行も選択していない
+            allMemberList.CurrentCell = null;
+            attendMemberList.CurrentCell = null;
+            
             //ボタンの制御を行う
             ManageButton();
 
@@ -692,6 +696,17 @@ namespace Forest
             //アプリケーションを終了する
             Application.Exit();
         }
-        
+
+        /// <summary>
+        /// MainWindowを表示するときに発生するイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void shownMainWindow(object sender, EventArgs e)
+        {
+            //最初はどの行も選択していない
+            allMemberList.CurrentCell = null;
+            attendMemberList.CurrentCell = null;
+        }
     }
 }

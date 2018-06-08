@@ -107,6 +107,7 @@
             this.allMemberList.Name = "allMemberList";
             this.allMemberList.RowHeadersVisible = false;
             this.allMemberList.RowTemplate.Height = 21;
+            this.allMemberList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.allMemberList.Size = new System.Drawing.Size(365, 350);
             this.allMemberList.TabIndex = 3;
             this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.manageAllMemberList);
@@ -160,6 +161,7 @@
             this.attendMemberList.Name = "attendMemberList";
             this.attendMemberList.RowHeadersVisible = false;
             this.attendMemberList.RowTemplate.Height = 21;
+            this.attendMemberList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.attendMemberList.Size = new System.Drawing.Size(365, 350);
             this.attendMemberList.TabIndex = 4;
             this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.manageAttendMemberList);
@@ -309,6 +311,7 @@
             this.Text = "コート分けアプリ　参加メンバー登録";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingMainWindow);
             this.Load += new System.EventHandler(this.loadMainWindow);
+            this.Shown += new System.EventHandler(this.shownMainWindow);
             ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).EndInit();
             this.ResumeLayout(false);
