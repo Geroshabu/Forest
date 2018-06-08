@@ -22,7 +22,7 @@ namespace Forest
 
         }
 
-        private void LoadDeleteCheckDialog(object sender, EventArgs e)
+        private void loadDeleteCheckDialog(object sender, EventArgs e)
         {
             //削除される人たちをリストに表示する
             foreach (Person person in deletePersons)
@@ -38,7 +38,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Stop(object sender, EventArgs e)
+        private void stop(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -48,7 +48,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Delete(object sender, EventArgs e)
+        private void delete(object sender, EventArgs e)
         {
             int result;
 

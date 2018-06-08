@@ -76,7 +76,7 @@
             this.endGameButton.TabIndex = 10;
             this.endGameButton.Text = "試合終了";
             this.endGameButton.UseVisualStyleBackColor = true;
-            this.endGameButton.Click += new System.EventHandler(this.EndGame);
+            this.endGameButton.Click += new System.EventHandler(this.endGame);
             // 
             // breakMemberLabel
             // 
@@ -178,7 +178,7 @@
             this.Name = "GameWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "組み合わせ結果画面";
-            this.Load += new System.EventHandler(this.LoadGameWindow);
+            this.Load += new System.EventHandler(this.loadGameWindow);
             ((System.ComponentModel.ISupportInitialize)(this.breakMemberList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultPictureBox)).EndInit();
             this.ResumeLayout(false);

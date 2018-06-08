@@ -50,7 +50,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Register(object sender, EventArgs e)
+        private void register(object sender, EventArgs e)
         {
             //追加、変更の結果
             bool result;
@@ -139,7 +139,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LoadInputForm(object sender, EventArgs e)
+        private void loadInputForm(object sender, EventArgs e)
         {
             if (currentOrder == Order.Update)
             {

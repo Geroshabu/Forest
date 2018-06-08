@@ -32,7 +32,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MainWindowLoad(object sender, EventArgs e)
+        private void loadMainWindow(object sender, EventArgs e)
         {
             personRepository = new PersonDbRepository();
 
@@ -57,7 +57,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void AddAttendedPersons(object sender, EventArgs e)
+        private void addAttendedPersons(object sender, EventArgs e)
         {
             //チェック状態を取得
             //IDを取得
@@ -107,7 +107,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void DeleteAttendedPersons(object sender, EventArgs e)
+        private void deleteAttendedPersons(object sender, EventArgs e)
         {
             //チェックされている人のIDを取得
             var id_list = new List<string>();
@@ -168,7 +168,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ManageAllMemberList(object sender, DataGridViewCellMouseEventArgs e)
+        private void manageAllMemberList(object sender, DataGridViewCellMouseEventArgs e)
         {
             //リストの制御をする
             Managelist(allMemberList, e);
@@ -181,7 +181,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ManageAttendMemberList(object sender, DataGridViewCellMouseEventArgs e)
+        private void manageAttendMemberList(object sender, DataGridViewCellMouseEventArgs e)
         {
             //リストの制御をする
             Managelist(attendMemberList, e);
@@ -195,7 +195,7 @@ namespace Forest
         /// </summary>
         /// <param name="targetList">切り替え対象のリスト</param>
         /// <param name="e">マウスのイベントのデータ</param>
-        public void Managelist(DataGridView targetList, DataGridViewCellMouseEventArgs e)
+        private void Managelist(DataGridView targetList, DataGridViewCellMouseEventArgs e)
         {
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
             if (personHolder == null)
@@ -222,7 +222,7 @@ namespace Forest
         /// <summary>
         /// ボタンの活性・非活性の切り替えをする
         /// </summary>
-        public void ManageButton()
+        private void ManageButton()
         {
             //ボタンの状態（デフォルト）
             //→ボタン
@@ -293,8 +293,8 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void allMemberList_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        {
+        private void allMemberListSortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        { 
             //列の名前
             string targetColum = e.Column.Name;
 
@@ -363,7 +363,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddPerson(object sender, EventArgs e)
+        private void addPerson(object sender, EventArgs e)
         {
             if (allMemberList.RowCount >= 100)
             {
@@ -475,7 +475,7 @@ namespace Forest
         /// </summary>
         /// <param name="targetList">ソートを行うリスト</param>
         /// <param name="currentSetting">現在のソート対象のカラム名</param>
-        void SortByCurrentSetting(DataGridView targetList)
+        private void SortByCurrentSetting(DataGridView targetList)
         {
             //ソート対象のカラム名
             string currentSetting;
@@ -507,7 +507,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UpdatePerson(object sender, EventArgs e)
+        private void updatePerson(object sender, EventArgs e)
         {
             Person updatePerson = new Person();
             string id = "";
@@ -571,7 +571,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeletePersons(object sender, EventArgs e)
+        private void deletePersons(object sender, EventArgs e)
         {
             var deletePersons = new List<Person>();
             var person = new Person();
@@ -627,7 +627,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void StartGame(object sender, EventArgs e)
+        private void startGame(object sender, EventArgs e)
         {
             //コート数は暫定二つでシングルス
             int courtNum = 2;
@@ -671,7 +671,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ClosingMainWindow(object sender, FormClosingEventArgs e)
+        private void closingMainWindow(object sender, FormClosingEventArgs e)
         {
             //アプリケーションを終了する
             Application.Exit();
