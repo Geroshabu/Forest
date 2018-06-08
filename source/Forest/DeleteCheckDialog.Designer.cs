@@ -68,6 +68,7 @@
             this.deleteMemberList.RowTemplate.Height = 21;
             this.deleteMemberList.Size = new System.Drawing.Size(305, 359);
             this.deleteMemberList.TabIndex = 4;
+            this.deleteMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.memberListSortCompare);
             // 
             // deleteMemberListId
             // 
