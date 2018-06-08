@@ -110,7 +110,7 @@
             this.allMemberList.Size = new System.Drawing.Size(365, 350);
             this.allMemberList.TabIndex = 3;
             this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.manageAllMemberList);
-            this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.allMemberListSortCompare);
+            this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.memberListSortCompare);
             // 
             // allMemberListCheck
             // 
@@ -163,6 +163,7 @@
             this.attendMemberList.Size = new System.Drawing.Size(365, 350);
             this.attendMemberList.TabIndex = 4;
             this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.manageAttendMemberList);
+            this.attendMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.memberListSortCompare);
             // 
             // attendMemberListCheck
             // 

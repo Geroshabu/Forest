@@ -289,11 +289,11 @@ namespace Forest
         }
 
         /// <summary>
-        /// ソートをするときに発生するイベント
+        /// リストをソートをするときに発生するイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void allMemberListSortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        private void memberListSortCompare(object sender, DataGridViewSortCompareEventArgs e)
         { 
             //列の名前
             string targetColum = e.Column.Name;
@@ -318,12 +318,28 @@ namespace Forest
             Level level2 = (Level)(((DataGridViewRow)row2).Cells)[4].Value;
 
             //比較するときに使うリスト
-            List<(string columName, int sortResult)> compareList = new List<(string columName, int sortResult)>
+            List<(string columName, int sortResult)> compareList01 = new List<(string columName, int sortResult)>
             {
                 ("allMemberListName",name1.CompareTo(name2)),
                 ("allMemberListGender",gender1.CompareTo(gender2)),
                 ("allMemberListLevel",level1.CompareTo(level2))
             };
+            List<(string columName, int sortResult)> compareList02 = new List<(string columName, int sortResult)>
+            {
+                ("attendMemberListName",name1.CompareTo(name2)),
+                ("attendMemberListGender",gender1.CompareTo(gender2)),
+                ("attendMemberListLevel",level1.CompareTo(level2))
+            };
+
+            //リストによって比較するときのリストが異なる
+            var compareListDictionary = new Dictionary<DataGridView, List<(string columName, int sortResult)>>
+            {
+                { allMemberList,compareList01 },
+                { attendMemberList,compareList02 }
+            };
+
+            //今使うべきリストを調べる
+            var compareList = compareListDictionary[targetList];
 
             //対象の列でまず比較
             (string columName, int sortResult) = compareList.Single(tuple => tuple.columName == targetColum);
