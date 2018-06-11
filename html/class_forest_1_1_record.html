@@ -103,15 +103,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ace6d2449861c37b06a62d3547ae8e67f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_record.html#ace6d2449861c37b06a62d3547ae8e67f">Record</a> (<a class="el" href="class_forest_1_1_person.html">Person</a> player1, <a class="el" href="class_forest_1_1_person.html">Person</a> player2)</td></tr>
 <tr class="separator:ace6d2449861c37b06a62d3547ae8e67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2bbb3ac37d14708e304fa5369511df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_record.html#aff2bbb3ac37d14708e304fa5369511df">Contain</a> (<a class="el" href="class_forest_1_1_person.html">Person</a> person)</td></tr>
+<tr class="memdesc:aff2bbb3ac37d14708e304fa5369511df"><td class="mdescLeft">&#160;</td><td class="mdescRight">引数の人がこのレコードに含まれているかを返す  <a href="#aff2bbb3ac37d14708e304fa5369511df">More...</a><br /></td></tr>
+<tr class="separator:aff2bbb3ac37d14708e304fa5369511df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ae56f5cf5d790a0911249a99ba7278b63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_person.html">Person</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_record.html#ae56f5cf5d790a0911249a99ba7278b63">Opponent</a><code> [get]</code></td></tr>
-<tr class="memdesc:ae56f5cf5d790a0911249a99ba7278b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">対戦した組み合わせ  <a href="#ae56f5cf5d790a0911249a99ba7278b63">More...</a><br /></td></tr>
-<tr class="separator:ae56f5cf5d790a0911249a99ba7278b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93229d9126471d2aa3bde0fb84939d35"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_record.html#a93229d9126471d2aa3bde0fb84939d35">Count</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a93229d9126471d2aa3bde0fb84939d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">戦った回数  <a href="#a93229d9126471d2aa3bde0fb84939d35">More...</a><br /></td></tr>
-<tr class="separator:a93229d9126471d2aa3bde0fb84939d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f6e8b2eda7fb6dfd922dcd6966fb8dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_person.html">Person</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_record.html#a5f6e8b2eda7fb6dfd922dcd6966fb8dc">Player1</a><code> [get]</code></td></tr>
+<tr class="memdesc:a5f6e8b2eda7fb6dfd922dcd6966fb8dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合をした人①  <a href="#a5f6e8b2eda7fb6dfd922dcd6966fb8dc">More...</a><br /></td></tr>
+<tr class="separator:a5f6e8b2eda7fb6dfd922dcd6966fb8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56210fbc8032ae0dc9ce787f9e6bfa50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_person.html">Person</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_record.html#a56210fbc8032ae0dc9ce787f9e6bfa50">Player2</a><code> [get]</code></td></tr>
+<tr class="memdesc:a56210fbc8032ae0dc9ce787f9e6bfa50"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合をしたした人②  <a href="#a56210fbc8032ae0dc9ce787f9e6bfa50">More...</a><br /></td></tr>
+<tr class="separator:a56210fbc8032ae0dc9ce787f9e6bfa50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>対戦履歴 </p>
@@ -150,8 +153,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a93229d9126471d2aa3bde0fb84939d35"></a>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aff2bbb3ac37d14708e304fa5369511df"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -159,21 +162,33 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Forest.Record.Count</td>
+          <td class="memname">bool Forest.Record.Contain </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_forest_1_1_person.html">Person</a>&#160;</td>
+          <td class="paramname"><em>person</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>戦った回数 </p>
+<p>引数の人がこのレコードに含まれているかを返す </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">person</td><td>探したい人</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>含まれているかどうか</dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ae56f5cf5d790a0911249a99ba7278b63"></a>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a5f6e8b2eda7fb6dfd922dcd6966fb8dc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -181,7 +196,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_forest_1_1_person.html">Person</a> [] Forest.Record.Opponent</td>
+          <td class="memname"><a class="el" href="class_forest_1_1_person.html">Person</a> Forest.Record.Player1</td>
         </tr>
       </table>
   </td>
@@ -191,7 +206,29 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>対戦した組み合わせ </p>
+<p>試合をした人① </p>
+
+</div>
+</div>
+<a class="anchor" id="a56210fbc8032ae0dc9ce787f9e6bfa50"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_forest_1_1_person.html">Person</a> Forest.Record.Player2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>試合をしたした人② </p>
 
 </div>
 </div>
