@@ -66,26 +66,8 @@ namespace ForestTest
             testGame03 = new Game(court, players2, players3);
         }
 
-        [Fact(DisplayName = "今までに対戦したことのある人たちの記録を更新することができる")]
+        [Fact(DisplayName = "記録を追加することができる")]
         public void AddTest01()
-        {
-            //Arrange
-            Game[] games = new Game[] { testGame01 };
-            GameRecorder = new GameRecorder();
-            GameRecorder.Add(games);
-
-            //Act
-            games = new Game[] { testGame01 };
-            GameRecorder.Add(games);
-            int expected = 2;
-            int actual = GameRecorder.GetTimes(testPerson01, testPerson02);
-
-            //Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact(DisplayName = "今までに対戦したことのない人たちの記録を追加することができる")]
-        public void AddTest02()
         {
             //Arrange
             Game[] games = new Game[] { testGame01 };
@@ -101,7 +83,7 @@ namespace ForestTest
         }
 
         [Fact(DisplayName = "複数件の記録を追加することができる")]
-        public void AddTest03()
+        public void AddTest02()
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01, testGame01, testGame01 };

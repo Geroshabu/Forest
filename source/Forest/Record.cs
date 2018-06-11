@@ -10,7 +10,6 @@
             Opponent = new Person[2];
             Opponent[0] = player1;
             Opponent[1] = player2;
-            Count = 1;
         }
 
         /// <summary>
@@ -19,8 +18,6 @@
         public Person[] Opponent { get; }
 
         /// <summary>
-        /// 戦った回数
         /// </summary>
-        public int Count { get; set; }
     }
 }

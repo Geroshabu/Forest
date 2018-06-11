@@ -40,23 +40,10 @@ namespace Forest
                 throw new ArgumentException("引数のGameが空です");
             }
 
-            //gamesの数だけ履歴を追加する
-            foreach(var game in games)
+            //ゲームの数だけ対戦履歴を増やす
+            foreach (var game in games)
             {
-                Record record;
-                //今までに戦ったことがあるのか、検索
-                record = Search(Search(Records, game.Player1[0]),game.Player2[0]).FirstOrDefault();
-                //nullだったら新たに作る
-                if(record == null)
-                {
-                    record = new Record(game.Player1[0], game.Player2[0]);
-                    Records.Add(record);
-                }
-                //過去に戦ったことがあれば、回数を一回増やす
-                else
-                {
-                    record.Count++;
-                }
+                Records.Add(new Record(game.Player1[0], game.Player2[0]));
             }
         }
 
@@ -68,19 +55,13 @@ namespace Forest
         /// <exception cref="ArgumentNullException">引数がnullのとき</exception>
         public int GetTimes(Person player)
         {
-            int result = 0;
             //nullのときは例外を出す
             if (player == null)
             {
                 throw new ArgumentNullException("GetTimesメソッドの引数がnullです");
             }
 
-            //探して足し合わせる
-            foreach (var record in Search(Records, player))
-            {
-                result += record.Count;
-            }
-            return result;
+            return Search(Records, player).Count();
         }
 
         /// <summary>
@@ -93,22 +74,19 @@ namespace Forest
         /// <exception cref="ArgumentException">引数がどちらも同じとき</exception>
         public int GetTimes(Person player1, Person player2)
         {
-            int result = 0;
             //どちらかがnullのときは例外を出す
             if (player1 == null || player2 == null)
             {
                 throw new ArgumentNullException("GetTimesメソッドの引数がnullです");
             }
 
-            //探して足し合わせる
-            foreach (var record in Search(Search(Records, player1), player2))
             //引数のPersonが同じときは例外を出す
             if (player1 == player2)
             {
-                result += record.Count;
                 throw new ArgumentException("GetTimesメソッドの引数に同じ人が入っています");
             }
-            return result;
+
+            return Search(Search(Records, player1), player2).Count();
         }
 
         /// <summary>
