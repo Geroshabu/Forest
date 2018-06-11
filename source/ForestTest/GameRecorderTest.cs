@@ -1,4 +1,5 @@
 ﻿using Forest;
+using System;
 using Xunit;
 
 namespace ForestTest
@@ -115,26 +116,19 @@ namespace ForestTest
             Assert.Equal(expected, actual);
         }
 
-        [Fact(DisplayName = "nullが来たときは何も変わらない")]
-        public void AddTest04()
+        [Fact(DisplayName = "nullが来たときは例外を出す")]
+        public void AddTest03()
         {
             //Arrange
             GameRecorder = new GameRecorder();
 
             //Act
-            GameRecorder.Add(null);
-            int expected = 0;
-            int actual01 = GameRecorder.GetTimes(testPerson01, testPerson02);
-            int actual02 = GameRecorder.GetTimes(testPerson01, testPerson03);
-            int actual03 = GameRecorder.GetTimes(testPerson02, testPerson03);
-
             //Assert
-            Assert.Equal(expected, actual01);
-            Assert.Equal(expected, actual02);
-            Assert.Equal(expected, actual03);
+            Assert.Throws<ArgumentNullException>(() =>
+            { GameRecorder.Add(null); });
         }
 
-        [Fact(DisplayName = "空の配列が来たときは何も変わらない")]
+        [Fact(DisplayName = "引数に空の配列が来たときは例外を出す")]
         public void AddTest05()
         {
             //Arrange
@@ -142,16 +136,9 @@ namespace ForestTest
             GameRecorder = new GameRecorder();
 
             //Act
-            GameRecorder.Add(games);
-            int expected = 0;
-            int actual01 = GameRecorder.GetTimes(testPerson01, testPerson02);
-            int actual02 = GameRecorder.GetTimes(testPerson01, testPerson03);
-            int actual03 = GameRecorder.GetTimes(testPerson02, testPerson03);
-
             //Assert
-            Assert.Equal(expected, actual01);
-            Assert.Equal(expected, actual02);
-            Assert.Equal(expected, actual03);
+            Assert.Throws<ArgumentException>(() =>
+            { GameRecorder.Add(games); });
         }
 
         [Fact(DisplayName = "【一人】引数の人が参加したことのある試合回数を返すことができる")]
@@ -219,7 +206,7 @@ namespace ForestTest
             Assert.Equal(expectedCount, actualCount);
         }
 
-        [Fact(DisplayName = "【一人】nullの時には0を返すことができる")]
+        [Fact(DisplayName = "【一人】nullの時には例外を出す")]
         public void GetTimesTest05()
         {
             //Arrange
@@ -228,14 +215,12 @@ namespace ForestTest
             GameRecorder.Add(games);
 
             //Act
-            int actualCount = GameRecorder.GetTimes(null);
-            int expectedCount = 0;
-
             //Assert
-            Assert.Equal(expectedCount, actualCount);
+            Assert.Throws<ArgumentNullException>(() =>
+            { GameRecorder.GetTimes(null); });
         }
 
-        [Fact(DisplayName = "【二人】一つ目の引数がnullの時には0を返すことができる")]
+        [Fact(DisplayName = "【二人】一つ目の引数がnullの時には例外を出す")]
         public void GetTimesTest06()
         {
             //Arrange
@@ -244,15 +229,12 @@ namespace ForestTest
             GameRecorder.Add(games);
 
             //Act
-            int actualCount = GameRecorder.GetTimes(null, testPerson01);
-            int expectedCount = 0;
-
             //Assert
-            Assert.Equal(expectedCount, actualCount);
-
+            Assert.Throws<ArgumentNullException>(() =>
+            { GameRecorder.GetTimes(testPerson01, null); });
         }
 
-        [Fact(DisplayName = "【二人】二つ目の引数がnullの時には0を返すことができる")]
+        [Fact(DisplayName = "【二人】二つ目の引数がnullの時には例外を出す")]
         public void GetTimesTest07()
         {
             //Arrange
@@ -261,14 +243,12 @@ namespace ForestTest
             GameRecorder.Add(games);
 
             //Act
-            int actualCount = GameRecorder.GetTimes(testPerson01, null);
-            int expectedCount = 0;
-
             //Assert
-            Assert.Equal(expectedCount, actualCount);
+            Assert.Throws<ArgumentNullException>(() =>
+            { GameRecorder.GetTimes(null, testPerson01); });
         }
 
-        [Fact(DisplayName = "【二人】両方の引数がnullの時には0を返すことができる")]
+        [Fact(DisplayName = "【二人】両方の引数がnullの時には例外を出す")]
         public void GetTimesTest08()
         {
             //Arrange
@@ -277,14 +257,24 @@ namespace ForestTest
             GameRecorder.Add(games);
 
             //Act
-            int actualCount = GameRecorder.GetTimes(null, null);
-            int expectedCount = 0;
-
             //Assert
-            Assert.Equal(expectedCount, actualCount);
-
+            Assert.Throws<ArgumentNullException>(() =>
+            { GameRecorder.GetTimes(null, null); });
         }
 
+        [Fact(DisplayName = "【二人】両方の引数が同じの時には例外を出す")]
+        public void GetTimesTest09()
+        {
+            //Arrange
+            Game[] games = new Game[] { testGame01, testGame01 };
+            GameRecorder = new GameRecorder();
+            GameRecorder.Add(games);
+
+            //Act
+            //Assert
+            Assert.Throws<ArgumentException>(() =>
+            { GameRecorder.GetTimes(testPerson01, testPerson01); });
+        }
 
     }
 }
