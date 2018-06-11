@@ -95,10 +95,9 @@ namespace Forest
         /// <param name="targetList">探すリスト</param>
         /// <param name="targetPlayer">探したい人</param>
         /// <returns>参加した試合</returns>
-        private IEnumerable<Record> Search(IEnumerable<Record> targetList,Person targetPlayer)
+        private IEnumerable<Record> Search(IEnumerable<Record> targetList, Person targetPlayer)
         {
-            var resultList = targetList.Where(record => ((record.Opponent[0] == targetPlayer) || (record.Opponent[1] == targetPlayer)));
-            return resultList;
+            var resultList = targetList.Where(record => (record.Contain(targetPlayer)));
             return resultList;
         }
     }
