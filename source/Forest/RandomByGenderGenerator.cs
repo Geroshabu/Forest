@@ -80,8 +80,9 @@ namespace Forest
                     {
                         ID = playerList[playerCounter].ID,
                         Gender = playerList[playerCounter].Gender,
-                        Name = playerList[playerCounter++].Name,
+                        Name = playerList[playerCounter].Name,
                     };
+                    playerCounter++;
 
                     //ゲームにコートと試合をする人を入れる
                     var game = new Game(CreateCourt(i, accommodateNumber), team1, team2);
