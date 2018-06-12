@@ -64,9 +64,9 @@ namespace Forest
             {
                 if(playerList.Count >= playerCounter + accommodateNumber)
                 {
-                    //プレイヤーを入れていく
-                    var player1 = new Person[accommodateNumber / 2];
-                    player1[0] = new Person
+                    //試合をする人を入れていく
+                    var team1 = new Person[accommodateNumber / 2];
+                    team1[0] = new Person
                     {
                         ID = playerList[playerCounter].ID,
                         Gender = playerList[playerCounter].Gender,
@@ -75,16 +75,16 @@ namespace Forest
 
                     playerCounter++;
 
-                    var player2 = new Person[accommodateNumber / 2];
-                    player2[0] = new Person
+                    var team2 = new Person[accommodateNumber / 2];
+                    team2[0] = new Person
                     {
                         ID = playerList[playerCounter].ID,
                         Gender = playerList[playerCounter].Gender,
                         Name = playerList[playerCounter++].Name,
                     };
 
-                    //ゲームにコートとプレイヤーを入れる
-                    var game = new Game(CreateCourt(i, accommodateNumber), player1, player2);
+                    //ゲームにコートと試合をする人を入れる
+                    var game = new Game(CreateCourt(i, accommodateNumber), team1, team2);
                     games[i] = game;
                 }
                 else
