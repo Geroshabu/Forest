@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forest
 {
-    public class Generator
+    public abstract class Generator : IGameGenerator
     {
         /// <summary>
         /// 引数のリストをシャッフルする
@@ -52,5 +52,6 @@ namespace Forest
             return court;
         }
 
+        public abstract (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, List<Person> attendPersons);
     }
 }

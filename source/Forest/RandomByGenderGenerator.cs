@@ -15,7 +15,7 @@ namespace Forest
         /// <param name="courtNum">コート数</param>
         /// <param name="attendPersons">試合の参加者</param>
         /// <returns>Gameと休憩者のリスト</returns>
-        public (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, List<Person> attendPersons)
+        public override (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, List<Person> attendPersons)
         {
             //コート数が負の数であるときは例外を出す
             if (courtNum <= 0)
