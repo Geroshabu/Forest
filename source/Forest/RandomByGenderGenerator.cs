@@ -45,18 +45,8 @@ namespace Forest
             attendPersonsList.RemoveRange(0, breakPersonsNumber);
 
             //試合の組み合わせを決めていく
-            //コートに入れる順番で並べるリストを準備
-            var playerList = new List<Person>();
-            //Gender型の種類を入れたリストを用意
-            var men = new Gender { GenderNum = 1 };
-            var women = new Gender { GenderNum = 0 };
-            Gender[] genderTypes = { men, women };
             //男、女の順番で並び替える
-            foreach (var targetGender in genderTypes)
-            {
-                //残りのメンバーの中から対象の性別のメンバーを抜き出す
-                playerList.AddRange(attendPersonsList.Where(person => person.Gender == targetGender));
-            }
+            var playerList = attendPersonsList.OrderByDescending(person =>person.Gender).ToList();
 
             //並び替えた人たちをコートに配置していく
             int playerCounter = 0;
