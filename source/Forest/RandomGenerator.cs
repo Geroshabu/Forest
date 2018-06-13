@@ -37,7 +37,7 @@ namespace Forest
         /// </summary>
         /// <param name="players">試合の参加者</param>
         /// <returns>残りの試合の参加者と対戦の組み合わせ</returns>
-        protected override (List<Person> remainPlayers, List<Person> player1, List<Person> player2) DecideOpponent(List<Person> players, int accommodateNumber)
+        protected override (List<Person> remainPlayers, List<Person> team1, List<Person> team2) DecideOpponent(List<Person> players, int accommodateNumber)
         {
             //シャッフルする
             var playerList = ProcessList.Shuffle(players);
@@ -71,7 +71,7 @@ namespace Forest
                     playerCounter++;
                 }
             }
-            return (remainPlayers: playerList, player1: team1, player2: team2);
+            return (remainPlayers: playerList, team1: team1, team2: team2);
 
         }
 
