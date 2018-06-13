@@ -1,4 +1,6 @@
-﻿namespace Forest
+﻿using static Forest.MainWindow;
+
+namespace Forest
 {
     /// <summary>
     /// GameGeneratorのFactoryのインターフェース
@@ -10,6 +12,6 @@
         /// </summary>
         /// <param name="generateMode">現在指定されている組み合わせ方法</param>
         /// <returns>指定された組み合わせ方法のGenerator</returns>
-        IGameGenerator Create(int generateMode);
+        IGameGenerator Create(GenerateMode generateMode);
     }
 }

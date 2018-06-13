@@ -43,6 +43,9 @@ namespace Forest
                 PersonHolder = new PersonHolder(allPersons);
             }
 
+            //組み合わせ決定アルゴリズムの初期値は完全ランダム
+            generateSettingComboBox.SelectedIndex = 0;
+
             //表示する
             DisplayMainWindow(new List<Person>(), new List<Person>());
         }
@@ -620,7 +623,7 @@ namespace Forest
         /// <summary>
         /// 組み合わせを決めるアルゴリズム
         /// </summary>
-        private enum GenerateMode
+        public enum GenerateMode
         {
             random,
             randomByGender,
@@ -642,9 +645,19 @@ namespace Forest
             //練習に参加するメンバー
             var attendMember = PersonHolder.GetAttended();
 
+            //今設定しているアルゴリズムのモードを調べる
+            var generateModeDictionary = new Dictionary<string, GenerateMode>()
+            {
+                { "完全ランダム",GenerateMode.random },
+                {"男女別",GenerateMode.randomByGender },
+                {"レベル別",GenerateMode.randomByLebel },
+                {"戦ったことのない人優先",GenerateMode.fewMatchPriority }
+            };
+            GenerateMode nowSettingGenerateMode = generateModeDictionary[generateSettingComboBox.SelectedItem.ToString()];
+
             //RamdomGeneratorをよんで、試合を決めてもらう
-            IGameGenerator gameGenerator = GameGeneratorFactory.Create();
-            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember);
+            IGameGenerator gameGenerator = GameGeneratorFactory.Create(nowSettingGenerateMode);
+            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //試合の組み合わせ結果を表示する
             using (GameWindow gameWindow = new GameWindow(result.games, result.breakPersons, PersonHolder))
