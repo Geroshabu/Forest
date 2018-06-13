@@ -622,8 +622,9 @@ namespace Forest
         /// <param name="e"></param>
         private void StartGame(object sender, EventArgs e)
         {
-            //コート数は暫定二つ
+            //コート数は暫定二つでシングルス
             int courtNum = 2;
+            int accommodateNumber = 2;
 
             //練習に参加するメンバー
             var attendMember = PersonHolder.GetAttended();
@@ -631,7 +632,7 @@ namespace Forest
             //RamdomGeneratorを読んで、試合を決めてもらう
             string currentGeneratorMode = "random";
             IGameGenerator gameGenerator = GeneratorFactory(currentGeneratorMode);
-            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember);
+            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //試合の組み合わせ結果を表示する
             using (GameWindow gameWindow = new GameWindow(result.games, result.breakPersons, PersonHolder))

@@ -137,6 +137,7 @@
     <Compile Include="PersonHolderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GenderTest.cs" />
+    <Compile Include="RandomByGenderGeneratorTest.cs" />
     <Compile Include="RandomGeneratorTest.cs" />
     <Compile Include="RecordTest.cs" />
   </ItemGroup>

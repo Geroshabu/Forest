@@ -4,7 +4,10 @@ using System.Linq;
 
 namespace Forest
 {
-    public class RandomGenerator : Generator, IGameGenerator
+    /// <summary>
+    /// 男女別。男同士、女同士で当たりやすくするアルゴリズム。
+    /// </summary>
+    public class RandomByGenderGenerator : Generator, IGameGenerator
     {
         /// <summary>
         /// 休憩者をランダムに決める
@@ -39,8 +42,8 @@ namespace Forest
         /// <returns>残りの試合の参加者と対戦の組み合わせ</returns>
         protected override (List<Person> remainPlayers, List<Person> team1, List<Person> team2) DecideOpponent(List<Person> players, int accommodateNumber)
         {
-            //シャッフルする
-            var playerList = ProcessList.Shuffle(players);
+            //シャッフルしてから男、女の順番で並び替える
+            var playerList = ProcessList.Shuffle(players).OrderByDescending(person => person.Gender).ToList();
 
             //コートに入れられる人数分だけ繰り返す
             var team1 = new List<Person>();
@@ -61,7 +64,7 @@ namespace Forest
                 }
                 for (int courtCounter = 0; courtCounter < (accommodateNumber / 2); courtCounter++)
                 {
-                    team2.Add(new Person
+                    team2.Add( new Person
                     {
                         ID = playerList.First().ID,
                         Gender = playerList.First().Gender,
@@ -72,8 +75,6 @@ namespace Forest
                 }
             }
             return (remainPlayers: playerList, team1: team1, team2: team2);
-
         }
-
     }
 }

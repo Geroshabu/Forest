@@ -5,8 +5,10 @@ using Xunit;
 
 namespace ForestTest
 {
-    public class RandomGeneratorTest
+    public class RandomByGenderGeneratorTest
     {
+        RandomByGenderGenerator randomByGenderGenerator;
+
         Person testPerson01;
         Person testPerson02;
         Person testPerson03;
@@ -14,10 +16,15 @@ namespace ForestTest
         Person testPerson05;
         Person testPerson06;
 
-        public RandomGeneratorTest()
+        /// <summary>
+        /// コンストラクタでテスト用データの作成
+        /// </summary>
+        public RandomByGenderGeneratorTest()
         {
-            Gender men = new Gender { GenderNum = 0 };
-            Gender women = new Gender { GenderNum = 1 };
+            randomByGenderGenerator = new RandomByGenderGenerator();
+
+            Gender men = new Gender { GenderNum = 1 };
+            Gender women = new Gender { GenderNum = 0 };
             Level beginner = new Level { LevelNum = 0 };
             Level intermediate = new Level { LevelNum = 1 };
             Level advanced = new Level { LevelNum = 2 };
@@ -29,7 +36,7 @@ namespace ForestTest
                 Gender = men,
                 Level = advanced,
                 DeleteFlag = false,
-                AttendFlag = false
+                AttendFlag = true
             };
             testPerson02 = new Person
             {
@@ -46,8 +53,8 @@ namespace ForestTest
                 Name = "andy",
                 Gender = men,
                 Level = intermediate,
-                DeleteFlag = true,
-                AttendFlag = false
+                DeleteFlag = false,
+                AttendFlag = true
             };
             testPerson04 = new Person
             {
@@ -55,36 +62,34 @@ namespace ForestTest
                 Name = "marbles",
                 Gender = men,
                 Level = advanced,
-                DeleteFlag = true,
+                DeleteFlag = false,
                 AttendFlag = true
             };
             testPerson05 = new Person
             {
                 ID = "test05",
-                Name = "spike",
+                Name = "woodstock",
                 Gender = men,
                 Level = beginner,
                 DeleteFlag = false,
-                AttendFlag = false
+                AttendFlag = true
             };
             testPerson06 = new Person
             {
-                ID = "test06",
-                Name = "olaf",
-                Gender = men,
+                ID = "test07",
+                Name = "harriet",
+                Gender = women,
                 Level = intermediate,
                 DeleteFlag = false,
                 AttendFlag = true
             };
-
         }
 
         [Fact(DisplayName = "コート2つとも人が入り、休憩者もいる場合")]
-        public void RandomGeneratorTest1()
+        public void GenerateTest1()
         {
             //Arrange
-            RandomGenerator randomGenerator = new RandomGenerator();
-            //シングルスのコート数2、参加者6人とする
+            //シングルスのコートが2つ、参加者6人とする
             int accommodateNumber = 2;
             int courtNum = 2;
             List<Person> attendMember = new List<Person>
@@ -101,7 +106,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 2;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -112,10 +117,9 @@ namespace ForestTest
         }
 
         [Fact(DisplayName = "コートが一つあまり(ひとつはnull)、休憩者もいる場合")]
-        public void RandomGeneratorTest2()
+        public void GenerateTest2()
         {
             //Arrange
-            RandomGenerator randomGenerator = new RandomGenerator();
             //シングルスのコート数2、参加者3人とする
             int accommodateNumber = 2;
             int courtNum = 2;
@@ -130,7 +134,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 1;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -139,6 +143,38 @@ namespace ForestTest
             Assert.Equal(expectedBreakPersonCount, result.breakPersons.Count<Person>());
 
         }
+
+        [Fact(DisplayName = "男、女の順番に並んでいることを確認する")]
+        public void GenerateTest3()
+        {
+            //Arrange
+            //シングルスでコート数2、参加者4人とする
+            int accommodateNumber = 2;
+            int courtNum = 2;
+            List<Person> attendMember = new List<Person>
+            {
+                testPerson01,
+                testPerson02,
+                testPerson05,
+                testPerson06,
+            };
+            //期待結果
+            Gender men = new Gender { GenderNum = 1 };
+            Gender women = new Gender { GenderNum = 0 };
+            Gender[] expectedType = { men, men, women, women };
+
+            //act
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
+
+            //assert
+            for (int i = 0; i < result.games.Length; i += 2)
+            {
+                Assert.Equal(expectedType[i], result.games[i].Player1[0].Gender);
+                Assert.Equal(expectedType[i + 1], result.games[i].Player2[0].Gender);
+            }
+
+        }
+
 
     }
 }
