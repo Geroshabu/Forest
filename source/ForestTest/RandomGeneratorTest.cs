@@ -84,7 +84,8 @@ namespace ForestTest
         {
             //Arrange
             RandomGenerator randomGenerator = new RandomGenerator();
-            //コート数2、参加者6人とする
+            //シングルスのコート数2、参加者6人とする
+            int accommodateNumber = 2;
             int courtNum = 2;
             List<Person> attendMember = new List<Person>
             {
@@ -100,7 +101,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 2;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -115,7 +116,8 @@ namespace ForestTest
         {
             //Arrange
             RandomGenerator randomGenerator = new RandomGenerator();
-            //コート数2、参加者3人とする
+            //シングルスのコート数2、参加者3人とする
+            int accommodateNumber = 2;
             int courtNum = 2;
             List<Person> attendMember = new List<Person>
             {
@@ -128,7 +130,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 1;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);

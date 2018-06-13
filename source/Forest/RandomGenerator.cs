@@ -4,100 +4,75 @@ using System.Linq;
 
 namespace Forest
 {
-    public class RandomGenerator : IGameGenerator
+    public class RandomGenerator : Generator, IGameGenerator
     {
-        //コート名を決めるときに用いるアルファベット
-        char[] Alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
-        'O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-
         /// <summary>
-        /// 試合の組み合わせと休憩する人を決める
+        /// 休憩者をランダムに決める
         /// </summary>
-        /// <param name="courtNum">コート数</param>
-        /// <param name="attendPersons">試合に参加する人</param>
-        /// <returns>試合と休憩者</returns>
-        /// <exception cref="ArgumentOutOfRangeException">コート数が負の場合に発生する</exception>
-        public (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, List<Person> attendPersons)
+        /// <param name="breakPersonsNumber"></param>
+        /// <param name="attendPersons"></param>
+        /// <returns>試合の参加者と休憩者</returns>
+        protected override (List<Person> players, List<Person> breakPersons) DecideBreakPersons(int breakPersonsNumber, IReadOnlyList<Person> attendPersons)
         {
-            //コート数が負の数であるときは例外を出す
-            if(courtNum <= 0)
+            //参加者のリストをコピーする
+            var playerList = new List<Person>(attendPersons);
+            var breakPersons = new List<Person>();
+
+            //参加者の中からランダムに休憩者を決める
+            Random random;
+            for (int i = 0; i < breakPersonsNumber; i++)
             {
-                throw new ArgumentOutOfRangeException("courtNumが負の数です");
+                random = new Random();
+                var target = random.Next(playerList.Count);
+                //休憩者リストに入れる
+                breakPersons.Add(playerList[target]);
+                //試合には参加できないのでリストから消す
+                playerList.Remove(playerList[target]);
             }
-
-            //参加者リストをコピーしてシャッフルする
-            var attendPersonsList = attendPersons.ToList();
-            ShuffleMember(attendPersonsList);
-
-            //コート数分だけ用意されたGameインスタンスの配列
-            var games = new Game[courtNum];
-            int courtCounter;
-
-            //参加者の添え字
-            int index = 0;
-            //コート数分だけGameを作っていく
-            for (courtCounter = 0; courtCounter < courtNum; courtCounter++)
-            {
-                //参加者2人をを試合に入れられるときは処理を行う
-                if ((index + 1) < attendPersonsList.Count)
-                {
-                    //コートの用意
-                    var court = new Court
-                    {
-                        CourtName = "コート" + (Alphabet[courtCounter]),
-                        AccommodateNumber = 2 //今はシングルスのみだから todo 今後のことを考えると変数作った方がいい気がする
-                    };
-
-                    //試合をする人を入れる
-                    var player1 = new Person[court.AccommodateNumber / 2];
-                    player1[0] = new Person
-                    {
-                        ID = attendPersonsList[index].ID,
-                        Name = attendPersonsList[index++].Name
-                    };
-                    var player2 = new Person[court.AccommodateNumber / 2];
-                    player2[0] = new Person
-                    {
-                        ID = attendPersonsList[index].ID,
-                        Name = attendPersonsList[index++].Name
-                    };
-
-                    //Gameのインスタンスを作って入れる
-                    var game = new Game(court, player1, player2);
-                    games[courtCounter] = game;
-                }
-                //人を入れられないときは抜ける
-                else
-                {
-                    break;
-                }
-
-            }
-
-            //残った人は休憩者に入れる
-            IEnumerable<Person> breakPersons = new List<Person>();
-            breakPersons = attendPersonsList.Skip(index);
-
-            return (games: games, breakPersons: breakPersons);
+            return (players: playerList, breakPersons: breakPersons);
         }
 
         /// <summary>
-        /// Person型の配列をシャッフルする
+        /// 対戦相手を決める
         /// </summary>
-        /// <param name="maxNum">シャッフルしたい配列</param>
-        /// <returns>シャッフルされた配列</returns>
-        private List<Person> ShuffleMember(List<Person> targetList)
+        /// <param name="players">試合の参加者</param>
+        /// <returns>残りの試合の参加者と対戦の組み合わせ</returns>
+        protected override (List<Person> remainPlayers, List<Person> player1, List<Person> player2) DecideOpponent(List<Person> players, int accommodateNumber)
         {
-            //ランダムに生成した数に該当する添え字（= j ）に入るものとi番目に入るものを入れ替える
-            var random = new Random();
-            for (int i = 0; i < targetList.Count; i++)
+            //シャッフルする
+            var playerList = ProcessList.Shuffle(players);
+
+            //コートに入れられる人数分だけ繰り返す
+            var team1 = new List<Person>();
+            var team2 = new List<Person>();
+            for (int playerCounter = 0; playerCounter < accommodateNumber;)
             {
-                int j = random.Next(targetList.Count);
-                var tmp = targetList[j];
-                targetList[j] = targetList[i];
-                targetList[i] = tmp;
+                //コートの半分ずつ入れていく
+                for (int courtCounter = 0; courtCounter < (accommodateNumber / 2); courtCounter++)
+                {
+                    team1.Add(new Person
+                    {
+                        ID = playerList.First().ID,
+                        Gender = playerList.First().Gender,
+                        Name = playerList.First().Name
+                    });
+                    playerList.RemoveAt(0);
+                    playerCounter++;
+                }
+                for (int courtCounter = 0; courtCounter < (accommodateNumber / 2); courtCounter++)
+                {
+                    team2.Add(new Person
+                    {
+                        ID = playerList.First().ID,
+                        Gender = playerList.First().Gender,
+                        Name = playerList.First().Name
+                    });
+                    playerList.RemoveAt(0);
+                    playerCounter++;
+                }
             }
-            return targetList;
+            return (remainPlayers: playerList, player1: team1, player2: team2);
+
         }
 
     }

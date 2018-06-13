@@ -10,84 +10,71 @@ namespace Forest
     public class RandomByGenderGenerator : Generator, IGameGenerator
     {
         /// <summary>
-        /// 休憩者と試合の組み合わせを決める。
+        /// 休憩者をランダムに決める
         /// </summary>
-        /// <param name="courtNum">コート数</param>
-        /// <param name="attendPersons">試合の参加者</param>
-        /// <returns>Gameと休憩者のリスト</returns>
-        public override (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, List<Person> attendPersons)
+        /// <param name="breakPersonsNumber"></param>
+        /// <param name="attendPersons"></param>
+        /// <returns>試合の参加者と休憩者</returns>
+        protected override (List<Person> players, List<Person> breakPersons) DecideBreakPersons(int breakPersonsNumber, IReadOnlyList<Person> attendPersons)
         {
-            //コート数が負の数であるときは例外を出す
-            if (courtNum <= 0)
+            //参加者のリストをコピーする
+            var playerList = new List<Person>(attendPersons);
+            var breakPersons = new List<Person>();
+
+            //参加者の中からランダムに休憩者を決める
+            Random random;
+            for (int i = 0; i < breakPersonsNumber; i++)
             {
-                throw new ArgumentOutOfRangeException("courtNumが負の数です");
+                random = new Random();
+                var target = random.Next(playerList.Count);
+                //休憩者リストに入れる
+                breakPersons.Add(playerList[target]);
+                //試合には参加できないのでリストから消す
+                playerList.Remove(playerList[target]);
             }
-
-            //コート数分だけ用意されたGameインスタンスの配列
-            var games = new Game[courtNum];
-
-            //参加者リストをシャッフルする
-            var attendPersonsList = ShuffleMember(attendPersons);
-
-            //最初に休憩者を決める
-            const int accommodateNumber = 2;//今はシングルスのみだから2人
-            int breakPersonsNumber = attendPersonsList.Count - courtNum * accommodateNumber;//休憩者の人数
-            //人数に満たないコートは空にすることを考慮
-            while(breakPersonsNumber < 0)
-            {
-                breakPersonsNumber += accommodateNumber;
-                courtNum--;
-            }
-            
-            //参加者のリストから抜き出す
-            IEnumerable<Person> breakPersons = new List<Person>(attendPersonsList.GetRange(0, breakPersonsNumber));
-            //抜き出した人はリストから消す
-            attendPersonsList.RemoveRange(0, breakPersonsNumber);
-
-            //試合の組み合わせを決めていく
-            //男、女の順番で並び替える
-            var playerList = attendPersonsList.OrderByDescending(person =>person.Gender).ToList();
-
-            //並び替えた人たちをコートに配置していく
-            int playerCounter = 0;
-            for (int i = 0; i < courtNum; i++)
-            {
-                if(playerList.Count >= playerCounter + accommodateNumber)
-                {
-                    //試合をする人を入れていく
-                    var team1 = new Person[accommodateNumber / 2];
-                    team1[0] = new Person
-                    {
-                        ID = playerList[playerCounter].ID,
-                        Gender = playerList[playerCounter].Gender,
-                        Name = playerList[playerCounter].Name
-                    };
-
-                    playerCounter++;
-
-                    var team2 = new Person[accommodateNumber / 2];
-                    team2[0] = new Person
-                    {
-                        ID = playerList[playerCounter].ID,
-                        Gender = playerList[playerCounter].Gender,
-                        Name = playerList[playerCounter].Name,
-                    };
-                    playerCounter++;
-
-                    //ゲームにコートと試合をする人を入れる
-                    var game = new Game(CreateCourt(i, accommodateNumber), team1, team2);
-                    games[i] = game;
-                }
-                else
-                {
-                    break;
-                }
-
-            }
-
-            return (games: games, breakPersons: breakPersons);
-
+            return (players: playerList, breakPersons: breakPersons);
         }
 
+        /// <summary>
+        /// 対戦相手を決める
+        /// </summary>
+        /// <param name="players">試合の参加者</param>
+        /// <returns>残りの試合の参加者と対戦の組み合わせ</returns>
+        protected override (List<Person> remainPlayers, List<Person> player1, List<Person> player2) DecideOpponent(List<Person> players, int accommodateNumber)
+        {
+            //シャッフルしてから男、女の順番で並び替える
+            var playerList = ProcessList.Shuffle(players).OrderByDescending(person => person.Gender).ToList();
+
+            //コートに入れられる人数分だけ繰り返す
+            var team1 = new List<Person>();
+            var team2 = new List<Person>();
+            for (int playerCounter = 0; playerCounter < accommodateNumber;)
+            {
+                //コートの半分ずつ入れていく
+                for (int courtCounter = 0; courtCounter < (accommodateNumber / 2); courtCounter++)
+                {
+                    team1.Add(new Person
+                    {
+                        ID = playerList.First().ID,
+                        Gender = playerList.First().Gender,
+                        Name = playerList.First().Name
+                    });
+                    playerList.RemoveAt(0);
+                    playerCounter++;
+                }
+                for (int courtCounter = 0; courtCounter < (accommodateNumber / 2); courtCounter++)
+                {
+                    team2.Add( new Person
+                    {
+                        ID = playerList.First().ID,
+                        Gender = playerList.First().Gender,
+                        Name = playerList.First().Name
+                    });
+                    playerList.RemoveAt(0);
+                    playerCounter++;
+                }
+            }
+            return (remainPlayers: playerList, player1: team1, player2: team2);
+        }
     }
 }

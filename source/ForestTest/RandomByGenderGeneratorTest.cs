@@ -89,7 +89,8 @@ namespace ForestTest
         public void GenerateTest1()
         {
             //Arrange
-            //コート数2、参加者6人とする
+            //シングルスのコートが2つ、参加者6人とする
+            int accommodateNumber = 2;
             int courtNum = 2;
             List<Person> attendMember = new List<Person>
             {
@@ -105,7 +106,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 2;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -119,7 +120,8 @@ namespace ForestTest
         public void GenerateTest2()
         {
             //Arrange
-            //コート数2、参加者3人とする
+            //シングルスのコート数2、参加者3人とする
+            int accommodateNumber = 2;
             int courtNum = 2;
             List<Person> attendMember = new List<Person>
             {
@@ -132,7 +134,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 1;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -146,7 +148,8 @@ namespace ForestTest
         public void GenerateTest3()
         {
             //Arrange
-            //コート数2、参加者4人とする
+            //シングルスでコート数2、参加者4人とする
+            int accommodateNumber = 2;
             int courtNum = 2;
             List<Person> attendMember = new List<Person>
             {
@@ -161,7 +164,7 @@ namespace ForestTest
             Gender[] expectedType = { men, men, women, women };
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             for (int i = 0; i < result.games.Length; i += 2)
