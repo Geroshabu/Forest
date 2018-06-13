@@ -125,6 +125,7 @@
     <Compile Include="DeleteCheckDialog.Designer.cs">
       <DependentUpon>DeleteCheckDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameRecorder.cs" />
     <Compile Include="GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +158,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomByGenderGenerator.cs" />
     <Compile Include="RandomGenerator.cs" />
+    <Compile Include="Record.cs" />
     <Compile Include="ProcessList.cs" />
     <EmbeddedResource Include="DeleteCheckDialog.resx">
       <DependentUpon>DeleteCheckDialog.cs</DependentUpon>

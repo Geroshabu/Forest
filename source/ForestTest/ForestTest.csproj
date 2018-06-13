@@ -129,6 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameRecorderTest.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="LevelTest.cs" />
     <Compile Include="PersonContextTest.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="GenderTest.cs" />
     <Compile Include="RandomByGenderGeneratorTest.cs" />
     <Compile Include="RandomGeneratorTest.cs" />
+    <Compile Include="RecordTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
