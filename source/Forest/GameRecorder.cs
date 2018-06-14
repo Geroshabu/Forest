@@ -43,7 +43,10 @@ namespace Forest
             //ゲームの数だけ対戦履歴を増やす
             foreach (var game in games)
             {
-                Records.Add(new Record(game.Player1[0], game.Player2[0]));
+                if(game != null)
+                {
+                    Records.Add(new Record(game.Team1[0], game.Team2[0]));
+                }
             }
         }
 
