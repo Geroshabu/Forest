@@ -1,10 +1,10 @@
 var searchData=
 [
   ['game',['Game',['../class_forest_1_1_game.html',1,'Forest']]],
-  ['game',['Game',['../class_forest_1_1_game.html#a69cd5d948b5d117f503c5fc56fedfc77',1,'Forest::Game']]],
+  ['game',['Game',['../class_forest_1_1_game.html#a465cc63e9454dc5c776feeff8ede39ff',1,'Forest::Game']]],
   ['game_2ecs',['Game.cs',['../_game_8cs.html',1,'']]],
   ['gamerecorder',['GameRecorder',['../class_forest_1_1_game_recorder.html',1,'Forest']]],
-  ['gamerecorder',['GameRecorder',['../class_forest_1_1_game_recorder.html#a811f87cdb546c16d0ca623432a150b6d',1,'Forest::GameRecorder']]],
+  ['gamerecorder',['GameRecorder',['../class_forest_1_1_generator.html#a2d8ad9a141e60e8e7a031ae35ef83dbf',1,'Forest.Generator.GameRecorder()'],['../class_forest_1_1_game_recorder.html#a811f87cdb546c16d0ca623432a150b6d',1,'Forest.GameRecorder.GameRecorder()']]],
   ['gamerecorder_2ecs',['GameRecorder.cs',['../_game_recorder_8cs.html',1,'']]],
   ['games',['games',['../class_forest_1_1_generator.html#a5e07ef03e3f10f29432aec17b7564f5a',1,'Forest.Generator.games()'],['../interface_forest_1_1_i_game_generator.html#a758a1adcf1c24268eaf18853dea7cd0e',1,'Forest.IGameGenerator.games()']]],
   ['gamewindow',['GameWindow',['../class_forest_1_1_game_window.html',1,'Forest']]],
@@ -15,7 +15,7 @@ var searchData=
   ['gender',['Gender',['../class_forest_1_1_gender.html',1,'Forest']]],
   ['gender_2ecs',['Gender.cs',['../_gender_8cs.html',1,'']]],
   ['gendernum',['GenderNum',['../class_forest_1_1_gender.html#a0951dd09246768d729693bf73caf0e6b',1,'Forest::Gender']]],
-  ['generate',['Generate',['../interface_forest_1_1_i_game_generator.html#a66fdb200c30b2dc626554bd44cae0cb9',1,'Forest::IGameGenerator']]],
+  ['generate',['Generate',['../interface_forest_1_1_i_game_generator.html#a0b07cceeff82590e6bd273ac55d59c10',1,'Forest::IGameGenerator']]],
   ['generator',['Generator',['../class_forest_1_1_generator.html',1,'Forest']]],
   ['generator_2ecs',['Generator.cs',['../_generator_8cs.html',1,'']]],
   ['get',['Get',['../interface_forest_1_1_i_person_repository.html#a755ec041802173c1c97b54ded8aa67e4',1,'Forest.IPersonRepository.Get()'],['../class_forest_1_1_person_db_repository.html#ad61dfb90be623cb8916651f2f6920383',1,'Forest.PersonDbRepository.Get()']]],
