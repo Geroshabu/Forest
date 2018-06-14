@@ -641,6 +641,9 @@ namespace Forest
                 gameWindow.ShowDialog(this);
             }
 
+            //今回の試合を対戦履歴に追加
+            GameRecorder.Add(result.games);
+
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
             this.attendMemberList.Rows.Clear();
