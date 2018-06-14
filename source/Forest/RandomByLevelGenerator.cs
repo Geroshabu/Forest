@@ -7,7 +7,7 @@ namespace Forest
     /// <summary>
     /// レベル別。各レベル同士で当たりやすくするアルゴリズム。
     /// </summary>
-    class RandomByLevelGenerator : Generator, IGameGenerator
+    public class RandomByLevelGenerator : Generator, IGameGenerator
     {
         /// <summary>
         /// 休憩者をランダムに決める
@@ -56,7 +56,7 @@ namespace Forest
                     team1.Add(new Person
                     {
                         ID = playerList.First().ID,
-                        Gender = playerList.First().Gender,
+                        Level = playerList.First().Level,
                         Name = playerList.First().Name
                     });
                     playerList.RemoveAt(0);
@@ -67,7 +67,7 @@ namespace Forest
                     team2.Add(new Person
                     {
                         ID = playerList.First().ID,
-                        Gender = playerList.First().Gender,
+                        Level = playerList.First().Level,
                         Name = playerList.First().Name
                     });
                     playerList.RemoveAt(0);
