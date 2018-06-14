@@ -7,6 +7,7 @@ namespace ForestTest
 {
     public class RandomByGenderGeneratorTest
     {
+        GameRecorder gameRecorder;
         RandomByGenderGenerator randomByGenderGenerator;
 
         Person testPerson01;
@@ -21,6 +22,7 @@ namespace ForestTest
         /// </summary>
         public RandomByGenderGeneratorTest()
         {
+            gameRecorder = new GameRecorder();
             randomByGenderGenerator = new RandomByGenderGenerator();
 
             Gender men = new Gender { GenderNum = 1 };
@@ -106,7 +108,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 2;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber, gameRecorder);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -134,7 +136,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 1;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber, gameRecorder);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -164,13 +166,13 @@ namespace ForestTest
             Gender[] expectedType = { men, men, women, women };
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber, gameRecorder);
 
             //assert
             for (int i = 0; i < result.games.Length; i += 2)
             {
-                Assert.Equal(expectedType[i], result.games[i].Player1[0].Gender);
-                Assert.Equal(expectedType[i + 1], result.games[i].Player2[0].Gender);
+                Assert.Equal(expectedType[i], result.games[i].Team1[0].Gender);
+                Assert.Equal(expectedType[i + 1], result.games[i].Team2[0].Gender);
             }
 
         }
