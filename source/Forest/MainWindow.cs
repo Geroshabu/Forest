@@ -11,15 +11,15 @@ namespace Forest
         PersonHolder PersonHolder;
         IPersonRepository PersonRepository;
 
+        GameRecorder GameRecorder;
+
+        /// <summary>
+        /// コンストラクタでGameRecorderをセット
+        /// </summary>
         public MainWindow()
         {
+            GameRecorder = new GameRecorder();
             InitializeComponent();
-        }
-
-        public MainWindow(PersonHolder personHolder)
-        {
-            InitializeComponent();
-            PersonHolder = personHolder;
         }
 
         /// <summary>
