@@ -37,8 +37,8 @@ namespace Forest
             //コート名
             courtNameLabel1.Text = Games[0].Court.CourtName;
             //組み合わせ結果
-            playerNameLabel1.Text = Games[0].Player1[0].Name;
-            playerNameLabel2.Text = Games[0].Player2[0].Name;
+            playerNameLabel1.Text = Games[0].Team1[0].Name;
+            playerNameLabel2.Text = Games[0].Team2[0].Name;
 
             //中身が入って入れば表示する
             if (Games[1] != null)
@@ -46,8 +46,8 @@ namespace Forest
                 //コート名
                 courtNameLabel2.Text = Games[1].Court.CourtName;
                 //組み合わせ結果
-                playerNameLabel3.Text = Games[1].Player1[0].Name;
-                playerNameLabel4.Text = Games[1].Player2[0].Name;
+                playerNameLabel3.Text = Games[1].Team1[0].Name;
+                playerNameLabel4.Text = Games[1].Team2[0].Name;
             }
             else
             {
