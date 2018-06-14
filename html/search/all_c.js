@@ -1,7 +1,10 @@
 var searchData=
 [
+  ['random',['random',['../class_forest_1_1_main_window.html#a3abf6f567d8794e847748b4d0ae15289a7ddf32e17a6ac5ce04a8ecbf782ca509',1,'Forest::MainWindow']]],
+  ['randombygender',['randomByGender',['../class_forest_1_1_main_window.html#a3abf6f567d8794e847748b4d0ae15289aea8441a80ea3b9d74878af797c7456b2',1,'Forest::MainWindow']]],
   ['randombygendergenerator',['RandomByGenderGenerator',['../class_forest_1_1_random_by_gender_generator.html',1,'Forest']]],
   ['randombygendergenerator_2ecs',['RandomByGenderGenerator.cs',['../_random_by_gender_generator_8cs.html',1,'']]],
+  ['randombylebel',['randomByLebel',['../class_forest_1_1_main_window.html#a3abf6f567d8794e847748b4d0ae15289a1d3a376e33d239e59d99cf4c40ecbbad',1,'Forest::MainWindow']]],
   ['randomgenerator',['RandomGenerator',['../class_forest_1_1_random_generator.html',1,'Forest']]],
   ['randomgenerator_2ecs',['RandomGenerator.cs',['../_random_generator_8cs.html',1,'']]],
   ['record',['Record',['../class_forest_1_1_record.html#ace6d2449861c37b06a62d3547ae8e67f',1,'Forest::Record']]],

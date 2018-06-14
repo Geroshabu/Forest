@@ -103,10 +103,9 @@ Inheritance diagram for Forest.IGameGenerator:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_forest_1_1_i_game_generator__inherit__graph.png" border="0" usemap="#_forest_8_i_game_generator_inherit__map" alt="Inheritance graph"/></div>
 <map name="_forest_8_i_game_generator_inherit__map" id="_forest_8_i_game_generator_inherit__map">
-<area shape="rect" id="node2" href="class_forest_1_1_few_match_priority_generator.html" title="Forest.FewMatchPriorityGenerator" alt="" coords="383,5,604,32"/>
-<area shape="rect" id="node3" href="class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="212,43,332,69"/>
-<area shape="rect" id="node4" href="class_forest_1_1_random_by_gender_generator.html" title="男女別。男同士、女同士で当たりやすくするアルゴリズム。 " alt="" coords="380,81,607,108"/>
-<area shape="rect" id="node5" href="class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="409,132,577,159"/>
+<area shape="rect" id="node2" href="class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="165,80,285,107"/>
+<area shape="rect" id="node3" href="class_forest_1_1_random_by_gender_generator.html" title="男女別。男同士、女同士で当たりやすくするアルゴリズム。 " alt="" coords="5,155,232,181"/>
+<area shape="rect" id="node4" href="class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="256,155,424,181"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -120,8 +119,8 @@ Collaboration diagram for Forest.IGameGenerator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0b07cceeff82590e6bd273ac55d59c10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[] IEnumerable&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; breakPersons&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_game_generator.html#a0b07cceeff82590e6bd273ac55d59c10">Generate</a> (int courtNum, IReadOnlyList&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; attendPersons, int accommodateNumber, <a class="el" href="class_forest_1_1_game_recorder.html">GameRecorder</a> gameRecorder)</td></tr>
-<tr class="separator:a0b07cceeff82590e6bd273ac55d59c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66fdb200c30b2dc626554bd44cae0cb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[] IEnumerable&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; breakPersons&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_game_generator.html#a66fdb200c30b2dc626554bd44cae0cb9">Generate</a> (int courtNum, IReadOnlyList&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; attendPersons, int accommodateNumber)</td></tr>
+<tr class="separator:a66fdb200c30b2dc626554bd44cae0cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -132,7 +131,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>試合の組み合わせを決めるためのインターフェース </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0b07cceeff82590e6bd273ac55d59c10"></a>
+<a class="anchor" id="a66fdb200c30b2dc626554bd44cae0cb9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -152,13 +151,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>accommodateNumber</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_forest_1_1_game_recorder.html">GameRecorder</a>&#160;</td>
-          <td class="paramname"><em>gameRecorder</em>&#160;</td>
+          <td class="paramname"><em>accommodateNumber</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -187,7 +180,6 @@ Public Attributes</h2></td></tr>
     <tr><td class="paramname">courtNum</td><td>コート数</td></tr>
     <tr><td class="paramname">attendPersons</td><td>試合に参加する人</td></tr>
     <tr><td class="paramname">accommodateNumber</td><td>コートに入れる人数</td></tr>
-    <tr><td class="paramname">gameRecorder</td><td>システムを起動してからの対戦履歴</td></tr>
   </table>
   </dd>
 </dl>
