@@ -1,0 +1,5 @@
+<map id="Forest.RandomByLevelGenerator" name="Forest.RandomByLevelGenerator">
+<area shape="rect" id="node2" href="$class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="23,171,102,197"/>
+<area shape="rect" id="node3" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="81,95,199,121"/>
+<area shape="rect" id="node4" href="$class_forest_1_1_game.html" title="Forest.Game" alt="" coords="7,5,105,32"/>
+</map>
