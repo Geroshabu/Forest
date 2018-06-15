@@ -1,9 +1,8 @@
 ﻿using System;
-using static Forest.MainWindow;
 
 namespace Forest
 {
-    class GameGeneratorFactory : IGameGeneratorFactory
+    public class GameGeneratorFactory : IGameGeneratorFactory
     {
         /// <summary>
         /// 引数に合ったIGameGeneratorを作る

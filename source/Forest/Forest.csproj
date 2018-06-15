@@ -133,6 +133,7 @@
     <Compile Include="GameWindow.Designer.cs">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateMode.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="IGameGenerator.cs" />
     <Compile Include="IGameGeneratorFactory.cs" />

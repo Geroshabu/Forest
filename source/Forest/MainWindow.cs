@@ -615,17 +615,6 @@ namespace Forest
         }
 
         /// <summary>
-        /// 組み合わせを決めるアルゴリズム
-        /// </summary>
-        public enum GenerateMode
-        {
-            Random,
-            RandomByGender,
-            RandomByLebel,
-            FewMatchPriority
-        }
-
-        /// <summary>
         /// 試合開始ボタンが押下されたとき
         /// </summary>
         /// <param name="sender"></param>

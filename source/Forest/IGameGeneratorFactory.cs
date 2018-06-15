@@ -1,6 +1,4 @@
-﻿using static Forest.MainWindow;
-
-namespace Forest
+﻿namespace Forest
 {
     /// <summary>
     /// GameGeneratorのFactoryのインターフェース
