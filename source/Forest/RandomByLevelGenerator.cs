@@ -12,8 +12,8 @@ namespace Forest
         /// <summary>
         /// 休憩者をランダムに決める
         /// </summary>
-        /// <param name="breakPersonsNumber"></param>
-        /// <param name="attendPersons"></param>
+        /// <param name="breakPersonsNumber">休憩者の人数</param>
+        /// <param name="attendPersons">練習の参加者</param>
         /// <returns>試合の参加者と休憩者</returns>
         protected override (List<Person> players, List<Person> breakPersons) DecideBreakPersons(int breakPersonsNumber, IReadOnlyList<Person> attendPersons)
         {
@@ -36,9 +36,10 @@ namespace Forest
         }
 
         /// <summary>
-        /// 対戦相手を決める
+        /// 同じレベル同士で当たりやすいように対戦相手を決める
         /// </summary>
         /// <param name="players">試合の参加者</param>
+        /// <param name="accommodateNumber">コートに入れられる人数</param>
         /// <returns>残りの試合の参加者と対戦の組み合わせ</returns>
         protected override (List<Person> remainPlayers, List<Person> team1, List<Person> team2) DecideOpponent(List<Person> players, int accommodateNumber)
         {
