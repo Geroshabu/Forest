@@ -7,7 +7,7 @@ namespace Forest
     /// <summary>
     /// レベル別。各レベル同士で当たりやすくするアルゴリズム。
     /// </summary>
-    public class RandomByLevelGenerator : Generator, IGameGenerator
+    public class RandomByLevelGenerator : Generator
     {
         /// <summary>
         /// 休憩者をランダムに決める
