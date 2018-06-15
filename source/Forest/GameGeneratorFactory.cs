@@ -1,4 +1,5 @@
-﻿using static Forest.MainWindow;
+﻿using System;
+using static Forest.MainWindow;
 
 namespace Forest
 {
@@ -9,6 +10,7 @@ namespace Forest
         /// </summary>
         /// <param name="generateMode">現在指定されている組み合わせ方法</param>
         /// <returns>指定された組み合わせ方法のGenerator</returns>
+        /// <exception cref="ArgumentException">引数のgenerateModeに不適切なものが入っていた場合</exception>
         public IGameGenerator Create(GenerateMode generateMode)
         {
             switch (generateMode)
@@ -23,7 +25,7 @@ namespace Forest
                 //    return new RandomGenerator();
 
                 default: //デフォルトは完全ランダム
-                    return new RandomGenerator();
+                    throw new ArgumentException("generateModeに適切なものが入っていません");
             }
         }
     }
