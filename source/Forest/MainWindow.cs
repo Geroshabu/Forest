@@ -625,10 +625,10 @@ namespace Forest
         /// </summary>
         public enum GenerateMode
         {
-            random,
-            randomByGender,
-            randomByLebel,
-            fewMatchPriority
+            Random,
+            RandomByGender,
+            RandomByLebel,
+            FewMatchPriority
         }
 
         /// <summary>
@@ -648,10 +648,10 @@ namespace Forest
             //今設定しているアルゴリズムのモードを調べる
             var generateModeDictionary = new Dictionary<string, GenerateMode>()
             {
-                { "完全ランダム",GenerateMode.random },
-                {"男女別",GenerateMode.randomByGender },
-                {"レベル別",GenerateMode.randomByLebel },
-                {"戦ったことのない人優先",GenerateMode.fewMatchPriority }
+                { "完全ランダム",GenerateMode.Random },
+                {"男女別",GenerateMode.RandomByGender },
+                {"レベル別",GenerateMode.RandomByLebel },
+                {"戦ったことのない人優先",GenerateMode.FewMatchPriority }
             };
             GenerateMode nowSettingGenerateMode = generateModeDictionary[generateSettingComboBox.SelectedItem.ToString()];
 

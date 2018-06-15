@@ -13,13 +13,13 @@ namespace Forest
         {
             switch (generateMode)
             {
-                case GenerateMode.random:
+                case GenerateMode.Random:
                     return new RandomGenerator();
-                case GenerateMode.randomByGender:
+                case GenerateMode.RandomByGender:
                     return new RandomByGenderGenerator();
-                case GenerateMode.randomByLebel:
+                case GenerateMode.RandomByLebel:
                 //    return new RandomByLevelGenerator();
-                case GenerateMode.fewMatchPriority:
+                case GenerateMode.FewMatchPriority:
                 //    return new RandomGenerator();
 
                 default: //デフォルトは完全ランダム
