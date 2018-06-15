@@ -653,10 +653,10 @@ namespace Forest
                 {"レベル別",GenerateMode.RandomByLebel },
                 {"戦ったことのない人優先",GenerateMode.FewMatchPriority }
             };
-            GenerateMode nowSettingGenerateMode = generateModeDictionary[generateSettingComboBox.SelectedItem.ToString()];
+            GenerateMode selectedGenerateMode = generateModeDictionary[generateSettingComboBox.SelectedItem.ToString()];
 
             //RamdomGeneratorをよんで、試合を決めてもらう
-            IGameGenerator gameGenerator = GameGeneratorFactory.Create(nowSettingGenerateMode);
+            IGameGenerator gameGenerator = GameGeneratorFactory.Create(selectedGenerateMode);
             (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //試合の組み合わせ結果を表示する
