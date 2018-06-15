@@ -5,7 +5,7 @@ namespace Forest
     /// <summary>
     /// GameGeneratorのFactoryのインターフェース
     /// </summary>
-    interface IGameGeneratorFactory
+    public interface IGameGeneratorFactory
     {
         /// <summary>
         /// 引数に合ったIGameGeneratorを作る

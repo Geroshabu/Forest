@@ -12,15 +12,10 @@ namespace Forest
         IPersonRepository PersonRepository;
         IGameGeneratorFactory GameGeneratorFactory;
 
-        public MainWindow()
+        public MainWindow(IGameGeneratorFactory gameGeneratorFactory)
         {
             InitializeComponent();
-        }
-
-        public MainWindow(PersonHolder personHolder)
-        {
-            InitializeComponent();
-            PersonHolder = personHolder;
+            GameGeneratorFactory = gameGeneratorFactory;
         }
 
         /// <summary>
@@ -32,7 +27,6 @@ namespace Forest
         public void MainWindowLoad(object sender, EventArgs e)
         {
             PersonRepository = new PersonDbRepository();
-            GameGeneratorFactory = new GameGeneratorFactory();
 
             //サークルの削除されていない全メンバーを取得
             var allPersons = PersonRepository.Get();
