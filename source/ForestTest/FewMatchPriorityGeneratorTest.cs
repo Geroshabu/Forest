@@ -33,7 +33,7 @@ namespace ForestTest
         /// </summary>
         public FewMatchPriorityGeneratorTest()
         {
-            gameRecorder = new GameRecorder();
+            gameRecorder = GameRecorder.GetInstance;
             fewMatchPriorityGenerator = new FewMatchPriorityGenerator();
 
             Gender men = new Gender { GenderNum = 1 };
@@ -143,7 +143,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 2;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber, gameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -171,7 +171,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 1;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber, gameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -206,7 +206,7 @@ namespace ForestTest
             var expectedBreakPerson = new List<Person> { testPerson01, testPerson02 };
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber, gameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //assert
             Assert.Empty(expectedBreakPerson.Except(result.breakPersons));
@@ -234,7 +234,7 @@ namespace ForestTest
             //期待結果 → (1-4,2-3)
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber, gameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = fewMatchPriorityGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //assert
             //1と4が当たっていることを確認する

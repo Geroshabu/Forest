@@ -19,7 +19,7 @@ namespace Forest
         public MainWindow()
         {
             InitializeComponent();
-            gameRecorder = new GameRecorder();
+            gameRecorder = GameRecorder.GetInstance;
         }
 
         /// <summary>
@@ -632,7 +632,7 @@ namespace Forest
             //RamdomGeneratorを読んで、試合を決めてもらう
             string currentGeneratorMode = "random";
             IGameGenerator gameGenerator = GeneratorFactory(currentGeneratorMode);
-            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber,gameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //試合の組み合わせ結果を表示する
             using (GameWindow gameWindow = new GameWindow(result.games, result.breakPersons, personHolder))

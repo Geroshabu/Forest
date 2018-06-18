@@ -14,7 +14,7 @@ namespace ForestTest
         Person testPerson05;
         Person testPerson06;
 
-        GameRecorder gameRecorder = new GameRecorder();
+        GameRecorder gameRecorder = GameRecorder.GetInstance;
 
         public RandomGeneratorTest()
         {
@@ -103,7 +103,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 2;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber,gameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -132,7 +132,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 1;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber, gameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomGenerator.Generate(courtNum, attendMember,accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);

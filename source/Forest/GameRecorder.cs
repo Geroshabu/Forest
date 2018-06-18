@@ -15,12 +15,17 @@ namespace Forest
         private List<Record> Records;
 
         /// <summary>
-        /// コンストラクタで空のリストを作成する
+        /// コンストラクタ（クラス外からのインスタンス化は禁止）
         /// </summary>
-        public GameRecorder()
+        private GameRecorder()
         {
             Records = new List<Record>();
         }
+
+        /// <summary>
+        /// インスタンスを返す
+        /// </summary>
+        public static GameRecorder GetInstance { get; } = new GameRecorder();
 
         /// <summary>
         /// 試合を対戦履歴に追加する
