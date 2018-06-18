@@ -4,7 +4,10 @@ using System.Linq;
 
 namespace Forest
 {
-    public class RandomGenerator : Generator, IGameGenerator
+    /// <summary>
+    /// レベル別。各レベル同士で当たりやすくするアルゴリズム。
+    /// </summary>
+    public class RandomByLevelGenerator : Generator
     {
         /// <summary>
         /// 休憩者をランダムに決める
@@ -33,15 +36,15 @@ namespace Forest
         }
 
         /// <summary>
-        /// ランダムに対戦相手を決める
+        /// 同じレベル同士で当たりやすいように対戦相手を決める
         /// </summary>
         /// <param name="players">試合の参加者</param>
         /// <param name="accommodateNumber">コートに入れられる人数</param>
         /// <returns>残りの試合の参加者と対戦の組み合わせ</returns>
         protected override (List<Person> remainPlayers, List<Person> team1, List<Person> team2) DecideOpponent(List<Person> players, int accommodateNumber)
         {
-            //シャッフルする
-            var playerList = ProcessList.Shuffle(players);
+            //シャッフルしてからレベルの順番で並び替える
+            var playerList = ProcessList.Shuffle(players).OrderBy(person => person.Level).ToList();
 
             //コートに入れられる人数分だけ繰り返す
             var team1 = new List<Person>();
@@ -54,7 +57,7 @@ namespace Forest
                     team1.Add(new Person
                     {
                         ID = playerList.First().ID,
-                        Gender = playerList.First().Gender,
+                        Level = playerList.First().Level,
                         Name = playerList.First().Name
                     });
                     playerList.RemoveAt(0);
@@ -65,7 +68,7 @@ namespace Forest
                     team2.Add(new Person
                     {
                         ID = playerList.First().ID,
-                        Gender = playerList.First().Gender,
+                        Level = playerList.First().Level,
                         Name = playerList.First().Name
                     });
                     playerList.RemoveAt(0);
@@ -73,7 +76,6 @@ namespace Forest
                 }
             }
             return (remainPlayers: playerList, team1: team1, team2: team2);
-
         }
 
     }
