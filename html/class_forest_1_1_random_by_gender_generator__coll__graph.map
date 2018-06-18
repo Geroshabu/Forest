@@ -1,6 +1,5 @@
 <map id="Forest.RandomByGenderGenerator" name="Forest.RandomByGenderGenerator">
-<area shape="rect" id="node2" href="$class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="134,184,213,211"/>
-<area shape="rect" id="node3" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="243,95,360,121"/>
-<area shape="rect" id="node4" href="$class_forest_1_1_game.html" title="Forest.Game" alt="" coords="36,5,135,32"/>
-<area shape="rect" id="node5" href="$class_forest_1_1_game_recorder.html" title="対戦履歴を管理するクラス " alt="" coords="68,95,218,121"/>
+<area shape="rect" id="node2" href="$class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="30,171,109,197"/>
+<area shape="rect" id="node3" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="88,95,205,121"/>
+<area shape="rect" id="node4" href="$class_forest_1_1_game.html" title="Forest.Game" alt="" coords="13,5,112,32"/>
 </map>
