@@ -642,7 +642,7 @@ namespace Forest
             }
 
             //今回の試合を対戦履歴に追加
-            gameRecorder.Add(result.games);
+            gameRecorder.Add(result.games.Where(game => game != null).ToArray());
 
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
