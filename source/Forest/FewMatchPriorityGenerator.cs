@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Forest
 {
@@ -21,13 +18,10 @@ namespace Forest
                 .OrderByDescending(person => GameRecorder.GetTimes(person))
                 .ToList();
             //試合の回数の多い人から順に休憩者にする
-            for (int i = 0; i < breakPersonsNumber; i++)
-            {
-                //休憩者リストに入れる
-                breakPersons.Add(playerList.First());
-                //試合には参加できないのでリストから消す
-                playerList.Remove(playerList.First());
-            }
+            //休憩者リストに入れる
+            breakPersons.AddRange(playerList.Select(person => person).Take(breakPersonsNumber));
+            //試合には参加できないのでリストから消す
+            playerList.RemoveRange(0, breakPersonsNumber);
 
             return (players: playerList, breakPersons: breakPersons);
 
