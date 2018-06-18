@@ -5,18 +5,18 @@ namespace Forest
 {
     public partial class InputForm : Form
     {
-        IPersonRepository PersonRepository;
+        private IPersonRepository PersonRepository;
 
-        Person Person;
+        private Person Person;
 
-        enum Order
+        private enum Order
         {
             Add,
             Update
         }
 
         //変更なのか、追加なのか
-        Order CurrentOrder;
+        private Order CurrentOrder;
 
         /// <summary>
         /// 変更時に用いるコンストラクタ

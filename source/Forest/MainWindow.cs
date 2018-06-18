@@ -8,10 +8,10 @@ namespace Forest
 {
     public partial class MainWindow : Form
     {
-        PersonHolder PersonHolder;
-        IPersonRepository PersonRepository;
+        private PersonHolder PersonHolder;
+        private IPersonRepository PersonRepository;
 
-        GameRecorder GameRecorder;
+        private GameRecorder GameRecorder;
 
         /// <summary>
         /// コンストラクタでGameRecorderをセット

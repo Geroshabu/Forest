@@ -7,9 +7,9 @@ namespace Forest
 {
     public partial class DeleteCheckDialog : Form
     {
-        IPersonRepository PersonRepository;
+        private IPersonRepository PersonRepository;
 
-        List<Person> DeletePersons;
+        private List<Person> DeletePersons;
 
         public DeleteCheckDialog(IPersonRepository personRepository, IReadOnlyList<Person> deletePersons)
         {

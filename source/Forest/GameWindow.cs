@@ -8,11 +8,11 @@ namespace Forest
     public partial class GameWindow : Form
     {
         //試合の詳細が入った配列
-        Game[] Games;
+        private Game[] Games;
         //休憩する人たち
-        IEnumerable<Person> BreakPersons;
+        private IEnumerable<Person> BreakPersons;
 
-        PersonHolder PersonHolder;
+        private PersonHolder PersonHolder;
 
         public GameWindow(Game[] games, IEnumerable<Person> breakPersons, PersonHolder personHolder)
         {
