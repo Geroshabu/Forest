@@ -129,6 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameGeneratorFactoryTest.cs" />
     <Compile Include="GameRecorderTest.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="LevelTest.cs" />
