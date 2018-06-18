@@ -1,6 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="5,31,164,57"/>
-<area shape="rect" id="node2" href="$class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="212,31,332,57"/>
-<area shape="rect" id="node3" href="$class_forest_1_1_random_by_gender_generator.html" title="男女別。男同士、女同士で当たりやすくするアルゴリズム。 " alt="" coords="380,5,607,32"/>
-<area shape="rect" id="node4" href="$class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="409,68,577,95"/>
+<area shape="rect" id="node1" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="5,68,164,95"/>
+<area shape="rect" id="node2" href="$class_forest_1_1_few_match_priority_generator.html" title="戦ったことのない人優先。 アプリを起動してからの練習参加回数が多い人から休憩者に、 また、対戦回数の少�..." alt="" coords="383,5,604,32"/>
+<area shape="rect" id="node3" href="$class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="212,43,332,69"/>
+<area shape="rect" id="node4" href="$class_forest_1_1_random_by_gender_generator.html" title="男女別。男同士、女同士で当たりやすくするアルゴリズム。 " alt="" coords="380,81,607,108"/>
+<area shape="rect" id="node5" href="$class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="409,132,577,159"/>
 </map>
