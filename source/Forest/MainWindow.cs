@@ -18,8 +18,8 @@ namespace Forest
         /// </summary>
         public MainWindow()
         {
-            gameRecorder = new GameRecorder();
             InitializeComponent();
+            gameRecorder = new GameRecorder();
         }
 
         /// <summary>
