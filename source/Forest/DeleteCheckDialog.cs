@@ -7,25 +7,25 @@ namespace Forest
 {
     public partial class DeleteCheckDialog : Form
     {
-        private IPersonRepository PersonRepository;
+        private IPersonRepository personRepository;
 
-        private List<Person> DeletePersons;
+        private List<Person> deletePersons;
 
         public DeleteCheckDialog(IPersonRepository personRepository, IReadOnlyList<Person> deletePersons)
         {
             InitializeComponent();
 
-            PersonRepository = personRepository;
+            this.personRepository = personRepository;
 
             //引数でもらってきたリストをそのままコピー
-            foreach (var target in DeletePersons = deletePersons.ToList()) { }
+            foreach (var target in this.deletePersons = deletePersons.ToList()) { }
 
         }
 
         private void LoadDeleteCheckDialog(object sender, EventArgs e)
         {
             //削除される人たちをリストに表示する
-            foreach (Person person in DeletePersons)
+            foreach (Person person in deletePersons)
             {
                 object[] row = { person.ID, person.Name, person.Gender, person.Level };
                 this.deleteMemberList.Rows.Add(row);
@@ -52,10 +52,10 @@ namespace Forest
         {
             int result;
 
-            result = PersonRepository.Delete(DeletePersons);
+            result = personRepository.Delete(deletePersons);
 
             //一件でも削除できていなければデータベースエラー扱いにする
-            if (result == DeletePersons.Count)
+            if (result == deletePersons.Count)
             {
                 //この画面を閉じる
                 this.Close();

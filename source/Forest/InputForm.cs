@@ -5,9 +5,9 @@ namespace Forest
 {
     public partial class InputForm : Form
     {
-        private IPersonRepository PersonRepository;
+        private IPersonRepository personRepository;
 
-        private Person Person;
+        private Person person;
 
         private enum Order
         {
@@ -16,7 +16,7 @@ namespace Forest
         }
 
         //変更なのか、追加なのか
-        private Order CurrentOrder;
+        private Order currentOrder;
 
         /// <summary>
         /// 変更時に用いるコンストラクタ
@@ -27,9 +27,9 @@ namespace Forest
         {
             InitializeComponent();
 
-            PersonRepository = personRepository;
-            Person = person;
-            CurrentOrder = Order.Update;
+            this.personRepository = personRepository;
+            this.person = person;
+            currentOrder = Order.Update;
         }
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace Forest
         {
             InitializeComponent();
 
-            PersonRepository = personRepository;
-            CurrentOrder = Order.Add;
-            Person = new Person();
+            this.personRepository = personRepository;
+            currentOrder = Order.Add;
+            person = new Person();
         }
 
         /// <summary>
@@ -56,70 +56,70 @@ namespace Forest
             bool result;
 
             //追加のとき
-            if (CurrentOrder == Order.Add)
+            if (currentOrder == Order.Add)
             {
                 //新規にIDを作成する
-                Person.ID = CreateId();
+                person.ID = CreateId();
                 //入力された名前を入れる
-                Person.Name = nameTextBox.Text;
+                person.Name = nameTextBox.Text;
                 //選択された性別を入れる
                 if (radioButtonMale.Checked)
                 {
-                    Person.Gender = new Gender { GenderNum = 1 };
+                    person.Gender = new Gender { GenderNum = 1 };
                 }
                 else if (radioButtonFemale.Checked)
                 {
-                    Person.Gender = new Gender { GenderNum = 0 };
+                    person.Gender = new Gender { GenderNum = 0 };
                 }
                 //選択されたレベルを入れる
                 if (radioButtonBeginner.Checked)
                 {
-                    Person.Level = new Level { LevelNum = 0 };
+                    person.Level = new Level { LevelNum = 0 };
                 }
                 else if (radioButtonIntermediate.Checked)
                 {
-                    Person.Level = new Level { LevelNum = 1 };
+                    person.Level = new Level { LevelNum = 1 };
                 }
                 else if (radioButtonSenior.Checked)
                 {
-                    Person.Level = new Level { LevelNum = 2 };
+                    person.Level = new Level { LevelNum = 2 };
                 }
                 //削除フラグは立てない
-                Person.DeleteFlag = false;
+                person.DeleteFlag = false;
                 //参加フラグも立てない
-                Person.AttendFlag = false;
+                person.AttendFlag = false;
 
-                result = PersonRepository.Add(Person);
+                result = personRepository.Add(person);
             }
             //変更のとき
             else
             {
                 //入力された名前を入れる
-                Person.Name = nameTextBox.Text;
+                person.Name = nameTextBox.Text;
                 //選択された性別を入れる
                 if (radioButtonMale.Checked)
                 {
-                    Person.Gender.GenderNum = 1;
+                    person.Gender.GenderNum = 1;
                 }
                 else if (radioButtonFemale.Checked)
                 {
-                    Person.Gender.GenderNum = 0;
+                    person.Gender.GenderNum = 0;
                 }
                 //選択されたレベルを入れる
                 if (radioButtonBeginner.Checked)
                 {
-                    Person.Level.LevelNum = 0;
+                    person.Level.LevelNum = 0;
                 }
                 else if (radioButtonIntermediate.Checked)
                 {
-                    Person.Level.LevelNum = 1;
+                    person.Level.LevelNum = 1;
                 }
                 else if (radioButtonSenior.Checked)
                 {
-                    Person.Level.LevelNum = 2;
+                    person.Level.LevelNum = 2;
                 }
 
-                result = PersonRepository.Update(Person);
+                result = personRepository.Update(person);
             }
 
             //成功したら画面を閉じる
@@ -141,29 +141,29 @@ namespace Forest
         /// <param name="e"></param>
         private void LoadInputForm(object sender, EventArgs e)
         {
-            if (CurrentOrder == Order.Update)
+            if (currentOrder == Order.Update)
             {
                 //名前を入れる
-                nameTextBox.Text = Person.Name;
+                nameTextBox.Text = person.Name;
                 //性別を入れる
-                if (Person.Gender == new Gender { GenderNum = 1 })
+                if (person.Gender == new Gender { GenderNum = 1 })
                 {
                     radioButtonMale.Checked = true;
                 }
-                else if (Person.Gender == new Gender { GenderNum = 0 })
+                else if (person.Gender == new Gender { GenderNum = 0 })
                 {
                     radioButtonFemale.Checked = true;
                 }
                 //選択されたレベルを入れる
-                if (Person.Level == new Level { LevelNum = 0 })
+                if (person.Level == new Level { LevelNum = 0 })
                 {
                     radioButtonBeginner.Checked = true;
                 }
-                else if (Person.Level == new Level { LevelNum = 1 })
+                else if (person.Level == new Level { LevelNum = 1 })
                 {
                     radioButtonIntermediate.Checked = true;
                 }
-                else if (Person.Level == new Level { LevelNum = 2 })
+                else if (person.Level == new Level { LevelNum = 2 })
                 {
                     radioButtonSenior.Checked = true;
                 }
@@ -185,7 +185,7 @@ namespace Forest
             string id;
 
             groupCode = "A";
-            id = groupCode + PersonRepository.GetAllCount().ToString();
+            id = groupCode + personRepository.GetAllCount().ToString();
 
             return id;
         }

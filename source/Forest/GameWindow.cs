@@ -8,18 +8,18 @@ namespace Forest
     public partial class GameWindow : Form
     {
         //試合の詳細が入った配列
-        private Game[] Games;
+        private Game[] games;
         //休憩する人たち
-        private IEnumerable<Person> BreakPersons;
+        private IEnumerable<Person> breakPersons;
 
-        private PersonHolder PersonHolder;
+        private PersonHolder personHolder;
 
         public GameWindow(Game[] games, IEnumerable<Person> breakPersons, PersonHolder personHolder)
         {
             InitializeComponent();
-            Games = games;
-            BreakPersons = breakPersons;
-            PersonHolder = personHolder;
+            this.games = games;
+            this.breakPersons = breakPersons;
+            this.personHolder = personHolder;
         }
 
         private void LoadGameWindow(object sender, EventArgs e)
@@ -35,19 +35,19 @@ namespace Forest
             resultPictureBox.Image = canvas;
 
             //コート名
-            courtNameLabel1.Text = Games[0].Court.CourtName;
+            courtNameLabel1.Text = games[0].Court.CourtName;
             //組み合わせ結果
-            playerNameLabel1.Text = Games[0].Team1[0].Name;
-            playerNameLabel2.Text = Games[0].Team2[0].Name;
+            playerNameLabel1.Text = games[0].Team1[0].Name;
+            playerNameLabel2.Text = games[0].Team2[0].Name;
 
             //中身が入って入れば表示する
-            if (Games[1] != null)
+            if (games[1] != null)
             {
                 //コート名
-                courtNameLabel2.Text = Games[1].Court.CourtName;
+                courtNameLabel2.Text = games[1].Court.CourtName;
                 //組み合わせ結果
-                playerNameLabel3.Text = Games[1].Team1[0].Name;
-                playerNameLabel4.Text = Games[1].Team2[0].Name;
+                playerNameLabel3.Text = games[1].Team1[0].Name;
+                playerNameLabel4.Text = games[1].Team2[0].Name;
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Forest
             }
 
             //休憩する人を表示する
-            foreach (Person person in BreakPersons)
+            foreach (Person person in breakPersons)
             {
                 object[] row = { person.Name };
                 this.breakMemberList.Rows.Add(row);

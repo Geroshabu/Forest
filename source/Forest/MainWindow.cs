@@ -8,17 +8,17 @@ namespace Forest
 {
     public partial class MainWindow : Form
     {
-        private PersonHolder PersonHolder;
-        private IPersonRepository PersonRepository;
+        private PersonHolder personHolder;
+        private IPersonRepository personRepository;
 
-        private GameRecorder GameRecorder;
+        private GameRecorder gameRecorder;
 
         /// <summary>
         /// コンストラクタでGameRecorderをセット
         /// </summary>
         public MainWindow()
         {
-            GameRecorder = new GameRecorder();
+            gameRecorder = new GameRecorder();
             InitializeComponent();
         }
 
@@ -30,15 +30,15 @@ namespace Forest
         /// <param name="e"></param>
         public void MainWindowLoad(object sender, EventArgs e)
         {
-            PersonRepository = new PersonDbRepository();
+            personRepository = new PersonDbRepository();
 
             //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.Get();
+            var allPersons = personRepository.Get();
 
-            if (PersonHolder == null)
+            if (personHolder == null)
             {
                 //PersonHolderを作ってメンバーを保持させる
-                PersonHolder = new PersonHolder(allPersons);
+                personHolder = new PersonHolder(allPersons);
             }
 
             //表示する
@@ -55,7 +55,7 @@ namespace Forest
             //チェック状態を取得
             //IDを取得
             var idList = new List<string>();
-            for (int i = 0; i < PersonHolder.GetAll().Count; i++)
+            for (int i = 0; i < personHolder.GetAll().Count; i++)
             {
                 if (Convert.ToBoolean(allMemberList.Rows[i].Cells[0].Value))
                 {
@@ -65,10 +65,10 @@ namespace Forest
             }
 
             //参加フラグを立てる処理を行う。
-            PersonHolder.Attend(idList);
+            personHolder.Attend(idList);
 
             //参加メンバーを取得
-            var attendedPersons = PersonHolder.GetAttended();
+            var attendedPersons = personHolder.GetAttended();
 
             //参加者リストを一度クリアする
             this.attendMemberList.Rows.Clear();
@@ -104,7 +104,7 @@ namespace Forest
         {
             //チェックされている人のIDを取得
             var id_list = new List<string>();
-            for (int i = 0; i < PersonHolder.GetAttended().Count; i++)
+            for (int i = 0; i < personHolder.GetAttended().Count; i++)
             {
                 if (Convert.ToBoolean(attendMemberList.Rows[i].Cells[0].Value))
                 {
@@ -114,10 +114,10 @@ namespace Forest
             }
 
             //参加フラグを取り消す処理を行う。
-            PersonHolder.Cancel(id_list);
+            personHolder.Cancel(id_list);
 
             //全メンバーを取得
-            var allPersons = PersonHolder.GetAll();
+            var allPersons = personHolder.GetAll();
             //全メンバーのリストは一度クリアする
             this.allMemberList.Rows.Clear();
             //表示。今、参加を取り消した人は選択状態にする
@@ -136,7 +136,7 @@ namespace Forest
             }
 
             //参加メンバーを取得
-            var attendedPersons = PersonHolder.GetAttended();
+            var attendedPersons = personHolder.GetAttended();
             //参加者のリストは一度クリアする
             this.attendMemberList.Rows.Clear();
             //表示
@@ -191,7 +191,7 @@ namespace Forest
         public void Managelist(DataGridView targetList, DataGridViewCellMouseEventArgs e)
         {
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
-            if (PersonHolder == null)
+            if (personHolder == null)
             {
                 return;
             }
@@ -373,7 +373,7 @@ namespace Forest
                         //チェックされていた人のID
                         string targetId = (string)allMemberList.Rows[i].Cells[1].Value;
                         //IDが一致する人をリストに保持
-                        checkedInAllMembers.Add(PersonHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
+                        checkedInAllMembers.Add(personHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
                     }
                 }
                 //追加前の参加メンバーのチェック状態を保持
@@ -385,21 +385,21 @@ namespace Forest
                         //チェックされていた人のID
                         string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
                         //IDが一致する人をリストに保持
-                        checkedInAttendMembers.Add(PersonHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
+                        checkedInAttendMembers.Add(personHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
                     }
                 }
 
-                using (InputForm inputForm = new InputForm(PersonRepository))
+                using (InputForm inputForm = new InputForm(personRepository))
                 {
                     //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
                     inputForm.ShowDialog(this);
                 }
 
                 //サークルの削除されていない全メンバーを取得
-                var allPersons = PersonRepository.Get();
+                var allPersons = personRepository.Get();
 
                 //PersonHolderを作ってメンバーを保持させる
-                PersonHolder = new PersonHolder(allPersons);
+                personHolder = new PersonHolder(allPersons);
 
                 //ダイアログを閉じたらListとラベルだけ更新
                 this.allMemberList.Rows.Clear();
@@ -416,7 +416,7 @@ namespace Forest
         private void DisplayMainWindow(IEnumerable<Person> checkInAllMenberList, IEnumerable<Person> checkInAttendMenberList)
         {
             //サークルメンバーを表示
-            var persons = PersonHolder.GetAll();
+            var persons = personHolder.GetAll();
             foreach (Person person in persons)
             {
                 //checkMemberのチェックボックスにはチェックを入れる
@@ -437,7 +437,7 @@ namespace Forest
             memberCountLabel.Text = allMemberList.RowCount + "人 / 100人";
 
             //練習に参加しているメンバーを表示
-            var attendedPersons = PersonHolder.GetAttended();
+            var attendedPersons = personHolder.GetAttended();
             foreach (Person person in attendedPersons)
             {
                 //checkMemberのチェックボックスにはチェックを入れる
@@ -512,7 +512,7 @@ namespace Forest
                 {
                     id = (string)allMemberList.Rows[i].Cells[1].Value;
                     //IDが一致する人を探して保持
-                    updatePerson = PersonHolder.GetAll().Where(x => x.ID == id).FirstOrDefault();
+                    updatePerson = personHolder.GetAll().Where(x => x.ID == id).FirstOrDefault();
                 }
             }
             //変更前の参加メンバーのチェック状態を保持
@@ -526,18 +526,18 @@ namespace Forest
                     string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
                     checkedIdInAttendMembers.Add(targetId);
                     //IDが一致する人をリストに保持
-                    checkedInAttendMembers.Add(PersonHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
+                    checkedInAttendMembers.Add(personHolder.GetAttended().Where(x => x.ID == targetId).FirstOrDefault());
                 }
             }
 
-            using (InputForm inputForm = new InputForm(PersonRepository, updatePerson))
+            using (InputForm inputForm = new InputForm(personRepository, updatePerson))
             {
                 //オーナーウィンドウにthisを指定し、入力画面をモーダルダイアログとして表示
                 inputForm.ShowDialog(this);
             }
 
             //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.Get();
+            var allPersons = personRepository.Get();
 
             //参加メンバーに入っていたら参加フラグを立て直す
             foreach (var targetId in checkedIdInAttendMembers)
@@ -550,7 +550,7 @@ namespace Forest
             }
 
             //PersonHolderを作ってメンバーを保持させる
-            PersonHolder = new PersonHolder(allPersons);
+            personHolder = new PersonHolder(allPersons);
 
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
@@ -578,7 +578,7 @@ namespace Forest
                 {
                     id = (string)allMemberList.Rows[i].Cells[1].Value;
                     idList.Add(id);
-                    deletePersons.Add(PersonHolder.GetAll().Where(x => x.ID == id).FirstOrDefault());
+                    deletePersons.Add(personHolder.GetAll().Where(x => x.ID == id).FirstOrDefault());
 
                 }
             }
@@ -592,21 +592,21 @@ namespace Forest
                     //チェックされていた人のID
                     string targetId = (string)attendMemberList.Rows[i].Cells[1].Value;
                     //IDが一致する人をリストに保持
-                    checkedInAttendMembers.Add(PersonHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
+                    checkedInAttendMembers.Add(personHolder.GetAll().Where(x => x.ID == targetId).FirstOrDefault());
                 }
             }
 
-            using (DeleteCheckDialog deletecheckDialog = new DeleteCheckDialog(PersonRepository, deletePersons))
+            using (DeleteCheckDialog deletecheckDialog = new DeleteCheckDialog(personRepository, deletePersons))
             {
                 //オーナーウィンドウにthisを指定し、削除確認画面をモーダルダイアログとして表示
                 deletecheckDialog.ShowDialog(this);
             }
 
             //サークルの削除されていない全メンバーを取得
-            var allPersons = PersonRepository.Get();
+            var allPersons = personRepository.Get();
 
             //PersonHolderを作ってメンバーを保持させる
-            PersonHolder = new PersonHolder(allPersons);
+            personHolder = new PersonHolder(allPersons);
 
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
@@ -627,22 +627,22 @@ namespace Forest
             int accommodateNumber = 2;
 
             //練習に参加するメンバー
-            var attendMember = PersonHolder.GetAttended();
+            var attendMember = personHolder.GetAttended();
 
             //RamdomGeneratorを読んで、試合を決めてもらう
             string currentGeneratorMode = "random";
             IGameGenerator gameGenerator = GeneratorFactory(currentGeneratorMode);
-            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber,GameRecorder);
+            (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber,gameRecorder);
 
             //試合の組み合わせ結果を表示する
-            using (GameWindow gameWindow = new GameWindow(result.games, result.breakPersons, PersonHolder))
+            using (GameWindow gameWindow = new GameWindow(result.games, result.breakPersons, personHolder))
             {
                 //オーナーウィンドウにthisを指定し、結果画面をモーダルダイアログとして表示
                 gameWindow.ShowDialog(this);
             }
 
             //今回の試合を対戦履歴に追加
-            GameRecorder.Add(result.games);
+            gameRecorder.Add(result.games);
 
             //ダイアログを閉じたらListとラベルだけ更新
             this.allMemberList.Rows.Clear();
