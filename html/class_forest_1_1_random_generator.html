@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_forest_1_1_random_generator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Forest.RandomGenerator Class Reference</div>  </div>
@@ -99,7 +99,8 @@ Inheritance diagram for Forest.RandomGenerator:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_forest_1_1_random_generator__inherit__graph.png" border="0" usemap="#_forest_8_random_generator_inherit__map" alt="Inheritance graph"/></div>
 <map name="_forest_8_random_generator_inherit__map" id="_forest_8_random_generator_inherit__map">
-<area shape="rect" id="node2" href="interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="31,5,148,32"/>
+<area shape="rect" id="node2" href="class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="89,80,167,107"/>
+<area shape="rect" id="node3" href="interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="31,5,148,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -107,50 +108,134 @@ Collaboration diagram for Forest.RandomGenerator:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_forest_1_1_random_generator__coll__graph.png" border="0" usemap="#_forest_8_random_generator_coll__map" alt="Collaboration graph"/></div>
 <map name="_forest_8_random_generator_coll__map" id="_forest_8_random_generator_coll__map">
-<area shape="rect" id="node2" href="interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="117,95,235,121"/>
-<area shape="rect" id="node3" href="class_forest_1_1_game.html" title="Forest.Game" alt="" coords="43,5,141,32"/>
+<area shape="rect" id="node2" href="class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="134,184,213,211"/>
+<area shape="rect" id="node3" href="interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="243,95,360,121"/>
+<area shape="rect" id="node4" href="class_forest_1_1_game.html" title="Forest.Game" alt="" coords="36,5,135,32"/>
+<area shape="rect" id="node5" href="class_forest_1_1_game_recorder.html" title="対戦履歴を管理するクラス " alt="" coords="68,95,218,121"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:aeceb36ab73d5b95eb68472e449787fdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_random_generator.html#aeceb36ab73d5b95eb68472e449787fdc">games</a></td></tr>
-<tr class="memdesc:aeceb36ab73d5b95eb68472e449787fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合の組み合わせと休憩する人を決める  <a href="#aeceb36ab73d5b95eb68472e449787fdc">More...</a><br /></td></tr>
-<tr class="separator:aeceb36ab73d5b95eb68472e449787fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a706dab339e8a043bd6628cdf4fb325b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_random_generator.html#a706dab339e8a043bd6628cdf4fb325b8">override</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#aa54646876ce335b764160baa8194d4ac">players</a>, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; breakPersons) DecideBreakPersons(int breakPersonsNumber</td></tr>
+<tr class="memdesc:a706dab339e8a043bd6628cdf4fb325b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">休憩者をランダムに決める  <a href="#a706dab339e8a043bd6628cdf4fb325b8">More...</a><br /></td></tr>
+<tr class="separator:a706dab339e8a043bd6628cdf4fb325b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4265cd852b1142f504ad97f8ba4f8a9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_random_generator.html#a4265cd852b1142f504ad97f8ba4f8a9e">override</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#a2d145e34675e6da047695bb1f7e233d9">remainPlayers</a>, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; team1, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; team2) DecideOpponent(List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#aa54646876ce335b764160baa8194d4ac">players</a></td></tr>
+<tr class="memdesc:a4265cd852b1142f504ad97f8ba4f8a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ランダムに対戦相手を決める  <a href="#a4265cd852b1142f504ad97f8ba4f8a9e">More...</a><br /></td></tr>
+<tr class="separator:a4265cd852b1142f504ad97f8ba4f8a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_forest_1_1_generator"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_forest_1_1_generator')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_forest_1_1_generator.html">Forest.Generator</a></td></tr>
+<tr class="memitem:a2d8ad9a141e60e8e7a031ae35ef83dbf inherit pub_attribs_class_forest_1_1_generator"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game_recorder.html">GameRecorder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_generator.html#a2d8ad9a141e60e8e7a031ae35ef83dbf">GameRecorder</a> = <a class="el" href="class_forest_1_1_game_recorder.html#a40120fe2960490f92ebe7feb28931be5">GameRecorder.GetInstance</a></td></tr>
+<tr class="separator:a2d8ad9a141e60e8e7a031ae35ef83dbf inherit pub_attribs_class_forest_1_1_generator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e07ef03e3f10f29432aec17b7564f5a inherit pub_attribs_class_forest_1_1_generator"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_generator.html#a5e07ef03e3f10f29432aec17b7564f5a">games</a></td></tr>
+<tr class="memdesc:a5e07ef03e3f10f29432aec17b7564f5a inherit pub_attribs_class_forest_1_1_generator"><td class="mdescLeft">&#160;</td><td class="mdescRight">組み合わせを決める。  <a href="#a5e07ef03e3f10f29432aec17b7564f5a">More...</a><br /></td></tr>
+<tr class="separator:a5e07ef03e3f10f29432aec17b7564f5a inherit pub_attribs_class_forest_1_1_generator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_interface_forest_1_1_i_game_generator"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_interface_forest_1_1_i_game_generator')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="interface_forest_1_1_i_game_generator.html">Forest.IGameGenerator</a></td></tr>
 <tr class="memitem:a758a1adcf1c24268eaf18853dea7cd0e inherit pub_attribs_interface_forest_1_1_i_game_generator"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_forest_1_1_game.html">Game</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_forest_1_1_i_game_generator.html#a758a1adcf1c24268eaf18853dea7cd0e">games</a></td></tr>
 <tr class="memdesc:a758a1adcf1c24268eaf18853dea7cd0e inherit pub_attribs_interface_forest_1_1_i_game_generator"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合の組み合わせを決める  <a href="#a758a1adcf1c24268eaf18853dea7cd0e">More...</a><br /></td></tr>
 <tr class="separator:a758a1adcf1c24268eaf18853dea7cd0e inherit pub_attribs_interface_forest_1_1_i_game_generator"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_forest_1_1_generator"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_forest_1_1_generator')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_forest_1_1_generator.html">Forest.Generator</a></td></tr>
+<tr class="memitem:aa54646876ce335b764160baa8194d4ac inherit pro_attribs_class_forest_1_1_generator"><td class="memItemLeft" align="right" valign="top">abstract List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_generator.html#aa54646876ce335b764160baa8194d4ac">players</a></td></tr>
+<tr class="memdesc:aa54646876ce335b764160baa8194d4ac inherit pro_attribs_class_forest_1_1_generator"><td class="mdescLeft">&#160;</td><td class="mdescRight">休憩者を決めるメソッド  <a href="#aa54646876ce335b764160baa8194d4ac">More...</a><br /></td></tr>
+<tr class="separator:aa54646876ce335b764160baa8194d4ac inherit pro_attribs_class_forest_1_1_generator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d145e34675e6da047695bb1f7e233d9 inherit pro_attribs_class_forest_1_1_generator"><td class="memItemLeft" align="right" valign="top">abstract List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_generator.html#a2d145e34675e6da047695bb1f7e233d9">remainPlayers</a></td></tr>
+<tr class="memdesc:a2d145e34675e6da047695bb1f7e233d9 inherit pro_attribs_class_forest_1_1_generator"><td class="mdescLeft">&#160;</td><td class="mdescRight">対戦相手を決めるメソッド  <a href="#a2d145e34675e6da047695bb1f7e233d9">More...</a><br /></td></tr>
+<tr class="separator:a2d145e34675e6da047695bb1f7e233d9 inherit pro_attribs_class_forest_1_1_generator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="aeceb36ab73d5b95eb68472e449787fdc"></a>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a706dab339e8a043bd6628cdf4fb325b8"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_forest_1_1_game.html">Game</a> [] Forest.RandomGenerator.games</td>
+          <td class="memname">Forest.RandomGenerator.override </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
+          <td class="paramname"><em>players</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
+          <td class="paramname"><em>breakPersons</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>試合の組み合わせと休憩する人を決める </p>
+<p>休憩者をランダムに決める </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">courtNum</td><td>コート数</td></tr>
-    <tr><td class="paramname">attendPersons</td><td>試合に参加する人</td></tr>
+    <tr><td class="paramname">breakPersonsNumber</td><td>休憩者の人数</td></tr>
+    <tr><td class="paramname">attendPersons</td><td>練習の参加者</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>試合と休憩者</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">ArgumentOutOfRangeException</td><td>コート数が負の場合に発生する</td></tr>
+<dl class="section return"><dt>Returns</dt><dd>試合の参加者と休憩者</dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4265cd852b1142f504ad97f8ba4f8a9e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Forest.RandomGenerator.override </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
+          <td class="paramname"><em>remainPlayers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
+          <td class="paramname"><em>team1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
+          <td class="paramname"><em>team2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ランダムに対戦相手を決める </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">players</td><td>試合の参加者</td></tr>
+    <tr><td class="paramname">accommodateNumber</td><td>コートに入れられる人数</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>残りの試合の参加者と対戦の組み合わせ</dd></dl>
 
 </div>
 </div>
