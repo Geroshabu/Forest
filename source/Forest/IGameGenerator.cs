@@ -5,7 +5,7 @@ namespace Forest
     /// <summary>
     /// 試合の組み合わせを決めるためのインターフェース
     /// </summary>
-    interface IGameGenerator
+    public interface IGameGenerator
     {
         /// <summary>
         /// 試合の組み合わせを決める

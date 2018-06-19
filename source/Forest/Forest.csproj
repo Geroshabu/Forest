@@ -125,6 +125,7 @@
     <Compile Include="DeleteCheckDialog.Designer.cs">
       <DependentUpon>DeleteCheckDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameGeneratorFactory.cs" />
     <Compile Include="GameRecorder.cs" />
     <Compile Include="GameWindow.cs">
       <SubType>Form</SubType>
@@ -132,8 +133,10 @@
     <Compile Include="GameWindow.Designer.cs">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateMode.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="IGameGenerator.cs" />
+    <Compile Include="IGameGeneratorFactory.cs" />
     <Compile Include="InputForm.cs">
       <SubType>Form</SubType>
     </Compile>

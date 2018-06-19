@@ -8,17 +8,21 @@ namespace Forest
 {
     public partial class MainWindow : Form
     {
+
         private PersonHolder personHolder;
         private IPersonRepository personRepository;
 
         private GameRecorder gameRecorder;
+        private IGameGeneratorFactory gameGeneratorFactory;
 
         /// <summary>
-        /// コンストラクタでGameRecorderをセット
+        /// コンストラクタでgameRecorderとgameGeneratorFactoryをセット
         /// </summary>
-        public MainWindow()
+        /// </param name="gameGeneratorFactory">gameGeneratorのファクトリー</param>
+        public MainWindow(IGameGeneratorFactory gameGeneratorFactory)
         {
             InitializeComponent();
+            this.gameGeneratorFactory = gameGeneratorFactory;
             gameRecorder = GameRecorder.GetInstance;
         }
 
@@ -40,6 +44,9 @@ namespace Forest
                 //PersonHolderを作ってメンバーを保持させる
                 personHolder = new PersonHolder(allPersons);
             }
+
+            //組み合わせ決定アルゴリズムの初期値は完全ランダム
+            generateSettingComboBox.SelectedIndex = 0;
 
             //表示する
             DisplayMainWindow(new List<Person>(), new List<Person>());
@@ -287,7 +294,7 @@ namespace Forest
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void allMemberList_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        { 
+        {
             //列の名前
             string targetColum = e.Column.Name;
 
@@ -328,10 +335,10 @@ namespace Forest
                 return;
             }
 
-            foreach(var compare in compareList)
+            foreach (var compare in compareList)
             {
                 //同じだったら次に行く
-                if(compare.columName == targetColum)
+                if (compare.columName == targetColum)
                 {
                     continue;
                 }
@@ -629,9 +636,18 @@ namespace Forest
             //練習に参加するメンバー
             var attendMember = personHolder.GetAttended();
 
-            //RamdomGeneratorを読んで、試合を決めてもらう
-            string currentGeneratorMode = "random";
-            IGameGenerator gameGenerator = GeneratorFactory(currentGeneratorMode);
+            //今設定しているアルゴリズムのモードを調べる
+            var generateModeDictionary = new Dictionary<string, GenerateMode>()
+            {
+                { "完全ランダム",GenerateMode.Random },
+                {"男女別",GenerateMode.RandomByGender },
+                {"レベル別",GenerateMode.RandomByLebel },
+                {"戦ったことのない人優先",GenerateMode.FewMatchPriority }
+            };
+            GenerateMode selectedGenerateMode = generateModeDictionary[generateSettingComboBox.SelectedItem.ToString()];
+
+            //RamdomGeneratorをよんで、試合を決めてもらう
+            gameGeneratorFactory.Create(selectedGenerateMode);
             (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //試合の組み合わせ結果を表示する
@@ -660,24 +676,6 @@ namespace Forest
             //アプリケーションを終了する
             Application.Exit();
         }
-
-        /// <summary>
-        /// 設定されている組み合わせのモードによって生成するインスタンスを変える。
-        /// </summary>
-        /// <param name="generatorMode">設定されている組み合わせ方法</param>
-        /// <returns>生成したインスタンス</returns>
-        private IGameGenerator GeneratorFactory(string generatorMode)
-        {
-            switch (generatorMode)
-            {
-                case "random":
-                    return new RandomGenerator();
-
-                //デフォルトはランダム
-                default:
-                    return new RandomGenerator();
-            }
-        }
-
+        
     }
 }
