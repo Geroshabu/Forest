@@ -172,8 +172,8 @@ namespace ForestTest
             //assert
             for (int i = 0; i < result.games.Length; i += 2)
             {
-                Assert.Equal(expectedType[i], result.games[i].Player1[0].Level);
-                Assert.Equal(expectedType[i + 1], result.games[i].Player2[0].Level);
+                Assert.Equal(expectedType[i], result.games[i].Team1[0].Level);
+                Assert.Equal(expectedType[i + 1], result.games[i].Team2[0].Level);
             }
 
         }
