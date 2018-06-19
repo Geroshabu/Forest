@@ -1,14 +1,14 @@
-﻿using Forest;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Forest;
 using Xunit;
+
 
 namespace ForestTest
 {
-    public class RandomByGenderGeneratorTest
+    public class RandomByLevelGeneratorTest
     {
-        GameRecorder gameRecorder;
-        RandomByGenderGenerator randomByGenderGenerator;
+        RandomByLevelGenerator randomByLevelGenerator;
 
         Person testPerson01;
         Person testPerson02;
@@ -18,12 +18,11 @@ namespace ForestTest
         Person testPerson06;
 
         /// <summary>
-        /// コンストラクタでテスト用データの作成
+        /// コンストラクタでテストの準備
         /// </summary>
-        public RandomByGenderGeneratorTest()
+        public RandomByLevelGeneratorTest()
         {
-            gameRecorder = GameRecorder.GetInstance;
-            randomByGenderGenerator = new RandomByGenderGenerator();
+            randomByLevelGenerator = new RandomByLevelGenerator();
 
             Gender men = new Gender { GenderNum = 1 };
             Gender women = new Gender { GenderNum = 0 };
@@ -78,13 +77,14 @@ namespace ForestTest
             };
             testPerson06 = new Person
             {
-                ID = "test07",
+                ID = "test06",
                 Name = "harriet",
                 Gender = women,
                 Level = intermediate,
                 DeleteFlag = false,
                 AttendFlag = true
             };
+
         }
 
         [Fact(DisplayName = "コート2つとも人が入り、休憩者もいる場合")]
@@ -108,7 +108,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 2;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByLevelGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -136,7 +136,7 @@ namespace ForestTest
             int expectedBreakPersonCount = 1;
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByLevelGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //assert
             Assert.Equal(expectedGameCount, result.games.Length);
@@ -146,7 +146,7 @@ namespace ForestTest
 
         }
 
-        [Fact(DisplayName = "男、女の順番に並んでいることを確認する")]
+        [Fact(DisplayName = "初級者、中級者、上級者の順番に並んでいることを確認する")]
         public void GenerateTest3()
         {
             //Arrange
@@ -157,26 +157,25 @@ namespace ForestTest
             {
                 testPerson01,
                 testPerson02,
-                testPerson05,
+                testPerson03,
                 testPerson06,
             };
             //期待結果
-            Gender men = new Gender { GenderNum = 1 };
-            Gender women = new Gender { GenderNum = 0 };
-            Gender[] expectedType = { men, men, women, women };
+            Level beginner = new Level { LevelNum = 0 };
+            Level intermediate = new Level { LevelNum = 1 };
+            Level advanced = new Level { LevelNum = 2 };
+            Level[] expectedType = { beginner, intermediate, intermediate, advanced };
 
             //act
-            (Game[] games, IEnumerable<Person> breakPersons) result = randomByGenderGenerator.Generate(courtNum, attendMember,accommodateNumber);
+            (Game[] games, IEnumerable<Person> breakPersons) result = randomByLevelGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //assert
             for (int i = 0; i < result.games.Length; i += 2)
             {
-                Assert.Equal(expectedType[i], result.games[i].Team1[0].Gender);
-                Assert.Equal(expectedType[i + 1], result.games[i].Team2[0].Gender);
+                Assert.Equal(expectedType[i], result.games[i].Team1[0].Level);
+                Assert.Equal(expectedType[i + 1], result.games[i].Team2[0].Level);
             }
 
         }
-
-
     }
 }

@@ -43,8 +43,8 @@ namespace ForestTest
             Game game = new Game(court,players1,players2);
 
             Assert.Equal(court,game.Court);
-            Assert.Equal(players1, game.Player1);
-            Assert.Equal(players2, game.Player2);
+            Assert.Equal(players1, game.Team1);
+            Assert.Equal(players2, game.Team2);
         }
 
     }

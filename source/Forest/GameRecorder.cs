@@ -15,12 +15,17 @@ namespace Forest
         private List<Record> Records;
 
         /// <summary>
-        /// コンストラクタで空のリストを作成する
+        /// コンストラクタ（クラス外からのインスタンス化は禁止）
         /// </summary>
-        public GameRecorder()
+        private GameRecorder()
         {
             Records = new List<Record>();
         }
+
+        /// <summary>
+        /// インスタンスを返す
+        /// </summary>
+        public static GameRecorder GetInstance { get; } = new GameRecorder();
 
         /// <summary>
         /// 試合を対戦履歴に追加する
@@ -43,7 +48,10 @@ namespace Forest
             //ゲームの数だけ対戦履歴を増やす
             foreach (var game in games)
             {
-                Records.Add(new Record(game.Player1[0], game.Player2[0]));
+                if(game != null)
+                {
+                    Records.Add(new Record(game.Team1[0], game.Team2[0]));
+                }
             }
         }
 
