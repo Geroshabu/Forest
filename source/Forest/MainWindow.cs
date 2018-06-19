@@ -646,8 +646,8 @@ namespace Forest
             };
             GenerateMode selectedGenerateMode = generateModeDictionary[generateSettingComboBox.SelectedItem.ToString()];
 
-            //RamdomGeneratorをよんで、試合を決めてもらう
-            gameGeneratorFactory.Create(selectedGenerateMode);
+            //gameGeneratorFactoryで今のGeneratorを作り、試合を決めてもらう
+            IGameGenerator gameGenerator = gameGeneratorFactory.Create(selectedGenerateMode);
             (Game[] games, IEnumerable<Person> breakPersons) result = gameGenerator.Generate(courtNum, attendMember, accommodateNumber);
 
             //試合の組み合わせ結果を表示する
