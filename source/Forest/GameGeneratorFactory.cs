@@ -19,11 +19,11 @@ namespace Forest
                 case GenerateMode.RandomByGender:
                     return new RandomByGenderGenerator();
                 case GenerateMode.RandomByLebel:
-                //    return new RandomByLevelGenerator();
+                    return new RandomByLevelGenerator();
                 case GenerateMode.FewMatchPriority:
-                //    return new RandomGenerator();
+                    return new RandomGenerator();
 
-                default: //デフォルトは完全ランダム
+                default:
                     throw new ArgumentException("generateModeに適切なものが入っていません");
             }
         }
