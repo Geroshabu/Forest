@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Forest;
+using System.Collections.Generic;
 using System.Linq;
-using Forest;
 using Xunit;
 
 namespace ForestTest
 {
     public class RandomByGenderGeneratorTest
     {
+        GameRecorder gameRecorder;
         RandomByGenderGenerator randomByGenderGenerator;
 
         Person testPerson01;
@@ -21,6 +22,7 @@ namespace ForestTest
         /// </summary>
         public RandomByGenderGeneratorTest()
         {
+            gameRecorder = GameRecorder.GetInstance;
             randomByGenderGenerator = new RandomByGenderGenerator();
 
             Gender men = new Gender { GenderNum = 1 };
@@ -169,8 +171,8 @@ namespace ForestTest
             //assert
             for (int i = 0; i < result.games.Length; i += 2)
             {
-                Assert.Equal(expectedType[i], result.games[i].Player1[0].Gender);
-                Assert.Equal(expectedType[i + 1], result.games[i].Player2[0].Gender);
+                Assert.Equal(expectedType[i], result.games[i].Team1[0].Gender);
+                Assert.Equal(expectedType[i + 1], result.games[i].Team2[0].Gender);
             }
 
         }

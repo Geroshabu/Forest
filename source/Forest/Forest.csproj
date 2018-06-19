@@ -161,6 +161,7 @@
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="ProcessList.cs" />
+    <Compile Include="FewMatchPriorityGenerator.cs" />
     <EmbeddedResource Include="DeleteCheckDialog.resx">
       <DependentUpon>DeleteCheckDialog.cs</DependentUpon>
     </EmbeddedResource>

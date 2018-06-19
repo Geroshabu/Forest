@@ -14,6 +14,8 @@ namespace ForestTest
         Person testPerson05;
         Person testPerson06;
 
+        GameRecorder gameRecorder = GameRecorder.GetInstance;
+
         public RandomGeneratorTest()
         {
             Gender men = new Gender { GenderNum = 0 };

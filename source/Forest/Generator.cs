@@ -8,6 +8,8 @@ namespace Forest
     /// </summary>
     public abstract class Generator : IGameGenerator
     {
+        public GameRecorder GameRecorder = GameRecorder.GetInstance;
+
         /// <summary>
         /// コートを作る
         /// </summary>
@@ -36,6 +38,7 @@ namespace Forest
         /// </summary>
         /// <param name="courtNum">コート数</param>
         /// <param name="attendPersons">試合の参加者</param>
+        /// <param name="accommodateNumber">コートに入れる人数</param>
         /// <returns>Gameと休憩者のリスト</returns>
         public (Game[] games, IEnumerable<Person> breakPersons) Generate(int courtNum, IReadOnlyList<Person> attendPersons, int accommodateNumber)
         {
@@ -92,7 +95,7 @@ namespace Forest
         /// <param name="players">試合の参加者</param>
         /// <param name="accommodateNumber">1コートに入れる人数</param>
         /// <returns>残りの試合の参加者と対戦の組み合わせ</returns>
-        protected abstract (List<Person> remainPlayers, List<Person> team1, List<Person> team2) DecideOpponent(List<Person> players,int accommodateNumber);
+        protected abstract (List<Person> remainPlayers, List<Person> team1, List<Person> team2) DecideOpponent(List<Person> players, int accommodateNumber);
 
     }
 }

@@ -71,7 +71,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
 
             //Act
             GameRecorder.Add(games);
@@ -87,7 +87,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01, testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
 
             //Act
             GameRecorder.Add(games);
@@ -102,7 +102,7 @@ namespace ForestTest
         public void AddTest03()
         {
             //Arrange
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
 
             //Act
             //Assert
@@ -115,7 +115,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
 
             //Act
             //Assert
@@ -128,7 +128,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -144,7 +144,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -160,7 +160,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01, testGame02 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -177,7 +177,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01, testGame02 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -193,7 +193,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -207,7 +207,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -221,7 +221,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -235,7 +235,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
@@ -249,7 +249,7 @@ namespace ForestTest
         {
             //Arrange
             Game[] games = new Game[] { testGame01, testGame01 };
-            GameRecorder = new GameRecorder();
+            GameRecorder = GameRecorder.GetInstance;
             GameRecorder.Add(games);
 
             //Act
