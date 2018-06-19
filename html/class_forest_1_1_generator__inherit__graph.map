@@ -1,6 +1,7 @@
 <map id="Forest.Generator" name="Forest.Generator">
-<area shape="rect" id="node3" href="$class_forest_1_1_random_by_gender_generator.html" title="男女別。男同士、女同士で当たりやすくするアルゴリズム。 " alt="" coords="339,5,565,32"/>
-<area shape="rect" id="node4" href="$class_forest_1_1_random_by_level_generator.html" title="レベル別。各レベル同士で当たりやすくするアルゴリズム。 " alt="" coords="345,56,559,83"/>
-<area shape="rect" id="node5" href="$class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="368,107,536,133"/>
-<area shape="rect" id="node2" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="5,56,123,83"/>
+<area shape="rect" id="node3" href="$class_forest_1_1_few_match_priority_generator.html" title="戦ったことのない人優先。 アプリを起動してからの練習参加回数が多い人から休憩者に、 また、対戦回数の少�..." alt="" coords="341,5,563,32"/>
+<area shape="rect" id="node4" href="$class_forest_1_1_random_by_gender_generator.html" title="男女別。男同士、女同士で当たりやすくするアルゴリズム。 " alt="" coords="339,56,565,83"/>
+<area shape="rect" id="node5" href="$class_forest_1_1_random_by_level_generator.html" title="レベル別。各レベル同士で当たりやすくするアルゴリズム。 " alt="" coords="345,107,559,133"/>
+<area shape="rect" id="node6" href="$class_forest_1_1_random_generator.html" title="Forest.RandomGenerator" alt="" coords="368,157,536,184"/>
+<area shape="rect" id="node2" href="$interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="5,81,123,108"/>
 </map>

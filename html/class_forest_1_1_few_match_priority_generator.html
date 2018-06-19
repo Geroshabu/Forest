@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Forest: Forest.RandomByGenderGenerator Class Reference</title>
+<title>Forest: Forest.FewMatchPriorityGenerator Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,34 +83,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_forest.html">Forest</a></li><li class="navelem"><a class="el" href="class_forest_1_1_random_by_gender_generator.html">RandomByGenderGenerator</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespace_forest.html">Forest</a></li><li class="navelem"><a class="el" href="class_forest_1_1_few_match_priority_generator.html">FewMatchPriorityGenerator</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="class_forest_1_1_random_by_gender_generator-members.html">List of all members</a>  </div>
+<a href="class_forest_1_1_few_match_priority_generator-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Forest.RandomByGenderGenerator Class Reference</div>  </div>
+<div class="title">Forest.FewMatchPriorityGenerator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>男女別。男同士、女同士で当たりやすくするアルゴリズム。  
- <a href="class_forest_1_1_random_by_gender_generator.html#details">More...</a></p>
+<p>戦ったことのない人優先。 アプリを起動してからの練習参加回数が多い人から休憩者に、 また、対戦回数の少ない人同士を優先して組み合わせるアルゴリズム。  
+ <a href="class_forest_1_1_few_match_priority_generator.html#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for Forest.RandomByGenderGenerator:</div>
+Inheritance diagram for Forest.FewMatchPriorityGenerator:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_forest_1_1_random_by_gender_generator__inherit__graph.png" border="0" usemap="#_forest_8_random_by_gender_generator_inherit__map" alt="Inheritance graph"/></div>
-<map name="_forest_8_random_by_gender_generator_inherit__map" id="_forest_8_random_by_gender_generator_inherit__map">
-<area shape="rect" id="node2" href="class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="118,80,197,107"/>
-<area shape="rect" id="node3" href="interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="60,5,177,32"/>
+<div class="center"><img src="class_forest_1_1_few_match_priority_generator__inherit__graph.png" border="0" usemap="#_forest_8_few_match_priority_generator_inherit__map" alt="Inheritance graph"/></div>
+<map name="_forest_8_few_match_priority_generator_inherit__map" id="_forest_8_few_match_priority_generator_inherit__map">
+<area shape="rect" id="node2" href="class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="115,80,194,107"/>
+<area shape="rect" id="node3" href="interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="57,5,175,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for Forest.RandomByGenderGenerator:</div>
+Collaboration diagram for Forest.FewMatchPriorityGenerator:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_forest_1_1_random_by_gender_generator__coll__graph.png" border="0" usemap="#_forest_8_random_by_gender_generator_coll__map" alt="Collaboration graph"/></div>
-<map name="_forest_8_random_by_gender_generator_coll__map" id="_forest_8_random_by_gender_generator_coll__map">
+<div class="center"><img src="class_forest_1_1_few_match_priority_generator__coll__graph.png" border="0" usemap="#_forest_8_few_match_priority_generator_coll__map" alt="Collaboration graph"/></div>
+<map name="_forest_8_few_match_priority_generator_coll__map" id="_forest_8_few_match_priority_generator_coll__map">
 <area shape="rect" id="node2" href="class_forest_1_1_generator.html" title="試合の組み合わせを決めるテンプレートのクラス " alt="" coords="134,184,213,211"/>
 <area shape="rect" id="node3" href="interface_forest_1_1_i_game_generator.html" title="試合の組み合わせを決めるためのインターフェース " alt="" coords="243,95,360,121"/>
 <area shape="rect" id="node4" href="class_forest_1_1_game.html" title="Forest.Game" alt="" coords="36,5,135,32"/>
@@ -120,12 +120,12 @@ Collaboration diagram for Forest.RandomByGenderGenerator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ab69742dc1bda6e8b4478793f34af36b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_random_by_gender_generator.html#ab69742dc1bda6e8b4478793f34af36b4">override</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#aa54646876ce335b764160baa8194d4ac">players</a>, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; breakPersons) DecideBreakPersons(int breakPersonsNumber</td></tr>
-<tr class="memdesc:ab69742dc1bda6e8b4478793f34af36b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">休憩者をランダムに決める  <a href="#ab69742dc1bda6e8b4478793f34af36b4">More...</a><br /></td></tr>
-<tr class="separator:ab69742dc1bda6e8b4478793f34af36b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a551f9433594ada5dd4547c813e828b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_random_by_gender_generator.html#a8a551f9433594ada5dd4547c813e828b">override</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#a2d145e34675e6da047695bb1f7e233d9">remainPlayers</a>, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; team1, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; team2) DecideOpponent(List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#aa54646876ce335b764160baa8194d4ac">players</a></td></tr>
-<tr class="memdesc:a8a551f9433594ada5dd4547c813e828b"><td class="mdescLeft">&#160;</td><td class="mdescRight">同じ性別で当たりやすいように対戦相手を決める  <a href="#a8a551f9433594ada5dd4547c813e828b">More...</a><br /></td></tr>
-<tr class="separator:a8a551f9433594ada5dd4547c813e828b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f238b1c535d4d6cddba60e9c4f8124"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_few_match_priority_generator.html#af9f238b1c535d4d6cddba60e9c4f8124">override</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#aa54646876ce335b764160baa8194d4ac">players</a>, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; breakPersons) DecideBreakPersons(int breakPersonsNumber</td></tr>
+<tr class="memdesc:af9f238b1c535d4d6cddba60e9c4f8124"><td class="mdescLeft">&#160;</td><td class="mdescRight">アプリを起動してからの試合参加回数が多い人から順に休憩者にする  <a href="#af9f238b1c535d4d6cddba60e9c4f8124">More...</a><br /></td></tr>
+<tr class="separator:af9f238b1c535d4d6cddba60e9c4f8124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbd6277a8b0d5f502b8323f7f26295fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_forest_1_1_few_match_priority_generator.html#acbd6277a8b0d5f502b8323f7f26295fd">override</a> (List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#a2d145e34675e6da047695bb1f7e233d9">remainPlayers</a>, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; team1, List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; team2) DecideOpponent(List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt; <a class="el" href="class_forest_1_1_generator.html#aa54646876ce335b764160baa8194d4ac">players</a></td></tr>
+<tr class="memdesc:acbd6277a8b0d5f502b8323f7f26295fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">対対戦回数の少ない人が組み合わさりやすくなるように対戦相手を決める  <a href="#acbd6277a8b0d5f502b8323f7f26295fd">More...</a><br /></td></tr>
+<tr class="separator:acbd6277a8b0d5f502b8323f7f26295fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -148,9 +148,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a2d145e34675e6da047695bb1f7e233d9 inherit pro_attribs_class_forest_1_1_generator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>男女別。男同士、女同士で当たりやすくするアルゴリズム。 </p>
+<div class="textblock"><p>戦ったことのない人優先。 アプリを起動してからの練習参加回数が多い人から休憩者に、 また、対戦回数の少ない人同士を優先して組み合わせるアルゴリズム。 </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ab69742dc1bda6e8b4478793f34af36b4"></a>
+<a class="anchor" id="af9f238b1c535d4d6cddba60e9c4f8124"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -158,7 +158,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Forest.RandomByGenderGenerator.override </td>
+          <td class="memname">Forest.FewMatchPriorityGenerator.override </td>
           <td>(</td>
           <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
           <td class="paramname"><em>players</em>, </td>
@@ -182,7 +182,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>休憩者をランダムに決める </p>
+<p>アプリを起動してからの試合参加回数が多い人から順に休憩者にする </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">breakPersonsNumber</td><td>休憩者の人数</td></tr>
@@ -194,7 +194,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8a551f9433594ada5dd4547c813e828b"></a>
+<a class="anchor" id="acbd6277a8b0d5f502b8323f7f26295fd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -202,7 +202,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Forest.RandomByGenderGenerator.override </td>
+          <td class="memname">Forest.FewMatchPriorityGenerator.override </td>
           <td>(</td>
           <td class="paramtype">List&lt; <a class="el" href="class_forest_1_1_person.html">Person</a> &gt;&#160;</td>
           <td class="paramname"><em>remainPlayers</em>, </td>
@@ -232,7 +232,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>同じ性別で当たりやすいように対戦相手を決める </p>
+<p>対対戦回数の少ない人が組み合わさりやすくなるように対戦相手を決める </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">players</td><td>試合の参加者</td></tr>
@@ -245,7 +245,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/projects/Forest/source/Forest/<a class="el" href="_random_by_gender_generator_8cs.html">RandomByGenderGenerator.cs</a></li>
+<li>C:/projects/Forest/source/Forest/<a class="el" href="_few_match_priority_generator_8cs.html">FewMatchPriorityGenerator.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
