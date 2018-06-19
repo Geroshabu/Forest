@@ -2,7 +2,6 @@ var searchData=
 [
   ['default',['Default',['../class_forest_1_1_properties_1_1_settings.html#a4537b8698d25a37a080b3c0e9804ddfe',1,'Forest::Properties::Settings']]],
   ['delete',['Delete',['../interface_forest_1_1_i_person_repository.html#a3fb5d3b3c89b6a8006ebeeec5857302b',1,'Forest.IPersonRepository.Delete()'],['../class_forest_1_1_person_db_repository.html#a6f4fe62ee38507b672ccec9082330f16',1,'Forest.PersonDbRepository.Delete()']]],
-  ['deleteattendedpersons',['DeleteAttendedPersons',['../class_forest_1_1_main_window.html#a531c8f89ed5132486ab40d1fb55de9c9',1,'Forest::MainWindow']]],
   ['deletecheckdialog',['DeleteCheckDialog',['../class_forest_1_1_delete_check_dialog.html',1,'Forest']]],
   ['deletecheckdialog',['DeleteCheckDialog',['../class_forest_1_1_delete_check_dialog.html#a2ee00ec4efd4097ff9c7bd4ad67fe86f',1,'Forest::DeleteCheckDialog']]],
   ['deletecheckdialog_2ecs',['DeleteCheckDialog.cs',['../_delete_check_dialog_8cs.html',1,'']]],
