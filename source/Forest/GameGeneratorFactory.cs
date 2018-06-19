@@ -21,7 +21,7 @@ namespace Forest
                 case GenerateMode.RandomByLebel:
                     return new RandomByLevelGenerator();
                 case GenerateMode.FewMatchPriority:
-                    return new RandomGenerator();
+                    return new FewMatchPriorityGenerator();
 
                 default:
                     throw new ArgumentException("generateModeに適切なものが入っていません");
