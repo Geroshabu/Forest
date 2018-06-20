@@ -68,6 +68,7 @@
             this.deleteMemberList.RowTemplate.Height = 21;
             this.deleteMemberList.Size = new System.Drawing.Size(305, 359);
             this.deleteMemberList.TabIndex = 4;
+            this.deleteMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.memberListSortCompare);
             // 
             // deleteMemberListId
             // 
@@ -102,7 +103,7 @@
             this.stopButton.TabIndex = 9;
             this.stopButton.Text = "中止";
             this.stopButton.UseVisualStyleBackColor = true;
-            this.stopButton.Click += new System.EventHandler(this.Stop);
+            this.stopButton.Click += new System.EventHandler(this.stop);
             // 
             // deleteButton
             // 
@@ -113,7 +114,7 @@
             this.deleteButton.TabIndex = 8;
             this.deleteButton.Text = "削除";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.Delete);
+            this.deleteButton.Click += new System.EventHandler(this.delete);
             // 
             // DeleteCheckDialog
             // 
@@ -127,7 +128,7 @@
             this.Name = "DeleteCheckDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeleteCheckDialog";
-            this.Load += new System.EventHandler(this.LoadDeleteCheckDialog);
+            this.Load += new System.EventHandler(this.loadDeleteCheckDialog);
             ((System.ComponentModel.ISupportInitialize)(this.deleteMemberList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

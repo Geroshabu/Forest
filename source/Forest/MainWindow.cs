@@ -32,7 +32,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MainWindowLoad(object sender, EventArgs e)
+        private void loadMainWindow(object sender, EventArgs e)
         {
             personRepository = new PersonDbRepository();
 
@@ -57,7 +57,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void AddAttendedPersons(object sender, EventArgs e)
+        private void addAttendedPersons(object sender, EventArgs e)
         {
             //チェック状態を取得
             //IDを取得
@@ -107,7 +107,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void DeleteAttendedPersons(object sender, EventArgs e)
+        private void deleteAttendedPersons(object sender, EventArgs e)
         {
             //チェックされている人のIDを取得
             var id_list = new List<string>();
@@ -168,7 +168,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ManageAllMemberList(object sender, DataGridViewCellMouseEventArgs e)
+        private void manageAllMemberList(object sender, DataGridViewCellMouseEventArgs e)
         {
             //リストの制御をする
             Managelist(allMemberList, e);
@@ -181,7 +181,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ManageAttendMemberList(object sender, DataGridViewCellMouseEventArgs e)
+        private void manageAttendMemberList(object sender, DataGridViewCellMouseEventArgs e)
         {
             //リストの制御をする
             Managelist(attendMemberList, e);
@@ -195,7 +195,7 @@ namespace Forest
         /// </summary>
         /// <param name="targetList">切り替え対象のリスト</param>
         /// <param name="e">マウスのイベントのデータ</param>
-        public void Managelist(DataGridView targetList, DataGridViewCellMouseEventArgs e)
+        private void Managelist(DataGridView targetList, DataGridViewCellMouseEventArgs e)
         {
             //PersonHolderがnullの時（初回起動のとき）はそのまま返す
             if (personHolder == null)
@@ -203,8 +203,8 @@ namespace Forest
                 return;
             }
 
-            //チェック列以外がクリックされても何も起きない
-            if (e.ColumnIndex != 0) { return; }
+            //チェック列以外とヘッダーがクリックされても何も起きない
+            if (e.ColumnIndex != 0　|| e.RowIndex == -1 ) { return; }
 
             //チェックされていた部分が選択されれば、チェック
             //チェックされていなかった部分が選択されればチェックを外す
@@ -222,7 +222,7 @@ namespace Forest
         /// <summary>
         /// ボタンの活性・非活性の切り替えをする
         /// </summary>
-        public void ManageButton()
+        private void ManageButton()
         {
             //ボタンの状態（デフォルト）
             //→ボタン
@@ -289,12 +289,12 @@ namespace Forest
         }
 
         /// <summary>
-        /// ソートをするときに発生するイベント
+        /// リストをソートをするときに発生するイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void allMemberList_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        {
+        private void memberListSortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        { 
             //列の名前
             string targetColum = e.Column.Name;
 
@@ -318,15 +318,31 @@ namespace Forest
             Level level2 = (Level)(((DataGridViewRow)row2).Cells)[4].Value;
 
             //比較するときに使うリスト
-            List<(string columName, int sortResult)> compareList = new List<(string columName, int sortResult)>
+            List<(string columName, int sortResult)> compareList01 = new List<(string columName, int sortResult)>
             {
                 ("allMemberListName",name1.CompareTo(name2)),
                 ("allMemberListGender",gender1.CompareTo(gender2)),
                 ("allMemberListLevel",level1.CompareTo(level2))
             };
+            List<(string columName, int sortResult)> compareList02 = new List<(string columName, int sortResult)>
+            {
+                ("attendMemberListName",name1.CompareTo(name2)),
+                ("attendMemberListGender",gender1.CompareTo(gender2)),
+                ("attendMemberListLevel",level1.CompareTo(level2))
+            };
+
+            //リストによって比較するときのリストが異なる
+            var compareListDictionary = new Dictionary<DataGridView, List<(string columName, int sortResult)>>
+            {
+                { allMemberList,compareList01 },
+                { attendMemberList,compareList02 }
+            };
+
+            //今使うべきリストを調べる
+            var compareList = compareListDictionary[targetList];
 
             //対象の列でまず比較
-            (string columName, int sortResult) = compareList.Single(tuple => tuple.columName == targetColum);
+            (string columName, int sortResult)  = compareList.FirstOrDefault(tuple => tuple.columName == targetColum);
             //0じゃなければ返す
             if (sortResult != 0)
             {
@@ -363,7 +379,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddPerson(object sender, EventArgs e)
+        private void addPerson(object sender, EventArgs e)
         {
             if (allMemberList.RowCount >= 100)
             {
@@ -465,6 +481,10 @@ namespace Forest
             SortByCurrentSetting(allMemberList);
             SortByCurrentSetting(attendMemberList);
 
+            //最初はどの行も選択していない
+            allMemberList.CurrentCell = null;
+            attendMemberList.CurrentCell = null;
+            
             //ボタンの制御を行う
             ManageButton();
 
@@ -475,7 +495,7 @@ namespace Forest
         /// </summary>
         /// <param name="targetList">ソートを行うリスト</param>
         /// <param name="currentSetting">現在のソート対象のカラム名</param>
-        void SortByCurrentSetting(DataGridView targetList)
+        private void SortByCurrentSetting(DataGridView targetList)
         {
             //ソート対象のカラム名
             string currentSetting;
@@ -507,7 +527,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UpdatePerson(object sender, EventArgs e)
+        private void updatePerson(object sender, EventArgs e)
         {
             Person updatePerson = new Person();
             string id = "";
@@ -571,7 +591,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeletePersons(object sender, EventArgs e)
+        private void deletePersons(object sender, EventArgs e)
         {
             var deletePersons = new List<Person>();
             var person = new Person();
@@ -627,7 +647,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void StartGame(object sender, EventArgs e)
+        private void startGame(object sender, EventArgs e)
         {
             //コート数は暫定二つでシングルス
             int courtNum = 2;
@@ -671,11 +691,22 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ClosingMainWindow(object sender, FormClosingEventArgs e)
+        private void closingMainWindow(object sender, FormClosingEventArgs e)
         {
             //アプリケーションを終了する
             Application.Exit();
         }
-        
+
+        /// <summary>
+        /// MainWindowを表示するときに発生するイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void shownMainWindow(object sender, EventArgs e)
+        {
+            //最初はどの行も選択していない
+            allMemberList.CurrentCell = null;
+            attendMemberList.CurrentCell = null;
+        }
     }
 }

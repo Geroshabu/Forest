@@ -22,7 +22,7 @@ namespace Forest
             this.personHolder = personHolder;
         }
 
-        private void LoadGameWindow(object sender, EventArgs e)
+        private void loadGameWindow(object sender, EventArgs e)
         {
             //描画先とするImageオブジェクトを作成する
             Bitmap canvas = new Bitmap(resultPictureBox.Width, resultPictureBox.Height);
@@ -98,7 +98,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void EndGame(object sender, EventArgs e)
+        private void endGame(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -107,10 +107,11 @@
             this.allMemberList.Name = "allMemberList";
             this.allMemberList.RowHeadersVisible = false;
             this.allMemberList.RowTemplate.Height = 21;
+            this.allMemberList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.allMemberList.Size = new System.Drawing.Size(365, 350);
             this.allMemberList.TabIndex = 3;
-            this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAllMemberList);
-            this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.allMemberList_SortCompare);
+            this.allMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.manageAllMemberList);
+            this.allMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.memberListSortCompare);
             // 
             // allMemberListCheck
             // 
@@ -160,9 +161,11 @@
             this.attendMemberList.Name = "attendMemberList";
             this.attendMemberList.RowHeadersVisible = false;
             this.attendMemberList.RowTemplate.Height = 21;
+            this.attendMemberList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.attendMemberList.Size = new System.Drawing.Size(365, 350);
             this.attendMemberList.TabIndex = 4;
-            this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ManageAttendMemberList);
+            this.attendMemberList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.manageAttendMemberList);
+            this.attendMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.memberListSortCompare);
             // 
             // attendMemberListCheck
             // 
@@ -203,7 +206,7 @@
             this.attendButton.TabIndex = 5;
             this.attendButton.Text = "→";
             this.attendButton.UseVisualStyleBackColor = true;
-            this.attendButton.Click += new System.EventHandler(this.AddAttendedPersons);
+            this.attendButton.Click += new System.EventHandler(this.addAttendedPersons);
             // 
             // attendCancelButton
             // 
@@ -214,7 +217,7 @@
             this.attendCancelButton.TabIndex = 6;
             this.attendCancelButton.Text = "←";
             this.attendCancelButton.UseVisualStyleBackColor = true;
-            this.attendCancelButton.Click += new System.EventHandler(this.DeleteAttendedPersons);
+            this.attendCancelButton.Click += new System.EventHandler(this.deleteAttendedPersons);
             // 
             // addButton
             // 
@@ -225,7 +228,7 @@
             this.addButton.TabIndex = 7;
             this.addButton.Text = "追加";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.AddPerson);
+            this.addButton.Click += new System.EventHandler(this.addPerson);
             // 
             // deleteButton
             // 
@@ -236,7 +239,7 @@
             this.deleteButton.TabIndex = 8;
             this.deleteButton.Text = "削除";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.DeletePersons);
+            this.deleteButton.Click += new System.EventHandler(this.deletePersons);
             // 
             // updateButton
             // 
@@ -247,7 +250,7 @@
             this.updateButton.TabIndex = 9;
             this.updateButton.Text = "変更";
             this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.UpdatePerson);
+            this.updateButton.Click += new System.EventHandler(this.updatePerson);
             // 
             // startButton
             // 
@@ -258,7 +261,7 @@
             this.startButton.TabIndex = 10;
             this.startButton.Text = "試合開始";
             this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.StartGame);
+            this.startButton.Click += new System.EventHandler(this.startGame);
             // 
             // label2
             // 
@@ -306,8 +309,9 @@
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "コート分けアプリ　参加メンバー登録";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClosingMainWindow);
-            this.Load += new System.EventHandler(this.MainWindowLoad);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingMainWindow);
+            this.Load += new System.EventHandler(this.loadMainWindow);
+            this.Shown += new System.EventHandler(this.shownMainWindow);
             ((System.ComponentModel.ISupportInitialize)(this.allMemberList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.attendMemberList)).EndInit();
             this.ResumeLayout(false);

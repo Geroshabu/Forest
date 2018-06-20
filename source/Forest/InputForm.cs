@@ -50,7 +50,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Register(object sender, EventArgs e)
+        private void register(object sender, EventArgs e)
         {
             //追加、変更の結果
             bool result;
@@ -139,7 +139,7 @@ namespace Forest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LoadInputForm(object sender, EventArgs e)
+        private void loadInputForm(object sender, EventArgs e)
         {
             if (currentOrder == Order.Update)
             {
@@ -257,48 +257,16 @@ namespace Forest
             return result;
         }
 
-        //以下、それぞれの編集可能項目を選択されたときのイベント
-        //ボタンの制御のみを行う
-
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// それぞれの編集可能項目を選択されたときのイベント。ボタン制御のみを行う。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void selectInputItem(object sender, EventArgs e)
         {
             //ボタンの制御
             ManageButton();
         }
 
-        private void radioButtonMale_Click(object sender, EventArgs e)
-        {
-            //ボタンの制御
-            ManageButton();
-
-        }
-
-        private void radioButtonFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            //ボタンの制御
-            ManageButton();
-
-        }
-
-        private void radioButtonSenior_CheckedChanged(object sender, EventArgs e)
-        {
-            //ボタンの制御
-            ManageButton();
-
-        }
-
-        private void radioButtonIntermediate_CheckedChanged(object sender, EventArgs e)
-        {
-            //ボタンの制御
-            ManageButton();
-
-        }
-
-        private void radioButtonBeginner_CheckedChanged(object sender, EventArgs e)
-        {
-            //ボタンの制御
-            ManageButton();
-
-        }
     }
 }
