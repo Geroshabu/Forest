@@ -54,24 +54,16 @@ namespace Forest
                 //コートの半分ずつ入れていく
                 for (int courtCounter = 0; courtCounter < (accommodateNumber / 2); courtCounter++)
                 {
-                    team1.Add(new Person
-                    {
-                        ID = playerList.First().ID,
-                        Gender = playerList.First().Gender,
-                        Name = playerList.First().Name
-                    });
-                    playerList.RemoveAt(0);
+                    var teamPerson = playerList.First();
+                    team1.Add(teamPerson);
+                    playerList.Remove(teamPerson);
                     playerCounter++;
                 }
                 for (int courtCounter = 0; courtCounter < (accommodateNumber / 2); courtCounter++)
                 {
-                    team2.Add( new Person
-                    {
-                        ID = playerList.First().ID,
-                        Gender = playerList.First().Gender,
-                        Name = playerList.First().Name
-                    });
-                    playerList.RemoveAt(0);
+                    var teamPerson = playerList.First();
+                    team2.Add(teamPerson);
+                    playerList.Remove(teamPerson);
                     playerCounter++;
                 }
             }
