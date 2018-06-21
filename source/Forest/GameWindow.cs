@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Forest
@@ -61,10 +63,31 @@ namespace Forest
             //休憩する人を表示する
             foreach (Person person in breakPersons)
             {
-                object[] row = { person.Name };
+                object[] row = { person.Name,person.Gender,person.Level };
                 this.breakMemberList.Rows.Add(row);
             }
 
+            //名前の順にソートをする
+            SortByName();
+
+        }
+
+        /// <summary>
+        /// 名前の順にソートをするメソッド
+        /// </summary>
+        private void SortByName()
+        {
+            //自動的に並び替えられるようにする
+            foreach (DataGridViewColumn c in breakMemberList.Columns)
+            {
+                c.SortMode = DataGridViewColumnSortMode.Automatic;
+            }
+            //並び替える列を決める
+            DataGridViewColumn sortColumn = breakMemberList.Columns[breakMemberList.Columns[0].Name];
+            //リストの初期ソートの方向は昇順
+            ListSortDirection sortDirection = ListSortDirection.Ascending;
+            //並び替えを行う
+            breakMemberList.Sort(sortColumn, sortDirection);
         }
 
         /// <summary>
@@ -90,6 +113,76 @@ namespace Forest
             graphics.Dispose();
 
             return canvas;
+        }
+
+        /// <summary>
+        /// リストをソートをするときに発生するイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void memberListSortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            //列の名前
+            string targetColum = e.Column.Name;
+
+            object obj1 = e.CellValue1;
+            object obj2 = e.CellValue2;
+
+            //ソートするリスト
+            DataGridView targetList = (DataGridView)sender;
+
+            //対象の行の全データ①
+            int rowIndex1 = e.RowIndex1;
+            object row1 = targetList.Rows[rowIndex1];
+            string name1 = (string)(((DataGridViewRow)row1).Cells)[0].Value;
+            Gender gender1 = (Gender)(((DataGridViewRow)row1).Cells)[1].Value;
+            Level level1 = (Level)(((DataGridViewRow)row1).Cells)[2].Value;
+            //対象の行の全データ②
+            int rowIndex2 = e.RowIndex2;
+            object row2 = targetList.Rows[rowIndex2];
+            string name2 = (string)(((DataGridViewRow)row2).Cells)[0].Value;
+            Gender gender2 = (Gender)(((DataGridViewRow)row2).Cells)[1].Value;
+            Level level2 = (Level)(((DataGridViewRow)row2).Cells)[2].Value;
+
+            //比較するときに使うリスト
+            List<(string columName, int sortResult)> compareList = new List<(string columName, int sortResult)>
+            {
+                ("breakMemberListName",name1.CompareTo(name2)),
+                ("breakMemberListGender",gender1.CompareTo(gender2)),
+                ("breakMemberListLevel",level1.CompareTo(level2))
+            };
+
+            //対象の列でまず比較
+            (string columName, int sortResult) = compareList.Single(tuple => tuple.columName == targetColum);
+            //0じゃなければ返す
+            if (sortResult != 0)
+            {
+                e.SortResult = sortResult;
+                e.Handled = true;
+                return;
+            }
+
+            foreach (var compare in compareList)
+            {
+                //同じだったら次に行く
+                if (compare.columName == targetColum)
+                {
+                    continue;
+                }
+                //sortResultが0でなかったら入れる
+                if (compare.sortResult != 0)
+                {
+                    e.SortResult = compare.sortResult;
+                    e.Handled = true;
+                    return;
+                }
+            }
+
+            //入っていなかったら0を入れる
+            e.SortResult = 0;
+            //処理したことを知らせる
+            e.Handled = true;
+
         }
 
 
