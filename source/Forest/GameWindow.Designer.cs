@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.breakMemberList = new System.Windows.Forms.DataGridView();
-            this.breakMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endGameButton = new System.Windows.Forms.Button();
             this.breakMemberLabel = new System.Windows.Forms.Label();
             this.courtNameLabel1 = new System.Windows.Forms.Label();
@@ -39,6 +38,9 @@
             this.playerNameLabel2 = new System.Windows.Forms.Label();
             this.playerNameLabel3 = new System.Windows.Forms.Label();
             this.playerNameLabel4 = new System.Windows.Forms.Label();
+            this.breakMemberListName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.breakMemberListGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.breakMemberListLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.breakMemberList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -52,20 +54,16 @@
             this.breakMemberList.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.breakMemberList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.breakMemberList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.breakMemberListName});
+            this.breakMemberListName,
+            this.breakMemberListGender,
+            this.breakMemberListLevel});
             this.breakMemberList.Location = new System.Drawing.Point(518, 61);
             this.breakMemberList.Name = "breakMemberList";
             this.breakMemberList.RowHeadersVisible = false;
             this.breakMemberList.RowTemplate.Height = 21;
             this.breakMemberList.Size = new System.Drawing.Size(220, 230);
             this.breakMemberList.TabIndex = 5;
-            // 
-            // breakMemberListName
-            // 
-            this.breakMemberListName.HeaderText = "名前";
-            this.breakMemberListName.Name = "breakMemberListName";
-            this.breakMemberListName.ReadOnly = true;
-            this.breakMemberListName.Width = 210;
+            this.breakMemberList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.memberListSortCompare);
             // 
             // endGameButton
             // 
@@ -160,6 +158,25 @@
             this.playerNameLabel4.Text = "playerNameLabel4";
             this.playerNameLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // breakMemberListName
+            // 
+            this.breakMemberListName.HeaderText = "名前";
+            this.breakMemberListName.Name = "breakMemberListName";
+            this.breakMemberListName.ReadOnly = true;
+            this.breakMemberListName.Width = 210;
+            // 
+            // breakMemberListGender
+            // 
+            this.breakMemberListGender.HeaderText = "性別";
+            this.breakMemberListGender.Name = "breakMemberListGender";
+            this.breakMemberListGender.Visible = false;
+            // 
+            // breakMemberListLevel
+            // 
+            this.breakMemberListLevel.HeaderText = "レベル";
+            this.breakMemberListLevel.Name = "breakMemberListLevel";
+            this.breakMemberListLevel.Visible = false;
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -199,5 +216,7 @@
         private System.Windows.Forms.Label playerNameLabel3;
         private System.Windows.Forms.Label playerNameLabel4;
         private System.Windows.Forms.DataGridViewTextBoxColumn breakMemberListName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn breakMemberListGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn breakMemberListLevel;
     }
 }
